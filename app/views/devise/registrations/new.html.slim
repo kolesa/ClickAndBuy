@@ -1,0 +1,25 @@
+.container
+  .container.text-center
+    .col-lg-6.col-lg-offset-3
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-horizontal" }) do |f|
+        = devise_error_messages!
+        
+        - if alert
+          .alert.alert-danger.alert-dismissable
+            button.close aria-hidden="true" data-dismiss="alert" type="button" x
+            = alert
+
+        h2.form-signin-heading Sign Up
+
+        .col-lg-8.col-lg-offset-2
+
+          = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Email Address"
+          = f.password_field :password, class: "form-control login-input", placeholder: "Password"
+          = f.password_field :password, class: "form-control login-input-pass", placeholder: "Password confirmation"
+
+        .col-lg-4.col-lg-offset-3
+          = f.submit "Sign UP", class: "btn btn-lg btn-primary btn-block btn-center"
+        
+        .col-lg-8.col-lg-offset-2
+          small.create-account.text-muted
+            = render "devise/shared/links"

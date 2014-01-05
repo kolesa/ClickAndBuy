@@ -6,14 +6,16 @@ gem 'rails', '4.0.2'
 gem 'jbuilder'
 gem 'puma'
 
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
 
-gem 'paperclip'
+gem 'slim-rails'
+#gem 'paperclip'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'font-awesome-sass'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -21,17 +23,17 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'spork-rails'
-  gem 'guard-spork'
+  #gem 'rspec-rails'
+  #gem 'guard-rspec'
+  #gem 'spork-rails'
+  #gem 'guard-spork'
 end
 
 group :test do
-  gem 'capybara'
-  gem 'factory_girl_rails'
+  #gem 'capybara'
+  #gem 'factory_girl_rails'
 end
 
 group :doc do
-  gem 'sdoc', '0.3.20', require: false
+  #gem 'sdoc', '0.3.20', require: false
 end

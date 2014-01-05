@@ -1,0 +1,51 @@
+.section
+  .container
+    .row
+      /main page
+      - 2.times
+        - 2.times
+          .col-lg-6.col-md-6.col-sm-6
+            .thumbnail
+              = link_to item_path
+                img.img-responsive.img-home-portfolio src="http://placehold.it/600x600"
+              a.button.like href="#like"
+                button.btn.btn-labeled.btn-primary type="button"
+                  span.btn-label
+                    i.glyphicon.glyphicon-heart
+                  |добавить
+              .caption
+                .row
+                  .col-md-8
+                    h3 
+                      a href="#" 8-Bit чехол для iPhone 5
+                  .col-md-4
+                    span.btn.btn-sm.btn-danger
+                      |-20%
+                    span.btn.btn-sm.btn-success
+                      |-8000 р.
+                    
+
+        - 3.times
+          .col-lg-4.col-md-4.col-sm-4
+            .thumbnail
+              img.img-responsive.img-home-portfolio src="http://placehold.it/350x350"
+              a.button.like href="#"
+                button.btn.btn-labeled.btn-primary type="button"
+                  span.btn-label
+                    i.glyphicon.glyphicon-heart добавить
+              .caption
+                h3 
+                .row
+                  .col-md-4
+                    small СКИДКА
+                    br
+                      b 60%
+                  .col-md-4
+                    small ЭКОНОМИЯ
+                    br
+                      b 8000 р.
+                  .col-md-4
+                    a.btn.btn-primary href="#" role="button" подробнее
+
+.container
+  hr

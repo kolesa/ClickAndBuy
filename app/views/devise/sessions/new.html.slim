@@ -1,0 +1,49 @@
+.container
+  .container.text-center
+    .col-lg-6.col-lg-offset-3
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-horizontal" }) do |f|
+
+        = devise_error_messages! 
+        
+        - if alert
+          .alert.alert-danger.alert-dismissable
+            button.close aria-hidden="true" data-dismiss="alert" type="button" x
+            = alert
+
+        h2.form-signin-heading Sign in
+
+        small.text-muted Connect LB with your favorite social network
+        br
+          p
+            a.btn.btn-primary.social-login-btn.social-facebook href="#"
+              i.fa.fa-facebook
+            a.btn.btn-primary.social-login-btn.social-twitter href="#"
+              i.fa.fa-vk
+          p style="margin-top: -10px;"
+            a.btn.btn-primary.social-login-btn.social-linkedin href="#"
+              i.fa.fa-linkedin
+            a.btn.btn-primary.social-login-btn.social-google href="#"
+              i.fa.fa-google-plus
+            .btn-group.social-login-more
+            br
+            small.text-muted Or sign in with LB
+            br
+
+            .col-lg-8.col-lg-offset-2
+              = f.label :email
+              = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Email Address"
+
+              = f.label :password
+              = f.password_field :password, class: "form-control login-input-pass", placeholder: "Password"
+
+              /- if devise_mapping.rememberable?
+              /  div
+              /    = f.check_box :remember_me
+              /    = f.label :remember_me
+
+            .col-lg-4.col-lg-offset-3
+              = f.submit "Sign in", class: "btn btn-lg btn-primary btn-block btn-center"
+            
+            .col-lg-8.col-lg-offset-2
+              small.create-account.text-muted
+                = render "devise/shared/links"
