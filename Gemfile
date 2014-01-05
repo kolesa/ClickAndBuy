@@ -11,6 +11,8 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
 
+gem 'rails_12factor'
+
 gem 'slim-rails'
 #gem 'paperclip'
 gem 'will_paginate'
