@@ -6,7 +6,7 @@ gem 'rails', '4.0.2'
 gem 'jbuilder'
 gem 'puma'
 
-#gem 'sqlite3'
+gem 'pg'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
