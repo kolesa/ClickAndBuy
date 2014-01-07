@@ -2,14 +2,17 @@
   .container
     .row
       .col-lg-8
-        img.img-thumbnail.img-responsive alt="" src="http://placehold.it/800x400&text=iPhone+5S"
+        = image_tag @item.avatar.url, class: "img-rounded img-responsive"
+
+        / thumbnails  
+        /.row
+        /  - 6.times
+        /    .col-lg-2
+        /      img.img-thumbnail.img-responsive alt="" src="http://placehold.it/150x150&text=thumb"
         
-        .row
-          - 6.times
-            .col-lg-2
-              img.img-thumbnail.img-responsive alt="" src="http://placehold.it/150x150&text=thumb"
-        h3 iPhone 5S
-        p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+        h3 = @item.name
+        p  = @item.desc
+        p  = @item.price
       .col-lg-4
         img.img-thumbnail.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
           .row

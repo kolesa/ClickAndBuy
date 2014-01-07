@@ -1,9 +1,14 @@
 ClickAndBuy::Application.routes.draw do
   
+  resources :shops
+
+  resources :items
+
   devise_for :users
 
   get '/item' => "static_pages#item"
-  
+  get '/user' => "users#profile"
+
   root "static_pages#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

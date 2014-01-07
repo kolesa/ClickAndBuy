@@ -6,35 +6,74 @@
         - 2.times
           .col-lg-6.col-md-6.col-sm-6
             .thumbnail
-              = link_to item_path
+              = link_to item_path(id: 3)
                 img.img-responsive.img-home-portfolio src="http://placehold.it/600x600"
-              a.button.like href="#like"
-                button.btn.btn-labeled.btn-primary type="button"
-                  span.btn-label
-                    i.glyphicon.glyphicon-heart
-                  |добавить
+              - if signed_in?
+                a.button.like href="#like"
+                  button.btn.btn-labeled.btn-primary type="button"
+                    span.btn-label
+                      i.glyphicon.glyphicon-heart
+                    |добавить
+              - else
+                a.button.like href="#"
+                  button.btn.btn-labeled.btn-primary type="button" data-toggle="modal" data-target="#myModal"
+                    span.btn-label
+                      i.glyphicon.glyphicon-heart
+                    |добавить
+                .modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                  .modal-dialog
+                    .modal-content
+                      .modal-header
+                        h2.form-signin-heading Sign in
+                      .modal-body
+                        center
+                          = form_for('', as: '', url: '', html: { class: "form-horizontal" }) do |f|
+                            small.text-muted Connect LB with your favorite social network
+                            br
+                            p
+                              a.btn.btn-primary.social-login-btn.social-facebook href="#"
+                                i.fa.fa-facebook
+                              a.btn.btn-primary.social-login-btn.social-twitter href="#"
+                                i.fa.fa-vk
+                            p style="margin: -10px 0 0 0"
+                              a.btn.btn-primary.social-login-btn.social-linkedin href="#"
+                                i.fa.fa-linkedin
+                              a.btn.btn-primary.social-login-btn.social-google href="#"
+                                i.fa.fa-google-plus
+                              .btn-group.social-login-more
+                              br
+                              small.text-muted Or sign in with LB
+                              br
+
+                            .col-lg-8.col-lg-offset-2
+                              = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Email Address"
+                              = f.password_field :password, class: "form-control login-input-pass", placeholder: "Password"
+                            .col-lg-4.col-lg-offset-3
+                              = f.submit "Sign UP", class: "btn btn-lg btn-primary btn-block btn-center"
+                      .modal-footer
+
               .caption
                 .row
                   .col-md-8
                     h3 
-                      a href="#" 8-Bit чехол для iPhone 5
+                      = link_to "8-Bit чехол для iPhone 5", item_path(id: 3)
                   .col-md-4
                     span.btn.btn-sm.btn-danger
                       |-20%
                     span.btn.btn-sm.btn-success
                       |-8000 р.
-                    
-
         - 3.times
           .col-lg-4.col-md-4.col-sm-4
             .thumbnail
-              img.img-responsive.img-home-portfolio src="http://placehold.it/350x350"
-              a.button.like href="#"
-                button.btn.btn-labeled.btn-primary type="button"
-                  span.btn-label
-                    i.glyphicon.glyphicon-heart добавить
-              .caption
-                h3 
+              = link_to item_path(id: 3)
+                img.img-responsive.img-home-portfolio src="http://placehold.it/350x350"
+                a.button.like href="#"
+                  button.btn.btn-labeled.btn-primary type="button"
+                    span.btn-label
+                      i.glyphicon.glyphicon-heart добавить
+                .caption
+                  h3 
+                  = link_to "8-Bit чехол для iPhone 5", item_path(id: 3)
                 .row
                   .col-md-4
                     small СКИДКА

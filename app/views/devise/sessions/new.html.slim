@@ -30,10 +30,7 @@
             br
 
             .col-lg-8.col-lg-offset-2
-              = f.label :email
               = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Email Address"
-
-              = f.label :password
               = f.password_field :password, class: "form-control login-input-pass", placeholder: "Password"
 
               /- if devise_mapping.rememberable?

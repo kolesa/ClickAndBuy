@@ -1,0 +1,36 @@
+= form_for(@item, html: {class: 'form-horizontal'}) do |f|
+  fieldset
+    legend
+      | Add new item
+
+    - if @item.errors.any?
+
+      #error_explanation.alert.alert-dismissable.alert-warning
+        button.close data-dismiss="alert" x
+        h2 = "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
+        p
+          ul
+            - @item.errors.full_messages.each do |message|
+              li = message
+
+    .form-group
+      = f.label :name, class: "col-lg-2 control-label"
+      = f.text_field :name, class: 'form-control'
+
+    .form-group
+      = f.label :desc, class: "col-lg-2 control-label"
+      = f.text_area :desc, class: 'form-control'
+
+    .form-group
+      = f.label :published, class: "col-lg-2 control-label"
+      = f.check_box :published, class: 'form-control'
+
+    .form-group
+      = f.label :price, class: "col-lg-2 control-label"
+      = f.number_field :price, class: 'form-control'
+
+    .form-group
+      = f.label :avatar
+      = f.file_field :avatar
+
+    .actions = f.submit 'Save'

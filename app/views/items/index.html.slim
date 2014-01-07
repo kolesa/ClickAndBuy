@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+
+      h1 Listing items
+
+      table.table.table-striped
+        thead
+          th.col-lg-2 avatar
+          th.col-lg-2 name
+          th.col-lg-2 price
+          th.col-lg-4 desc
+          th.col-lg-1 published
+          th.col-lg-1 action
+
+        tbody  
+        - @items.each do |item|
+          tr
+            td = image_tag item.avatar.url(:thumb), class: "img-rounded img-responsive"
+            td = item.name
+            td = item.price
+            td = item.desc
+            td = item.published
+            td
+              = link_to item do
+                i.fa.fa-eye.fa-fw
+              = link_to edit_item_path(item)
+                i.fa.fa-pencil.fa-fw
+              = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
+                i.fa.fa-trash-o.fa-fw
+
+      = link_to 'New Item', new_item_path

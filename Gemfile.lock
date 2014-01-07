@@ -31,6 +31,11 @@ GEM
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.1.4)
+    cancan (1.6.10)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -64,6 +69,11 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     orm_adapter (0.5.0)
+    paperclip (3.5.2)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.3)
     puma (2.7.1)
@@ -136,12 +146,14 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   bootstrap-will_paginate
+  cancan
   coffee-rails
   devise
   faker
   font-awesome-sass
   jbuilder
   jquery-rails
+  paperclip
   pg
   puma
   rails (= 4.0.2)

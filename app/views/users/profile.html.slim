@@ -1,0 +1,44 @@
+.section
+  .container style="margin-top: 20px;"
+    .row
+      .col-lg-8
+        .bs-example.bs-example-type
+          table.table.table-striped.table-hover
+            tbody
+              - 4.times
+                tr
+                  td style="width: 160px;"
+                    img.img-rounded.img-responsive alt="" src="http://placehold.it/150x150&text=Foto"
+                  td
+                    div
+                      a> href="#" style="color: #428bca; font-size: 24px" iPhone 5s
+                      | от
+                      a< href="#" style="color: #428bca;" eBay.com
+                    div style="margin-top: 15px"
+                      | Лайки
+                      .progress.progress-striped style="margin-bottom: 9px;"
+                        .progress-bar.progress-bar-success style="width: 20%"
+                          | 55
+                    div
+                      | Скидка
+                      .progress.progress-striped style="margin-bottom: 9px;"
+                        .progress-bar.progress-bar-success style="width: 20%"
+                          | 20%
+                  td.text-left style="width: 5%"
+                    .btn-lg style="margin-top:5px;"
+                      | 55
+                      span.glyphicon.glyphicon-heart
+      .col-lg-3.col-offset-lg-1.well.well-sm
+        img.img-rounded.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
+          .row style="margin: 10px 0 0 0;"
+            h3 Василий Пупкин
+            h5
+              cite title="Москва"
+                | 23 года, Москва
+                i.glyphicon.glyphicon-map-marker<>
+            p
+              i.glyphicon.glyphicon-envelope<> style="margin-bottom: 10px;"
+              = current_user.email
+              br
+              i.glyphicon.glyphicon-globe<> style="margin-bottom: 10px;"
+              a> href="#" style="color: #428bca;" vk.com/vasya

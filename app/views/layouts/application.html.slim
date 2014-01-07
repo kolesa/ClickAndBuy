@@ -19,22 +19,22 @@ html lang="en"
             span.icon-bar
             span.icon-bar
           = link_to "home", root_path, {class: 'navbar-brand'}
-        form.navbar-form.navbar-left
-          input.form-control.col-lg-8 placeholder="Search" type="text"
         .collapse.navbar-collapse.navbar-ex1-collapse
+          form.navbar-form.navbar-left
+            input.form-control.col-lg-4.col-md-4.col-sm-4 placeholder="Search" type="text"
           ul.nav.navbar-nav.navbar-right
             - if signed_in?
-              li
-                a href="#"
+              li= link_to current_user.email, user_path
               li= link_to "Sign Out", destroy_user_session_path, method: "delete"
             - else
               li= link_to "Sign In", new_user_session_path
           ul.nav.navbar-nav.navbar-left
             li
-              a href="about.html" about
+              = link_to 'Shops', shops_path
             li
-              a href="services.html" serv
-            li.dropdown
+              = link_to 'Items', items_path
+            
+            /li.dropdown
               a.dropdown-toggle data-toggle="dropdown" href="#"
                 | Items
                 b.caret

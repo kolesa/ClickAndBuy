@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      h1 Listing shops
+
+      table.table.table-striped
+        thead
+          th.col-lg-2 avatar
+          th.col-lg-2 name
+          th.col-lg-4 desc
+          th.col-lg-1 url
+          th.col-lg-2 social
+          th.col-lg-1 action
+
+        tbody  
+        - @shops.each do |item|
+          tr
+            td = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+            td = item.name
+            td = item.desc
+            td = item.url
+            td
+              = item.fb
+              = item.vk
+            td
+              = link_to item do
+                i.fa.fa-eye.fa-fw
+              = link_to edit_shop_path(item)
+                i.fa.fa-pencil.fa-fw
+              = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
+                i.fa.fa-trash-o.fa-fw
+      = link_to 'New Shop', new_shop_path

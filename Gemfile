@@ -12,9 +12,9 @@ gem 'faker'
 gem 'devise'
 
 gem 'rails_12factor'
-
+gem 'cancan'
 gem 'slim-rails'
-#gem 'paperclip'
+gem 'paperclip'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'font-awesome-sass'

@@ -1,0 +1,34 @@
+= form_for(@shop, html: {class: 'form-horizontal'}) do |f|
+  fieldset
+    legend
+      | Add new shop
+
+    - if @shop.errors.any?
+
+      #error_explanation.alert.alert-dismissable.alert-warning
+        button.close data-dismiss="alert" x
+        h2 = "#{pluralize(@shop.errors.count, "error")} prohibited this shop from being saved:"
+        p
+          ul
+            - @shop.errors.full_messages.each do |message|
+              li = message
+
+    .form-group
+      = f.label :name, class: "col-lg-2 control-label"
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :desc, class: "col-lg-2 control-label"
+      = f.text_area :desc, class: 'form-control'
+    .form-group
+      = f.label :url, class: "col-lg-2 control-label"
+      = f.text_field :url, class: 'form-control'
+    .form-group
+      = f.label :fb, class: "col-lg-2 control-label"
+      = f.text_field :fb, class: 'form-control'
+    .form-group
+      = f.label :vk, class: "col-lg-2 control-label"
+      = f.text_field :vk, class: 'form-control'
+    .form-group
+      = f.label :avatar
+      = f.file_field :avatar
+    .actions = f.submit 'Save'
