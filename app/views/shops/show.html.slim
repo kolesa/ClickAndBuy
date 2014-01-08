@@ -2,16 +2,16 @@
     .row
       .col-lg-8 
         .col-lg-8
-          a.btn.btn-info href="#" style="margin: 10px;"
+          = link_to shop_items_path, class: "btn btn-success", style: "margin: 10px;"
             i.fa.fa-plus.fa-lg>
             |добавить товар
           a.btn.btn-success href="#" style="margin: 10px;"
             i.fa.fa-plus.fa-lg>
             |добавить категорию 
         .col-lg-4.text-right
-          a.btn.btn-success href="#" style="margin: 10px;"
-            i.fa.fa-pencil.fa-lg>
-            |Редактировать
+          = link_to edit_shop_path(@shop), class: "btn btn-success", style: "margin: 10px;"
+              i.fa.fa-pencil.fa-lg>
+              |Редактировать
 
         table.table.table-striped.table-hover
           thead

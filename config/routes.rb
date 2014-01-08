@@ -6,10 +6,12 @@ ClickAndBuy::Application.routes.draw do
 
   devise_for :users
 
-  get '/item' => "static_pages#item"
   get '/user' => "users#profile"
+  get '/item' => "static_pages#item"
+
+  post '/items/:id/like' => "items#like", as: :like
   
-  get '/shops/:id/items' => "shops#items", as: :shop_items
+  get  '/shops/:id/items' => "shops#items", as: :shop_items
   post '/shops/:id/items' => "shops#add_item", as: :shop_add_item
 
 

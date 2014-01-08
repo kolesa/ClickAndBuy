@@ -2,29 +2,35 @@
   .container
     .row
       .col-lg-8
-        = image_tag @item.avatar.url, class: "img-rounded img-responsive"
-
+        = notice
+        .col-lg-12
+          = image_tag @item.avatar.url(:medium), class: "img-rounded img-responsive"
         / thumbnails  
         /.row
         /  - 6.times
         /    .col-lg-2
         /      img.img-thumbnail.img-responsive alt="" src="http://placehold.it/150x150&text=thumb"
         
+        .col-lg-2.col-md-2.col-sm-2
+          = link_to like_path, method: "POST"
+             i.fa.fa-heart.fa-4x
+
         h3 = @item.name
         p  = @item.desc
         p  = @item.price
       .col-lg-4
         img.img-thumbnail.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
           .row
-            h3 eBay.com
+            h3
+              = @item.shop.name
             h5
-              i.glyphicon.glyphicon-globe
-              a<> href="#" eBay.com
+              i.fa.fa-globe<>
+              =link_to @item.shop.url
             p
-              i.glyphicon.glyphicon-envelope<>
-              | email@example.com
+              i.fa.fa-envelope<>
+              = @item.shop.fb
             p
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              = @item.shop.desc
             p
               a href="#"
                 i.fa.fa-facebook.fa-2x>

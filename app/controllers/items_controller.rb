@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :like]
 
   # GET /items
   # GET /items.json
@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+
   end
 
   # GET /items/new
@@ -17,8 +18,18 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  # GET /items/1/edit
+  # POST /items/1/edit
   def edit
+  end
+
+  # GET /items/1/like
+  def like
+    like = Like.new(user: current_user, item: @item)
+    if like.save
+      redirect_to @item, notice: 'Item was not successfully created.'
+    else
+      redirect_to @item, notice: 'Item was successfully created.'
+    end
   end
 
   # POST /items
