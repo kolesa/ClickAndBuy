@@ -15,7 +15,9 @@
         tbody  
         - @shops.each do |item|
           tr
-            td = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+            td
+              = link_to item
+                = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
             td = item.name
             td = item.desc
             td = item.url

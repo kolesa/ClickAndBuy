@@ -8,6 +8,10 @@ ClickAndBuy::Application.routes.draw do
 
   get '/item' => "static_pages#item"
   get '/user' => "users#profile"
+  
+  get '/shops/:id/items' => "shops#items", as: :shop_items
+  post '/shops/:id/items' => "shops#add_item", as: :shop_add_item
+
 
   root "static_pages#index"
 

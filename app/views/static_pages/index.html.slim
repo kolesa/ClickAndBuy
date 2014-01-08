@@ -12,13 +12,13 @@
                 a.button.like href="#like"
                   button.btn.btn-labeled.btn-primary type="button"
                     span.btn-label
-                      i.glyphicon.glyphicon-heart
+                      i.fa.fa-heart
                     |добавить
               - else
                 a.button.like href="#"
                   button.btn.btn-labeled.btn-primary type="button" data-toggle="modal" data-target="#myModal"
                     span.btn-label
-                      i.glyphicon.glyphicon-heart
+                      i.fa.fa-heart
                     |добавить
                 .modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
                   .modal-dialog
@@ -70,13 +70,13 @@
                 a.button.like href="#"
                   button.btn.btn-labeled.btn-primary type="button"
                     span.btn-label
-                      i.glyphicon.glyphicon-heart добавить
+                      i.fa.fa-heart добавить
                 .caption
-                  h3 
-                  = link_to "8-Bit чехол для iPhone 5", item_path(id: 3)
+                  h4 
+                    = link_to "8-Bit чехол для iPhone 5", item_path(id: 3)
                 .row
-                  .col-md-4
-                    small СКИДКА
+                  .col-md-3 style="margin-left: 10px;"
+                    small МАКС.СКИДКА
                     br
                       b 60%
                   .col-md-4

@@ -1,37 +1,78 @@
 .container
     .row
-      .col-lg-8
-        .bs-example.bs-example-type
-          table.table.table-striped.table-hover
-            thead
-              tr
-                th
-                th
-                th.text-right
-            tbody
-              -4.times
+      .col-lg-8 
+        .col-lg-8
+          a.btn.btn-info href="#" style="margin: 10px;"
+            i.fa.fa-plus.fa-lg>
+            |добавить товар
+          a.btn.btn-success href="#" style="margin: 10px;"
+            i.fa.fa-plus.fa-lg>
+            |добавить категорию 
+        .col-lg-4.text-right
+          a.btn.btn-success href="#" style="margin: 10px;"
+            i.fa.fa-pencil.fa-lg>
+            |Редактировать
+
+        table.table.table-striped.table-hover
+          thead
+            tr
+              th.col-lg-2.col-md-2.col-sm-2
+              th.col-lg-2.col-md-2.col-sm-6 Название
+              th.col-lg-2.col-md-2.col-sm-2 Цена
+              th.col-lg-2.col-md-2.col-sm-3 Действие
+          tbody
+            - @items.each do |item|
+
                 tr
-                  td style="width: 160px;"
-                    img alt="" src="http://placehold.it/150x150&text=Foto"
                   td
-                    h4
-                      a href="#" iPhone
-                    br
-                      span.glyphicon.glyphicon-heart
-                      | 50
-                      br
-                        span.glyphicon.glyphicon-eye-open
-                        | 88
-                  td.text-right
-                    a.btn.btn-xs href="#"
-                      span.glyphicon.glyphicon-info-sign
-                      | Подробнее
+                    = link_to item_path(item.id)
+                      = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+                  td
+                    h5
+                      = link_to item_path(item.id)
+                        = item.name
+                  td
+                    h5
+                      = item.price
+                      i.fa.fa-rub<
+                      
+                  td
+                    .btn-group
+                      = link_to item_path(item.id), class: "btn btn-primary"
+                        i.fa.fa-user.fa-fw
+                        | Показать
+                      a.btn.btn-primary.dropdown-toggle data-toggle="dropdown" href="#" style="padding: 9px 10px;"
+                        span.fa.fa-caret-down
+                      ul.dropdown-menu
+                        li
+                          a href="#"
+                            i.fa.fa-pencil.fa-fw
+                            | Изменить
+                        li
+                          a href="#"
+                            i.fa.fa-trash-o.fa-fw
+                            | Удалить
+                        li
+                          a href="#"
+                            - if item.published
+                              i.fa.fa-ban.fa-fw
+                              | Заблокировать
+                            - else
+                              i.fa.fa-ban.fa-fw
+                              | Разблокировать
+                        li.divider
+                        li
+                          a href="#"
+                            i.i
+                            | Make admin
+
+
       .col-lg-4
         h2 = @shop.name
         p
           = image_tag @shop.avatar.url, class: "img-rounded img-responsive"
         p
-          i.glyphicon.glyphicon-globe>
+          i.fa.fa-globe>
           a href="#" =@shop.url
         
         p = @shop.desc
@@ -45,10 +86,7 @@
             i.fa.fa-twitter.fa-2x>
           a href="#"
             i.fa.fa-google-plus.fa-2x>
-          a.btn href="#"
-            /i.fa.fa-envelope.fa-2x>
-            | Написать
-    ul.pagination
+    /ul.pagination
       li.disabled
         a href="#"
       li.active
