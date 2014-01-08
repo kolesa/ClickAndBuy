@@ -16,7 +16,9 @@
         tbody  
         - @items.each do |item|
           tr
-            td = image_tag item.avatar.url(:thumb), class: "img-rounded img-responsive"
+            td
+              = link_to item
+                = image_tag item.avatar.url(:thumb), class: "img-rounded img-responsive"
             td = item.name
             td = item.price
             td = item.desc
@@ -29,4 +31,5 @@
               = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
                 i.fa.fa-trash-o.fa-fw
 
-      = link_to 'New Item', new_item_path
+      /= link_to 'New Item', new_item_path
+      | Создавать товары можно только из магазина
