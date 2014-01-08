@@ -45,11 +45,11 @@
                         span.fa.fa-caret-down
                       ul.dropdown-menu
                         li
-                          a href="#"
+                          = link_to edit_item_path(item)
                             i.fa.fa-pencil.fa-fw
-                            | Изменить
+                            | Редактировать
                         li
-                          a href="#"
+                          = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
                             i.fa.fa-trash-o.fa-fw
                             | Удалить
                         li
@@ -65,6 +65,8 @@
                           a href="#"
                             i.i
                             | Make admin
+              
+              
 
 
       .col-lg-4
