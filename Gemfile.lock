@@ -33,6 +33,7 @@ GEM
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.1.4)
+    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -148,6 +149,7 @@ DEPENDENCIES
   acts-as-taggable-on
   bcrypt-ruby
   bootstrap-will_paginate
+  cancan
   coffee-rails
   devise
   faker
