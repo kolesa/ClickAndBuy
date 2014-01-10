@@ -7,6 +7,7 @@ ClickAndBuy::Application.routes.draw do
 
   get '/user'  => "users#profile"
   get '/users' => "users#index"
+  get '/users/:id' => "users#show", as: :user_info
 
   get '/item' => "static_pages#item"
   

@@ -13,9 +13,36 @@
 
         .col-lg-8.col-lg-offset-2
 
-          = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Email Address"
-          = f.password_field :password, class: "form-control login-input", placeholder: "Password"
-          = f.password_field :password, class: "form-control login-input-pass", placeholder: "Password confirmation"
+          .form-group
+            = f.text_field :first_name, :autofocus => true, class: "form-control login-input", placeholder: "First name"
+          .form-group
+            = f.text_field :last_name, class: "form-control login-input", placeholder: "Last name"
+          .form-group
+            = f.email_field :email, class: "form-control login-input", placeholder: "Email Address"
+          .form-group
+            = f.password_field :password, class: "form-control login-input", placeholder: "Password"
+          .form-group
+            = f.password_field :password_confirmation, class: "form-control login-input-pass", placeholder: "Password confirmation"
+          
+          .form-group
+            = f.select :gender, [['Male', 0], ['Female', 1]], :class=>"form-control"
+          
+          .form-group
+            = f.date_field :date, class: "form-control"
+          .form-group
+            = f.text_field :country, class: "form-control login-input", placeholder: "Country"
+          / Социалки
+          .form-group
+            = f.text_field :vk, class: "form-control login-input", placeholder: "VKontakte"
+          .form-group
+            = f.text_field :fb, class: "form-control login-input", placeholder: "Facebook"
+          .form-group
+            = f.text_field :tw, class: "form-control login-input", placeholder: "Twitter"
+          .form-group
+            = f.text_field :od, class: "form-control login-input", placeholder: "Odnoklassniki"
+
+          .form-group
+            = f.file_field :avatar
 
         .col-lg-4.col-lg-offset-3
           = f.submit "Sign UP", class: "btn btn-lg btn-primary btn-block btn-center"

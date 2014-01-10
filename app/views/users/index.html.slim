@@ -1,47 +1,49 @@
-.container
-    .row
-      .col-lg-8 
-        table.table.table-striped.table-hover
-          thead
-            tr
-              th.col-lg-1.col-md-1.col-sm-1
-              th.col-lg-2.col-md-2.col-sm-6 Имя
-              th.col-lg-2.col-md-2.col-sm-3 Действие
-          tbody
-          - @users.map do |item|
-            tr
-              /td
-                = link_to item
-                  = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
-              td
-                img.img-thumbnail.img-responsive src="http://placehold.it/100x100&text=img"
-              td
-                h5
-                  = link_to item
-                    = item.email
-                | 23 года, Москва
-              td
-                .btn-group
-                  a.btn.btn-primary href="#"
-                    i.fa.fa-user.fa-fw
-                    | Показать
-                  a.btn.btn-primary.dropdown-toggle data-toggle="dropdown" href="#" style="padding: 9px 8px;"
-                    span.fa.fa-caret-down
-                  ul.dropdown-menu
-                    li
-                      a href="#"
-                        i.fa.fa-pencil.fa-fw
-                        | Редактировать
-                    li
-                      a href="#"
-                        i.fa.fa-trash-o.fa-fw
-                        | Удалить
-                    li
-                      a href="#"
-                        i.fa.fa-ban.fa-fw
-                        | Забанить
-                    li.divider
-                    li
-                      a href="#"
-                        i.i
-                        | Сделать админом
+- if current_user.is_admin
+  .container
+      .row
+        .col-lg-8 
+          table.table.table-striped.table-hover
+            thead
+              tr
+                th.col-lg-1.col-md-1.col-sm-1
+                th.col-lg-2.col-md-2.col-sm-6 Имя
+                th.col-lg-2.col-md-2.col-sm-3 Действие
+            tbody
+            - @users.map do |item|
+              tr
+                td
+                  = link_to user_info_path item
+                    - if item.avatar_file_name
+                        = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+                    - else
+                      img.img-thumbnail.img-responsive src="http://placehold.it/100x100&text=img"
+                td
+                  h5
+                    = link_to item
+                      = item.email
+                  | 23 года, Москва
+                td
+                  .btn-group
+                    a.btn.btn-primary href="#"
+                      i.fa.fa-user.fa-fw
+                      | Показать
+                    a.btn.btn-primary.dropdown-toggle data-toggle="dropdown" href="#" style="padding: 9px 8px;"
+                      span.fa.fa-caret-down
+                    ul.dropdown-menu
+                      li
+                        a href="#"
+                          i.fa.fa-pencil.fa-fw
+                          | Редактировать
+                      li
+                        a href="#"
+                          i.fa.fa-trash-o.fa-fw
+                          | Удалить
+                      li
+                        a href="#"
+                          i.fa.fa-ban.fa-fw
+                          | Забанить
+                      li.divider
+                      li
+                        a href="#"
+                          i.i
+                          | Сделать админом
