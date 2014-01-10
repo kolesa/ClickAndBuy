@@ -1,19 +1,21 @@
 ClickAndBuy::Application.routes.draw do
   
   resources :shops
-
   resources :items
 
   devise_for :users
 
-  get '/user' => "users#profile"
-  get '/item' => "static_pages#item"
+  get '/user'  => "users#profile"
+  get '/users' => "users#index"
 
-  post '/items/:id/like' => "items#like", as: :like
+  get '/item' => "static_pages#item"
   
   get  '/shops/:id/items' => "shops#items", as: :shop_items
   post '/shops/:id/items' => "shops#add_item", as: :shop_add_item
 
+  get '/tagged'          => 'items#tagged', as: :tagged
+  post '/items/:id/like' => "items#like",   as: :like
+  
 
   root "static_pages#index"
 

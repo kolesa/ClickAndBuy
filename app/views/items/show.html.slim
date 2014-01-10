@@ -11,15 +11,21 @@
         /    .col-lg-2
         /      img.img-thumbnail.img-responsive alt="" src="http://placehold.it/150x150&text=thumb"
         
-        .col-lg-2.col-md-2.col-sm-2
-          = link_to like_path, method: "POST"
-             i.fa.fa-heart.fa-4x
+        .row
+          .col-lg-4.col-md-4.col-sm-4
+            = link_to like_path, method: "POST"
+               i.fa.fa-heart.fa-5x
 
-        h3 = @item.name
-        p  = @item.desc
-        p  = @item.price
+          .col-lg-8.col-md-8.col-sm-8
+            h3 
+              = @item.name
+              small<>
+                = @item.price
+                span.fa.fa-rub<
+            p  = @item.desc
       .col-lg-4
-        img.img-thumbnail.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
+        = link_to shop_path(@item.shop)
+          = image_tag @item.shop.avatar.url, class: "img-thumbnail img-responsive", style: "margin-left: -15px;"
           .row
             h3
               = @item.shop.name
@@ -31,6 +37,12 @@
               = @item.shop.fb
             p
               = @item.shop.desc
+            p
+              - @item.tags.any?
+                - @item.tags.each do |tag|
+                  = link_to tagged_url(:tag => tag.name)
+                    span.label.label-success<>  
+                      = tag.name
             p
               a href="#"
                 i.fa.fa-facebook.fa-2x>

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :like]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :like, :tag]
 
   # GET /items
   # GET /items.json
@@ -72,6 +72,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  # Tags
+  def tagged
+    if params[:tag].present? 
+      @item = Item.tagged_with(params[:tag])
+    else 
+      @item = Item.all
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
@@ -80,6 +89,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar)
+      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :tag_list)
     end
 end

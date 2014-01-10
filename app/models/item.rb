@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  
   belongs_to :shop
   has_many :users, :through => :likes
   
@@ -6,4 +7,7 @@ class Item < ActiveRecord::Base
   
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
   validates :name, presence: true
+
+  acts_as_taggable
+  #acts_as_taggable_on :category
 end

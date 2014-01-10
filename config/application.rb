@@ -9,6 +9,9 @@ Bundler.require(:default, Rails.env)
 module ClickAndBuy
   class Application < Rails::Application
     
+    ActsAsTaggableOn.remove_unused_tags = true
+    ActsAsTaggableOn.force_lowercase = true
+    
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

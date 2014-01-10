@@ -12,7 +12,8 @@ gem 'faker'
 gem 'devise'
 
 gem 'rails_12factor'
-gem 'cancan'
+#gem 'cancan'
+
 gem 'slim-rails'
 gem 'paperclip'
 gem 'will_paginate'
@@ -23,6 +24,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   #gem 'rspec-rails'

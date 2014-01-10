@@ -29,9 +29,9 @@
       = f.label :discount, class: "control-label"
       = f.number_field :discount, class: 'form-control'
 
-    .form-group style="display: none"
-      = f.label :shop_id, class: "control-label"
-      = f.text_field :shop_id, class: 'form-control', value: @shop ? @shop.id : @item.shop.id
+    .form-group
+      = f.label :tag_list, class: "control-label"
+      = f.text_field :tag_list, class: 'form-control'
 
     .form-group
       = f.label :published, class: "control-label"
@@ -40,5 +40,9 @@
     .form-group
       = f.label :avatar
       = f.file_field :avatar
+
+    .form-group style="display: none"
+      = f.label :shop_id, class: "control-label"
+      = f.text_field :shop_id, class: 'form-control', value: @shop ? @shop.id : @item.shop.id
 
     = f.submit 'Save', class: "btn btn-info"
