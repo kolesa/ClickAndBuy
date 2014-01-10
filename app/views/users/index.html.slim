@@ -1,4 +1,4 @@
-- if signed_in and current_user.is_admin
+- if signed_in? and current_user.is_admin
   .container
       .row
         .col-lg-8 
@@ -47,3 +47,5 @@
                         a href="#"
                           i.i
                           | Сделать админом
+- else
+  - redirect_to root_path
