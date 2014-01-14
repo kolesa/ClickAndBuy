@@ -5,17 +5,20 @@ ClickAndBuy::Application.routes.draw do
 
   devise_for :users
 
-  get '/user'  => "users#profile"
-  get '/users' => "users#index"
-  get '/users/:id' => "users#show", as: :user_info
+  get    '/user'            => "users#profile"
+  get    '/users'           => "users#index"
+  get    '/user/:id'        => "users#show",   as: :user_info
+  post   '/user/:id/admin'  => "users#admin",  as: :user_make_admin
+  post   '/user/:id/ban'    => "users#ban",    as: :user_ban
+  delete '/user/:id/delete' => "users#delete", as: :user_delete
 
-  get '/item' => "static_pages#item"
+  get  '/item' => "static_pages#item"
   
   get  '/shops/:id/items' => "shops#items", as: :shop_items
   post '/shops/:id/items' => "shops#add_item", as: :shop_add_item
 
-  get '/tagged'          => 'items#tagged', as: :tagged
-  post '/items/:id/like' => "items#like",   as: :like
+  get  '/tagged'          => 'items#tagged', as: :tagged
+  post '/items/:id/like'  => "items#like",   as: :like
   
 
   root "static_pages#index"

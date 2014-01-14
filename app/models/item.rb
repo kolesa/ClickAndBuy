@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  desc                :text
+#  published           :boolean
+#  price               :integer
+#  created_at          :datetime
+#  updated_at          :datetime
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
+#  discount            :integer
+#  shop_id             :integer
+#
+
 class Item < ActiveRecord::Base
   
   belongs_to :shop

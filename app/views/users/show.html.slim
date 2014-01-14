@@ -54,13 +54,27 @@
               = @user.last_name
             h5
               cite title="Москва"
-                | 23 года, Москва
+                | 23 года, 
+                = @user.country
                 i.fa.fa-map-marker<>
             p
               i.fa.fa-envelope<> style="margin-bottom: 10px;"
               = @user.email
-              br
-              i.fa.fa-globe<> style="margin-bottom: 10px;"
-              a> href="#" style="color: #428bca;" vk.com/vasya
+
+            - if @user.vk?
+              = link_to "http://#{@user.vk}"
+                i.fa.fa-vk.fa-2x<>
+
+            - if @user.tw?
+              = link_to "http://#{@user.tw}"
+                i.fa.fa-twitter.fa-2x<>
+
+            - if @user.fb?
+              = link_to "http://#{@user.fb}"
+                i.fa.fa-facebook.fa-2x<>
+
+            - if @user.od?
+              = link_to "http://#{@user.od}"
+                i.fa.fa-globe.fa-2x<>
             p
               =link_to 'edit', edit_user_registration_path
