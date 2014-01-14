@@ -8,7 +8,7 @@ gem 'puma'
 
 gem 'pg'
 gem 'bcrypt-ruby'
-gem 'faker'
+#gem 'faker'
 gem 'devise'
 
 gem 'rails_12factor'
