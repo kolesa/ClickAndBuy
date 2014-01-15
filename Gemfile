@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'acts-as-taggable-on'
 
+
 group :development, :test do
   #gem 'rspec-rails'
   #gem 'guard-rspec'

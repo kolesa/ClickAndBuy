@@ -1,0 +1,32 @@
+.row
+  .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12
+    h1 Заявки от партнёров
+    - if !@partners.empty?
+      table.table.table-striped
+        thead
+          tr
+            th Компания
+            th Вид деятельности
+            th Имя
+            th Телефон
+            th Email
+            th Url
+            th
+        tbody
+        - @partners.each do |partner|
+          tr
+            td = partner.company
+            td = partner.activity
+            td = partner.name
+            td = partner.phone
+            td = partner.email
+            td = partner.url
+            td 
+              = link_to partner
+                span.fa.fa-eye<>
+              = link_to edit_partner_path(partner)
+                span.fa.fa-pencil<>
+              = link_to partner, data: {:confirm => 'Are you sure?'}, :method => :delete
+                span.fa.fa-trash-o<>
+
+    /= link_to 'New Partner', new_partner_path

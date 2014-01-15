@@ -27,3 +27,24 @@ admin = User.create(
     password_confirmation: '123456789',
   )  
 end
+
+#  id         :integer          not null, primary key
+#  company    :text
+#  activity   :string(255)
+#  name       :text
+#  phone      :text
+#  email      :text
+#  url        :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+10.times do |partnet|
+  partnet = Partner.create(
+    company:   Faker::Company.name,
+    activity:  Faker::Commerce.department,
+    name:      Faker::Name.name,
+    phone:     Faker::PhoneNumber.phone_number,
+    email:     Faker::Internet.email,
+    url:       Faker::Internet.url,
+  )  
+end

@@ -1,63 +1,69 @@
 - if signed_in? and current_user.is_admin
   .container
-      .row
-        .col-lg-12 
-          table.table.table-striped.table-hover
-            thead
-              tr
-                th.col-lg-1.col-md-1.col-sm-1
-                th.col-lg-6.col-md-6.col-sm-6 Имя
-                th.col-lg-1.col-md-1.col-sm-1 
-                th.col-lg-3.col-md-3.col-sm-3 Действие
-            tbody
-            - @users.map do |item|
-              tr
-                td
-                  = link_to user_info_path item
-                    - if item.avatar_file_name
-                        = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
-                    - else
-                      img.img-thumbnail.img-responsive src="http://placehold.it/100x100&text=img"
-                td
-                  h5
-                    = link_to user_info_path item
-                      = item.email
-                  | 23 года, Москва
-                td
-                  - if item.is_admin
-                    h5
-                      span.label.label-success
-                        |admin
-                  - if item.is_banned
-                    h5
-                      span.label.label-default
-                        |banned
-                td
-                  .btn-group
-                    /a.btn.btn-primary href="#"
-                    = link_to user_info_path(item), class: "btn btn-primary"
-                      i.fa.fa-user.fa-fw
-                      | Показать
-                    a.btn.btn-primary.dropdown-toggle data-toggle="dropdown" href="#" style="padding: 9px 8px;"
-                      span.fa.fa-caret-down
-                    ul.dropdown-menu
-                      li
-                        = link_to user_delete_path(item), method: 'delete'
-                          i.fa.fa-trash-o.fa-fw
-                          | Удалить
-                      li
-                        = link_to user_ban_path(item), method: 'post'
-                          i.fa.fa-ban.fa-fw
-                          - unless item.is_banned
-                            | Забанить
-                          - else
-                            | Разбанить
+  
+      .col-lg-6 style="margin-top: 10px"
+        .input-group
+          input.form-control placeholder="Поиск по фамилии"
+          span.input-group-addon
+            i.fa.fa-search
 
-                      li.divider
-                      li
-                        = link_to user_make_admin_path(item), method: 'post'
-                          i.i
-                          - unless item.is_admin
-                            | Сделать админом
-                          - else
-                            | Сделать юзером
+      table.table.table-striped.table-hover
+        thead
+          tr
+            th.col-lg-1.col-md-1.col-sm-1
+            th.col-lg-6.col-md-6.col-sm-6 Имя
+            th.col-lg-1.col-md-1.col-sm-1 
+            th.col-lg-3.col-md-3.col-sm-3 Действие
+        tbody
+        - @users.map do |item|
+          tr
+            td
+              = link_to user_info_path item
+                - if item.avatar_file_name
+                    = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+                - else
+                  img.img-thumbnail.img-responsive src="http://placehold.it/100x100&text=img"
+            td
+              h5
+                = link_to user_info_path item
+                  => item.first_name
+                  => item.last_name
+              | 23 года, Москва
+            td
+              - if item.is_admin
+                h5
+                  span.label.label-success
+                    |admin
+              - if item.is_banned
+                h5
+                  span.label.label-default
+                    |banned
+            td
+              .btn-group
+                /a.btn.btn-primary href="#"
+                = link_to user_info_path(item), class: "btn btn-primary"
+                  i.fa.fa-user.fa-fw
+                  | Показать
+                a.btn.btn-primary.dropdown-toggle data-toggle="dropdown" href="#" style="padding: 9px 8px;"
+                  span.fa.fa-caret-down
+                ul.dropdown-menu
+                  li
+                    = link_to user_delete_path(item), method: 'delete'
+                      i.fa.fa-trash-o.fa-fw
+                      | Удалить
+                  li
+                    = link_to user_ban_path(item), method: 'post'
+                      i.fa.fa-ban.fa-fw
+                      - unless item.is_banned
+                        | Забанить
+                      - else
+                        | Разбанить
+
+                  li.divider
+                  li
+                    = link_to user_make_admin_path(item), method: 'post'
+                      i.i
+                      - unless item.is_admin
+                        | Сделать админом
+                      - else
+                        | Сделать юзером

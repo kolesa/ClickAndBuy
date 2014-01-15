@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+
   end
 
   # GET /user

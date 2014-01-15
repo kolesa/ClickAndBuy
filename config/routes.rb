@@ -1,5 +1,7 @@
 ClickAndBuy::Application.routes.draw do
   
+  resources :partners
+
   resources :shops
   resources :items
 
@@ -7,6 +9,7 @@ ClickAndBuy::Application.routes.draw do
 
   get    '/user'            => "users#profile"
   get    '/users'           => "users#index"
+
   get    '/user/:id'        => "users#show",   as: :user_info
   post   '/user/:id/admin'  => "users#admin",  as: :user_make_admin
   post   '/user/:id/ban'    => "users#ban",    as: :user_ban

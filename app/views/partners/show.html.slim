@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Company:
+  = @partner.company
+p
+  strong Activity:
+  = @partner.activity
+p
+  strong Name:
+  = @partner.name
+p
+  strong Phone:
+  = @partner.phone
+p
+  strong Email:
+  = @partner.email
+p
+  strong Url:
+  = @partner.url
+
+= link_to 'Edit', edit_partner_path(@partner)
+'|
+= link_to 'Back', partners_path
