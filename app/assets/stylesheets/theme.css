@@ -383,7 +383,7 @@ text-decoration:none;  color: #fff; background:transparent!important; }
 	-moz-box-shadow: none !important;
 	box-shadow: none !important;
 }
-.btn-navbar > .btn:hover, .btn-navbar > .btn:focus { color: #white; text-decoration: none; background-image:none !important; }
+.btn-navbar > .btn:hover, .btn-navbar > .btn:focus { color: white; text-decoration: none; background-image:none !important; }
 .btn-navbar:hover { color: #252525; background-color: #2980B9; }
 .nav-collapse .nav>li>a:hover, .nav-collapse .nav>li>a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus{
 background-color: transparent;  }
