@@ -2,15 +2,24 @@ doctype
 html lang="en"
   head
     meta charset="utf-8"
-      meta content="width=(device-width,)initial-scale=1.0" name="viewport"
-        meta content="" name="description"
-          meta content="" name="author"
-            title SimpleShop - Start Bootstrap Template
-            = stylesheet_link_tag    "application", media: "all"
-            = javascript_include_tag "application"
-            = csrf_meta_tags
+    title flati | responsive html5 template | themeforest | josweb
+    meta content="width=(device-width,)initial-scale=1.0" name="viewport"
+    meta content="" name="description"
+    meta content="" name="author"
+    link href="http://fonts.googleapis.com/css?family=Lato:400,700,300" rel="stylesheet" type="text/css"
+    /![if IE]
+      | <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+      | <link href="http://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet" type="text/css">
+      | <link href="http://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet" type="text/css">
+      | <link href="http://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+    /![if lt IE 9]
+      | <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
   body
-    nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
+    /nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
       .container
         .navbar-header
           button.navbar-toggle data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button"
@@ -79,5 +88,39 @@ html lang="en"
                   a href="blog-home-2.html" bl2
                 li
                   a href="blog-post.html" bl-p
+
+    .header
+      .container style="margin-bottom: -10px;"
+        /! logo
+        button.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" type="button"
+          i.fa.fa-bars
+        .logo
+          = link_to root_path
+            img.animated.bounceInDown alt="" src="/assets/logo.png"
+        form.navbar-search action=""
+                input.search-query placeholder="Поиск" type="text" style="height: 30px; font-size: 13px;display: block;margin: 24px;text-align: center!important;text-transform: uppercase;"
+        /! menu
+        nav#main_menu
+          .nav-collapse.collapse
+            ul.nav.nav-pills
+              li
+                = link_to 'Пользователи', users_path
+              li
+                = link_to 'Магазины', shops_path
+              li
+                = link_to 'Товары', items_path
+              /li
+                = link_to 'Категории', tagged_path
+              li
+                = link_to 'Заявки', partners_path
+              
+              - if signed_in?
+                li= link_to current_user.email, user_path, style: "color: rgb(92, 228, 98)"  
+                li= link_to destroy_user_session_path, method: "delete"
+                  i.fa.fa-sign-out
+              - else
+                li= link_to new_user_session_path
+                  | Вход
+                  i.fa.fa-sign-in<
 
     = yield

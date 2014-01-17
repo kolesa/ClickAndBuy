@@ -1,16 +1,18 @@
-.row
-  .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-12
+.container
+  .span12
     h1 Заявки от партнёров
     - if !@partners.empty?
       table.table.table-striped
         thead
           tr
             th Компания
-            th Вид деятельности
+            th.col-lg-2 Вид деятельности
             th Имя
             th Телефон
             th Email
             th Url
+            th
+            th
             th
         tbody
         - @partners.each do |partner|
@@ -24,8 +26,10 @@
             td 
               = link_to partner
                 span.fa.fa-eye<>
+            td
               = link_to edit_partner_path(partner)
                 span.fa.fa-pencil<>
+            td
               = link_to partner, data: {:confirm => 'Are you sure?'}, :method => :delete
                 span.fa.fa-trash-o<>
 
