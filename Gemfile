@@ -12,7 +12,7 @@ gem 'faker'
 gem 'devise'
 gem 'annotate'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'cancan'
 
 gem 'slim-rails'
