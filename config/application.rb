@@ -11,10 +11,6 @@ module ClickAndBuy
     
     ActsAsTaggableOn.remove_unused_tags = true
     ActsAsTaggableOn.force_lowercase = true
-
-    config.serve_static_assets = true
-    config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
-    config.assets.compile = true
     
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
