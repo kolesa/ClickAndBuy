@@ -1,364 +1,710 @@
-/bootstrap3
-  .section
+
+section.slider-wrapper
+  .responisve-container
+    .slider
+      .fs_loader
+      .slide.slide-light
+        img alt="" data-delay="200" data-in="bottom" data-out="top" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-3.png"
+          img alt="" data-delay="400" data-in="bottom" data-out="bottom" data-position="20, 500" src=image_path"prv/human-img-3.png"
+            p.claim.bg-2 data-delay="100" data-in="top" data-out="bottom" data-position="70,0" data-step="1" data-time="1000" style="height: auto;"
+              | Boomerang
+              | Template. New update
+            p.claim.dark data-delay="250" data-in="top" data-out="bottom" data-position="120,0" data-step="1" data-time="3500" style="height: auto;"
+              | Check out the
+              | new features
+            p.teaser.dark.small data-delay="100" data-in="left" data-position="180,0" data-step="2" data-time="1500" style="height: auto;"
+            p.teaser.dark.small data-delay="1600" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="3100" style="height: auto;"
+              | 45+ pages models
+            p.teaser.dark.small data-delay="3000" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="5000" style="height: auto;"
+              | Enhanced shopping style
+            p.teaser.dark.small data-delay="5000" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="7000" style="height: auto;"
+              | Optional sidebar menu
+            p.teaser.dark.small data-delay="7500" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="9000" style="height: auto;"
+              | Optional header style
+      .slide
+        img alt="" data-delay="200" data-in="left" data-out="right" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-2.png"
+          img alt="" data-delay="300" data-in="bottom" data-out="fade" data-position="40, 600" data-step="1" src=image_path"slider/ipad.png"
+            img alt="" data-delay="500" data-in="left" data-out="fade" data-position="40,900" data-step="1" src=image_path"slider/iphone.png"
+              p.claim.light data-delay="100" data-in="top" data-out="top" data-position="70,0" data-step="2" style="height: auto; height: auto;"
+                | Now. Faster.
+                | Stronger
+              p.teaser.dark.small data-delay="300" data-in="bottom" data-position="130,0" data-step="2" style="height: auto;"
+              p.teaser.dark.small data-delay="600" data-in="bottom" data-position="175,0" data-step="2" style="height: auto;"
+              p.teaser.dark.small data-delay="1100" data-in="bottom" data-position="225,0" data-step="2" style="height: auto;"
+              p.teaser.dark.small data-delay="1600" data-in="bottom" data-position="275,0" data-step="2" style="height: auto;"
+              p.teaser.dark.small data-delay="2100" data-in="bottom" data-position="325,0" data-step="2" style="height: auto;"
+      .slide
+        img alt="" data-delay="100" data-in="right" data-out="left" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-7.png"
+          .video data-delay="400" data-in="top" data-out="easeOutBounce" data-position="80,0"
+            iframe height="360" src="//player.vimeo.com/video/78468485?title=0&amp;byline=0&amp;portrait=0"
+          p.claim.light data-delay="1000" data-in="top" data-out="top" data-position="80,550" style="height: auto; height: auto;"
+            | Implementing videos is
+            | easy
+          p.teaser.no-padding data-delay="2000" data-in="bottom" data-position="140,550" data-step="1" style="color:#FFF ; height: auto;"
+            | Media support for Vimeo,
+            | Youtube and much more
+          p.text.small.no-padding data-delay="3000" data-in="bottom" data-position="190,550" data-step="1" style="color:#FFF; height: auto;"
+            | Lorem ipsum dolor sit
+            | amet, eum cu sint dolores, dicat possit malorum at sit,
+            | ut natum assentior mea. Mel congue malorum te, eu cum
+            | blandit salutatus comprehensam, atqui causae ancillae
+            | cum ei. His eu ignota praesent democritum.
+            br
+              a.btn.btn-one href="#"
+                | Read more
+section.slice.bg-2.p-15
+  .cta-wr
     .container
       .row
-        /main page
-        - 2.times
-          - 2.times
-            .col-lg-6.col-md-6.col-sm-6
-              .thumbnail
-                = link_to item_path(id: 3)
-                  img.img-responsive.img-home-portfolio src="http://placehold.it/600x600"
-                - if signed_in?
-                  a.button.like href="#like"
-                    button.btn.btn-labeled.btn-primary type="button"
-                      span.btn-label
-                        i.fa.fa-heart
-                      |добавить
-                - else
-                  a.button.like href="#"
-                    button.btn.btn-labeled.btn-primary type="button" data-toggle="modal" data-target="#myModal"
-                      span.btn-label
-                        i.fa.fa-heart
-                      |добавить
-                  .modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-                    .modal-dialog
-                      .modal-content
-                        .modal-header
-                          h2.form-signin-heading Sign in
-                        .modal-body
-                          center
-                            = form_for('', as: '', url: '', html: { class: "form-horizontal" }) do |f|
-                              small.text-muted Connect LB with your favorite social network
-                              br
-                              p
-                                a.btn.btn-primary.social-login-btn.social-facebook href="#"
-                                  i.fa.fa-facebook
-                                a.btn.btn-primary.social-login-btn.social-twitter href="#"
-                                  i.fa.fa-vk
-                              p style="margin: -10px 0 0 0"
-                                a.btn.btn-primary.social-login-btn.social-linkedin href="#"
-                                  i.fa.fa-linkedin
-                                a.btn.btn-primary.social-login-btn.social-google href="#"
-                                  i.fa.fa-google-plus
-                                .btn-group.social-login-more
-                                br
-                                small.text-muted Or sign in with LB
-                                br
+        .col-md-8
+          h1
+            strong Boomerang Bootstrap Template
+            | delivers content beyond the desktop. Make it
+            | yours!
+        .col-md-4
+          a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
+section.slice
+  .w-section.inverse
+    .container
+      .row
+        .col-lg-3.col-md-6.col-sm-6
+          .w-box.w-box-inverse
+            .thmb-img
+              i.fa.fa-lightbulb-o
+            h2 Generating ideas
+            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+        .col-lg-3.col-md-6.col-sm-6
+          .w-box.w-box-inverse
+            .thmb-img
+              i.fa.fa-keyboard-o
+            h2 Creating the model
+            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+        .col-lg-3.col-md-6.col-sm-6
+          .w-box.w-box-inverse
+            .thmb-img
+              i.fa.fa-code
+            h2 Designing and Coding
+            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+        .col-lg-3.col-md-6.col-sm-6
+          .w-box.w-box-inverse
+            .thmb-img
+              i.fa.fa-rocket
+            h2 Launching and Monitoring
+            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
 
-                              .col-lg-8.col-lg-offset-2
-                                = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Email Address"
-                                = f.password_field :password, class: "form-control login-input-pass", placeholder: "Password"
-                              .col-lg-4.col-lg-offset-3
-                                = f.submit "Sign UP", class: "btn btn-lg btn-primary btn-block btn-center"
-                        .modal-footer
-
-                .caption
+section.slice.bg-5
+  .w-section.inverse
+    .container
+      .row
+        .col-md-7
+          h3.section-title
+            span
+              | Our
+              | company
+          .row
+            .col-md-4
+              img.img-responsive.img-thumbnail alt="" src=image_path"prv/col-img-4.jpg"
+            .col-md-8
+              p
+                | Lorem ipsum dolor sit amet, feugiat
+                | delicata liberavisse id cum, no quo maiorum
+                | intellegebat, liber regione eu sit. Mea cu
+                | case ludus integre, vide viderer eleifend
+                | ex mea. His at soluta regione diceret, cum
+                | et atqui placerat petentium.
+                br
+                  | Per amet nonumy periculis ei. Lorem ipsum
+                  | dolor sit amet, feugiat delicata
+                  | liberavisse id cum.
+          blockquote.blockquote-1
+            p
+              | Lorem ipsum dolor sit amet, consectetur
+              | adipiscing elit. Integer posuere erat a ante.
+              | Anim pariatur cliche reprehenderit, enim
+              | eiusmod high life accusamus terry richardson ad
+              | squid
+            small
+              | Someone famous in
+              cite title="Source Title"
+        .col-md-5
+          h3.section-title Our expertise
+          .widget
+            #accordion.panel-group
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a.collapsed data-parent="#accordion" data-toggle="collapse" href="#collapseOne"
+                      | Web
+                      | design
+                #collapseOne.panel-collapse.collapse style="height: 0px;"
+                  .panel-body
+                    p
+                      | Anim pariatur cliche
+                      | reprehenderit, enim eiusmod
+                      | high life accusamus terry
+                      | richardson ad squid. 3 wolf
+                      | moon officia aute, non
+                      | cupidatat skateboard dolor
+                      | brunch. Food truck quinoa
+                      | nesciunt laborum eiusmod.
+                      | Brunch 3 wolf moon tempor, sunt
+                      | aliqua put a bird on it squid
+                      | single-origin coffee nulla
+                      | assumenda shoreditch et. Nihil
+                      | anim keffiyeh helvetica, craft
+                      | beer labore wes anderson cred
+                      | nesciunt sapiente ea proident.
+                      | Ad vegan excepteur butcher vice
+                      | lomo.
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a.collapsed data-parent="#accordion" data-toggle="collapse" href="#collapseTwo"
+                      | Software
+                      | development
+                #collapseTwo.panel-collapse.collapse style="height: 0px;"
+                  .panel-body
+                    p
+                      | Anim pariatur cliche
+                      | reprehenderit, enim eiusmod
+                      | high life accusamus terry
+                      | richardson ad squid. 3 wolf
+                      | moon officia aute, non
+                      | cupidatat skateboard dolor
+                      | brunch. Food truck quinoa
+                      | nesciunt laborum eiusmod.
+                      | Brunch 3 wolf moon tempor, sunt
+                      | aliqua put a bird on it squid
+                      | single-origin coffee nulla
+                      | assumenda shoreditch et. Nihil
+                      | anim keffiyeh helvetica, craft
+                      | beer labore wes anderson cred
+                      | nesciunt sapiente ea proident.
+                      | Ad vegan excepteur butcher vice
+                      | lomo.
+              .panel.panel-default
+                .panel-heading
+                  h4.panel-title
+                    a data-parent="#accordion" data-toggle="collapse" href="#collapseThree"
+                      | Search engine
+                      | optimization
+                #collapseThree.panel-collapse.in style="height: auto;"
+                  .panel-body
+                    p
+                      | Anim pariatur cliche
+                      | reprehenderit, enim eiusmod
+                      | high life accusamus terry
+                      | richardson ad squid. 3 wolf
+                      | moon officia aute, non
+                      | cupidatat skateboard dolor
+                      | brunch.
+section.slice.relative.animate-hover-slide.bg-3
+  .w-section.inverse
+    .container
+      h3.section-title Our portfolio
+      #carouselWork.carousel-3.slide.animate-hover-slide
+        .carousel-nav
+          a.left data-slide="prev" href="#carouselWork"
+          a.right data-slide="next" href="#carouselWork"
+        /! Wrapper for slides
+        .carousel-inner
+          .item.active
+            .row
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-1.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-1.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
                   .row
-                    .col-md-8
-                      h3 
-                        = link_to "8-Bit чехол для iPhone 5", item_path(id: 3)
-                    .col-md-4
-                      span.btn.btn-sm.btn-danger
-                        |-20%
-                      span.btn.btn-sm.btn-success
-                        |-8000 р.
-          - 3.times
-            .col-lg-4.col-md-4.col-sm-4
-              .thumbnail
-                = link_to item_path(id: 3)
-                  img.img-responsive.img-home-portfolio src="http://placehold.it/350x350"
-                  a.button.like href="#"
-                    button.btn.btn-labeled.btn-primary type="button"
-                      span.btn-label
-                        i.fa.fa-heart добавить
-                  .caption
-                    h4 
-                      = link_to "8-Bit чехол для iPhone 5", item_path(id: 3)
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-2.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-2.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
                   .row
-                    .col-md-3 style="margin-left: 10px;"
-                      small МАКС.СКИДКА
-                      br
-                        b 60%
-                    .col-md-4
-                      small ЭКОНОМИЯ
-                      br
-                        b 8000 р.
-                    .col-md-4
-                      a.btn.btn-primary href="#" role="button" подробнее
-  .container
-  hr
-    button.btn.btn-primary.btn-lg data-target="#myModal" data-toggle="modal"
-      | Отправить заявку
-      span.fa.fa-arrow-right<>
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-3.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-3.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
+                  .row
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-4.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-4.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
+                  .row
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+          .item
+            .row
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-5.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-5.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
+                  .row
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-6.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-6.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
+                  .row
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-7.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-7.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
+                  .row
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
+              .col-md-3
+                .w-box.inverse
+                  .figure
+                    img.img-responsive alt="" src=image_path"prv/wk-img-8.jpg"
+                      .figcaption.bg-2
+                      .figcaption-btn
+                        a.btn.btn-xs.btn-one.theater href="../images/prv/wk-img-8.jpg"
+                          | Zoom
+                        a.btn.btn-xs.btn-one href="#"
+                  .row
+                    .col-xs-9
+                      h2
+                        | Bootstrap
+                        | template
+                      small
+                        | Brand
+                        | creation
+                    .col-xs-3
+                      .like-button
+                        span.count
+                          small 123
 
-    #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button.close aria-hidden="true" data-dismiss="modal" type="button"
-            h4#myModalLabel.modal-title Заявка
-          .modal-body
-            == render 'shared/partner_form'
-
-.fullwidthbanner-container style="margin-top:-10px"
-  .fullwidthbanner
-    ul
-      /! Slide 1
-      li data-transition="slideright"
-        img alt="" src=image_path("slider/slider1.jpg")
-        /! Caption
-        .tp-caption.lfr data-easing="easeOutExpo" data-speed="2400" data-start="800" data-x="left" data-y="195"
-          img alt="" src=image_path("slider/robot1.png")
-        /! Caption
-        .tp-caption.lfb data-easing="easeOutExpo" data-speed="1400" data-start="1800" data-x="870" data-y="140"
-          img alt="" src=image_path("slider/rocket.png")
-        /! Caption
-        .tp-caption.lfb data-easing="easeOutExpo" data-speed="1500" data-start="1900" data-x="825" data-y="330"
-          img alt="" src=image_path("slider/flames.png")
-        /! Caption
-        .caption.sft.stl data-easing="easeOutExpo" data-speed="1000" data-start="700" data-x="center" data-y="105"
-          h3.rev-title.bold FLATI BOOTSTRAP
-        /! Caption
-        .caption.lfl.stl.rev-title-sub data-easing="easeOutExpo" data-speed="800" data-start="1100" data-x="center" data-y="240"
-          | CREATE - DESIGN - CODE
-        /! Caption
-        .caption.sfb data-easing="easeOutExpo" data-speed="1100" data-start="1500" data-x="center" data-y="320"
-          a.btn.btn-primary.btn-custom href="#"
-            |Viev all
-      /! Slide 2
-      li data-transition="slideleft"
-        img alt="" src=image_path("slider/slider2.jpg")
-        /! Caption
-        .tp-caption.lfl data-easing="easeOutExpo" data-speed="1000" data-start="800" data-x="right" data-y="35"
-          img alt="" src=image_path("slider/iMac.png")
-        /! Caption
-        .caption.lfl.stl.bg data-easing="easeOutExpo" data-speed="800" data-start="700" data-x="20" data-y="60"
-          h2.rev-title.big.white
-            | Creative Slider
-            br It's a Revolution!
-        /! Caption
-        .caption.lfl.stl.rev-text.rev-left data-easing="easeOutExpo" data-speed="800" data-start="1100" data-x="left" data-y="190"
-          p.hidden-phone
-            | Turn simple HTML code into a responsive sliderwith must-see-effects,
-            br/
-            | it's Slider Revolution! All elements are included in the download,
-            br/
-            | plus a psd file of the iMac to add your own screenshot to.
-              br/
-            | Creative!
-        /! Caption
-        .caption.sfb.stb.rev-left data-easing="easeOutExpo" data-speed="1100" data-start="1500" data-x="left" data-y="380"
-          a.btn.btn-inverse.btn-custom.mobile href="#"
-            |Viev all
-          | \&nbsp;&nbsp;
-          a.btn.btn-inverse.btn-custom.mobile href="#"
-            |Viev all
-      /! Slide 3
-      li data-transition="slideleft"
-        img alt="" src=image_path("slider/slider3.jpg")
-        /! Caption
-        .tp-caption.lfl data-easing="easeOutExpo" data-speed="1000" data-start="800" data-x="right" data-y="35"
-          img alt="" src=image_path("slider/robot2.png")
-        /! Caption
-        .caption.lfl.stl.bold.bg.rev-left data-easing="easeOutExpo" data-speed="800" data-start="1500" data-x="left" data-y="80"
-          h3.rev-title.big.bold hire us today
-        /! Caption
-        .caption.lfl.stl.rev-text.rev-left data-easing="easeOutExpo" data-speed="800" data-start="1700" data-x="left" data-y="200"
-          p.white.hidden-phone
-            | This plugin features tons of unique transition effects,
-            br/
-            | an image preloader, video embedding, autoplay that stops on user interaction
-            br/
-            | and lots of easy to set options to create your own effects.
-        /! Caption
-        .caption.sfb.rev-left data-easing="easeOutExpo" data-speed="800" data-start="1900" data-x="left" data-y="350"
-          h3.rev-title2.bold info@flatistudios.com
-      /! Slide 4
-      li data-transition="slidedown"
-        img alt="" src=image_path("slider/slider4.jpg")
-        /! Caption
-        .caption.fade.fullscreenvideo data-autoplay="false" data-easing="easeOutBack" data-speed="500" data-start="500"
-          iframe src="http://player.vimeo.com/video/55026049?title=0&amp;byline=0&amp;portrait=0"
-        .caption.big_white.sft.stt data-easing="easeOutExpo" data-end="4000" data-endeasing="easeInSine" data-endspeed="300" data-speed="300" data-start="500" data-x="center" data-y="25"
-          | Have Fun Watching the Video
-    .tp-bannertimer.tp-bottom
-
-javascript:
-  $(document).ready(function() {
-    if ($.fn.cssOriginal!=undefined)
-    $.fn.css = $.fn.cssOriginal;
-    $('.fullwidthbanner').revolution(
-      {
-        delay:9000,
-        startwidth:1170,
-        startheight:550,
-        onHoverStop:"on",
-        navigationType:"none",
-        soloArrowLeftHOffset:0,
-        soloArrowLeftVOffset:0,
-        soloArrowRightHOffset:0,
-        soloArrowRightVOffset:0,
-        touchenabled:"on",
-        fullWidth:"on",
-        shadow:0
-      });
-  });
-
-/! // END REVOLUTION SLIDER
-
-.container.wrapper
-  .inner_content
-    .pad45
-    /! info boxes
-    .row
-      .span4
-        .tile
-          .intro-icon-disc.cont-large
-            i.fa.fa-rocket.intro-icon-large
-          h6
-            small CODE
-            br
-              a href="#"
-                span 12-column grid
-          p
-            | Bootstrap is designed to help people of all skill levels - designer or developer, huge nerd or early beginner.
-            | Use it as a complete kit or use to start something.
-        .pad25
-      .span4
-        .tile
-          .intro-icon-disc.cont-large
-            i.fa.fa-flask.intro-icon-large
-          h6
-            small CREATE
-            br
-              a href="#"
-                span responsive
-          p
-            | Bootstrap have gone fully responsive. Our components are scaled according to a range of resolutions and devices to provide a consistent
-            | experience.
-        .pad25
-      .span4
-        .tile.tile-hot
-          .intro-icon-disc.cont-large
-            i.fa.fa-book.intro-icon-large
-          h6
-            small SUPPORT
-            br
-              a href="#"
-                span growing library
-          p Despite being only 7kb (gzipped), Bootstrap is one of the most complete front-end toolkits out there with dozens of fully functional components.
-        .pad25
-    /! //info boxes
-    .container.wrapper
-      .inner_content
-        #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-          .modal-dialog
-            .modal-content
-              .modal-header
-                button.close aria-hidden="true" data-dismiss="modal" type="button"
-                h4#myModalLabel.modal-title Заявка
-              .modal-body
-                == render 'shared/partner_form'
-        #options
-          ul#filters.option-set data-option-key="filter"
-            li
-              a.selected data-option-value="*" href="#filter"
-                |all
-            li
-              a data-option-value=".category01" href="#filter"
-                |all1
-            li
-              a data-option-value=".category02" href="#filter"
-                |all2
-            li
-              a data-option-value=".category03" href="#filter"
-                |all3
-          .clear
+section.slice.bg-banner-1
+  .w-section.inverse
+    .container
+      .row
+        .col-md-12
+          .text-center
+            h2
+              | Always look on the bright side of life, ta
+              | dum, ta dum
+            p
+              | Lorem ipsum dolor sit amet, consectetur
+              | adipiscing elit. Maecenas neque diam, luctus at
+              | laoreet in, auctor ut tellus.
+              br
+                | Etiam enim lacus, ornare et tempor, rhoncus
+                | rhoncus sem.
+            .text-center
+              a.btn.btn-lg.btn-one.mt-20.ext-source href="http://player.vimeo.com/video/22290612"
+                | Whatch
+                | our video
+section.slice.bg-5
+  .w-section.inverse
+    .container
+      h3.section-title Our services
+      .row
+        .col-lg-3.col-md-6
+          .w-box.white
+            .thmb-img
+            h2 Generating ideas
+            p.text-center
+              | Donec id elit non mi
+              | porta gravida at eget metus. Fusce dapibus,
+              | tellus ac cursus commodo, tortor mauris
+              | condimentum nibh, ut fermentum.
+        .col-lg-3.col-md-6
+          .w-box.white
+            .thmb-img
+            h2 Prototype model
+            p.text-center
+              | Donec id elit non mi
+              | porta gravida at eget metus. Fusce dapibus,
+              | tellus ac cursus commodo, tortor mauris
+              | condimentum nibh, ut fermentum.
+        .col-lg-3.col-md-6
+          .w-box.white
+            .thmb-img
+            h2 Design and Code
+            p.text-center
+              | Donec id elit non mi
+              | porta gravida at eget metus. Fusce dapibus,
+              | tellus ac cursus commodo, tortor mauris
+              | condimentum nibh, ut fermentum.
+        .col-lg-3.col-md-6
+          .w-box.white
+            .thmb-img
+            h2 Launching and Monitoring
+            p.text-center
+              | Donec id elit non mi
+              | porta gravida at eget metus. Fusce dapibus,
+              | tellus ac cursus commodo, tortor mauris
+              | condimentum nibh, ut fermentum.
+section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
+  .carousel-inner
+    .item.active
+      .container
         .row
-          /! portfolio_block
-          .projects.isotope style="position: relative; overflow: hidden; height: 728px;"
-            .span4.element.category01.isotope-item data-category="category01" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate(0px, 0px); display: block;"
-              .hover_img
-                a href=image_path("portfolio/1.jpg") rel="prettyPhoto[portfolio1]"
-                  img alt="" src=image_path("portfolio/1.jpg") style="opacity: 1;"
-              .item_description
-                a href="single_portfolio.html"
-                  span Item Link
-                br
-                  | item description
-            .span4.element.category02.isotope-item data-category="category02" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate(400px, 0px); display: block;"
-              .hover_img
-                a href=image_path("portfolio/2.jpg") rel="prettyPhoto[portfolio1]"
-                  img alt="" src=image_path("portfolio/2.jpg") style="opacity: 1;"
-              .item_description
-                a href="single_portfolio.html"
-                  span Item Link
-                br
-                  | item description
-            .span4.element.category03.isotope-item data-category="category03" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate(800px, 0px); display: block;"
-              .hover_img
-                a href=image_path("portfolio/3.jpg") rel="prettyPhoto[portfolio1]"
-                  img alt="" src=image_path("portfolio/3.jpg")
-              .item_description
-                a href="single_portfolio.html"
-                  span Item Link
-                br
-                  | item description
-            .span4.element.category01.isotope-item data-category="category01" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate(0px, 364px); display: block;"
-              .hover_img
-                a href=image_path("portfolio/4.jpg") rel="prettyPhoto[portfolio1]"
-                  img alt="" src=image_path("portfolio/4.jpg")
-              .item_description
-                a href="single_portfolio.html"
-                  span Item Link
-                br
-                  | item description
-            .span4.element.category02.isotope-item data-category="category02" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate(400px, 364px); display: block;"
-              .hover_img
-                a href=image_path("portfolio/5.jpg") rel="prettyPhoto[portfolio1]"
-                  img alt="" src=image_path("portfolio/5.jpg")
-              .item_description
-                a href="single_portfolio.html"
-                  span Item Link
-                br
-                  | item description
-            .span4.element.category03.isotope-item data-category="category03" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate(800px, 364px); display: block;"
-              .hover_img
-                a href=image_path("portfolio/6.jpg") rel="prettyPhoto[portfolio1]"
-                  img alt="" src=image_path("portfolio/6.jpg")
-              .item_description
-                a href="single_portfolio.html"
-                  span Item Link
-                br
-                  | item description
-            .clear.isotope-item style="position: absolute; left: 0px; top: 0px;"
-          /! //portfolio
-    /! //page
-    .pad25.hidden-desktop
-  /! footer
-  #footer
-    h1 get in touch
-    h3.center.follow
-      | We're social and we'd love to hear from you! Feel free to send us an email, find us on Google Plus, follow us on Twitter and join us on Facebook.
-    .follow_us
-      a.zocial.twitter href="#"
-      a.zocial.facebook href="#"
-      a.zocial.linkedin href="#"
-      a.zocial.googleplus href="#"
-      a.zocial.vimeo href="#"
-  /! footer 2
-  #footer2
+          .col-md-6
+            h2
+              | Performance and design for your
+              | business
+            p
+              | Lorem Ipsum is simply dummy text of the
+              | printing and typesetting industry. Lorem Ipsum
+              | has been the industry's standard dummy text
+              | ever since the 1500s, when an unknown printer
+              | took a galley of type and scrambled it to make
+              | a type specimen book. It has survived not only
+              | five centuries, but also the leap into
+              | electronic typesetting, remaining essentially
+              | unchanged. It was popularised in the 1960s with
+              | the release of Letraset sheets containing Lorem
+              | Ipsum passages, and more recently with desktop
+              | publishing software like Aldus PageMaker
+              | including versions of Lorem Ipsum.
+            p
+              | It is a long established fact that a reader
+              | will be distracted by the readable content of a
+              | page when looking at its layout. The point of
+              | using Lorem Ipsum is that it has a more-or-less
+              | normal distribution of letters, as opposed to
+              | using 'Content here, content here', making it
+              | look like readable English.
+          .col-md-6
+            img.img-responsive alt="" src=image_path"prv/device-3.png"
+    .item
+      .container
+        .row
+          .col-md-6
+            h2 Complete features at your hand
+            p
+              | Lorem Ipsum is simply dummy text of the
+              | printing and typesetting industry. Lorem Ipsum
+              | has been the industry's standard dummy text
+              | ever since the 1500s, when an unknown printer
+              | took a galley of type and scrambled it to make
+              | a type specimen book. It has survived not only
+              | five centuries, but also the leap into
+              | electronic typesetting, remaining essentially
+              | unchanged. It was popularised in the 1960s with
+              | the release of Letraset sheets containing Lorem
+              | Ipsum passages, and more recently with desktop
+              | publishing software like Aldus PageMaker
+              | including versions of Lorem Ipsum.
+            p
+              | It is a long established fact that a reader
+              | will be distracted by the readable content of a
+              | page when looking at its layout. The point of
+              | using Lorem Ipsum is that it has a more-or-less
+              | normal distribution of letters, as opposed to
+              | using 'Content here, content here', making it
+              | look like readable English.
+          .col-md-6
+            img.img-responsive alt="" src=image_path"prv/device-4.png"
+  a.left.carousel-control data-slide="prev" href="#companyCarousel"
+  a.right.carousel-control data-slide="next" href="#companyCarousel"
+section.slice.animate-hover-slide.bg-5
+  .w-section.inverse
+    .container
+      h3.section-title Latest news
+      .row
+        .col-md-3
+          .w-box
+            .figure
+              img.img-responsive alt="" src=image_path"prv/wk-img-1.jpg"
+                span.date-over.small
+                  strong
+                    | December 10,
+                    | 2013
+                .figcaption.bg-2
+                .figcaption-btn
+                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-1.jpg"
+                  a.btn.btn-xs.btn-one href="#"
+                    | View
+            h2 Lovely template design
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus. Fusce dapibus, tellus ac cursus
+              | commodo.
+        .col-md-3
+          .w-box
+            .figure
+              img.img-responsive alt="" src=image_path"prv/wk-img-2.jpg"
+                span.date-over.small
+                  strong
+                    | December 23,
+                    | 2013
+                .figcaption.bg-2
+                .figcaption-btn
+                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-2.jpg"
+                  a.btn.btn-xs.btn-one href="#"
+                    | View
+            h2 Awesome features
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus. Fusce dapibus, tellus ac cursus
+              | commodo.
+        .col-md-3
+          .w-box
+            .figure
+              img.img-responsive alt="" src=image_path"prv/wk-img-4.jpg"
+                span.date-over.small
+                  strong
+                    | December 25,
+                    | 2013
+                .figcaption.bg-2
+                .figcaption-btn
+                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-3.jpg"
+                  a.btn.btn-xs.btn-one href="#"
+                    | View
+            h2 Adpative design
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus. Fusce dapibus, tellus ac cursus
+              | commodo.
+        .col-md-3
+          .w-box
+            .figure
+              img.img-responsive alt="" src=image_path"prv/wk-img-5.jpg"
+                span.date-over.small
+                  strong
+                    | January
+                    | 03
+                .figcaption.bg-2
+                .figcaption-btn
+                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-4.jpg"
+                  a.btn.btn-xs.btn-one href="#"
+                    | View
+            h2 New Bootstrap template
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus. Fusce dapibus, tellus ac cursus
+              | commodo.
+section.slice.bg-2.p-15
+  .cta-wr
     .container
       .row
-        .span12
-          .copyright
-            | FLATI
-            | ©
-            | - 2014 All Rights Reserved :
-        button.btn.btn-primary.btn-lg data-target="#myModal" data-toggle="modal"
-          | Отправить заявку
-          span.fa.fa-arrow-right<>
-        
-  a href="#"
-    i.go-top.hidden-phone.hidden-tablet.fa.fa-angle-double-up style="display: inline;"
+        .col-md-9
+          h1
+            | Enhance shopping experience with our template.
+            | Start selling your products!
+        .col-md-3
+          a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
+section.slice.bg-3
+  .w-section.inverse
+    .container
+      h3.section-title Our products
+      .row
+        .col-md-3
+          .w-box.product
+            figure
+              img.img-responsive.img-center alt="" src=image_path"prv/product-1.jpg"
+            h2
+              a href=""
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus.
+            .w-footer
+              span.price.pull-left $233.33
+              a.btn.btn-xs.btn-two.pull-right href="#"
+        .col-md-3
+          .w-box.product
+            figure
+              img.img-responsive.img-center alt="" src=image_path"prv/product-2.jpg"
+            h2
+              a href=""
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus.
+            .w-footer
+              span.price.pull-left $233.33
+              a.btn.btn-xs.btn-two.pull-right href="#"
+        .col-md-3
+          .w-box.product
+            figure
+              img.img-responsive.img-center alt="" src=image_path"prv/product-3.jpg"
+            h2
+              a href=""
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus.
+            .w-footer
+              span.price.pull-left $233.33
+              a.btn.btn-xs.btn-two.pull-right href="#"
+        .col-md-3
+          .w-box.product
+            figure
+              img.img-responsive.img-center alt="" src=image_path"prv/product-4.jpg"
+            h2
+              a href="" ss
+            p
+              | Donec id elit non mi porta gravida at eget
+              | metus.
+            .w-footer
+              span.price.pull-left $233.33
+              a.btn.btn-xs.btn-two.pull-right href="#"
+footer
+  .container
+    .row
+      .col-md-3
+        .col
+          h4 Contact us
+          ul
+            li 5th Avenue, New York - United States
+            li
+              | Phone: +10 724 1234 567 | Fax: +10 724 1234
+              | 567
+            li
+              | Email:
+              a href="mailto:hello@example.com" title="Email Us"
+            li
+              | Skype:
+              a href="skype:my.business?call" title="Skype us"
+            li
+              | Creating great templates is our
+              | passion
+      .col-md-3
+        .col
+          h4 Mailing list
+          p
+            | Sign up if you would like to receive occasional
+            | treats from us.
+          form.form-inline
+            .input-group
+              input.form-control placeholder="Your email address..." type="text"
+                span.input-group-btn
+                  button.btn.btn-two type="button"
+                    span.input-group-btn Go!
+      .col-md-3
+        .col.col-social-icons
+          h4 Follow us
+          a href="#"
+          a href="#"
+          a href="#"
+          a href="#"
+          a href="#"
+          a href="#"
+          a href="#"
+          a href="#"
+      .col-md-3
+        .col
+          h4 About us
+          p
+            | Boomerang Bootstrap Template is made with love
+            | and passion for your own business.
+            br
+              br
+                a.btn.btn-two href="#"
+                  | Try it now!
+    hr
+      .row
+        .col-lg-9.copyright
+          | 2013 © Web Pixels. All rights reserverd.
+          a href="#"
+          | \
+          a href="#"
+            | Privacy policy
+        .col-lg-3.footer-logo

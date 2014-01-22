@@ -1,15 +1,7 @@
-.container
+/.container
   .row.text-center
     .span12 style="margin:0px"
-      = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-horizontal" }) do |f|
-
-        = devise_error_messages! 
-        
-        - if alert
-          .span6.offset3
-            .alert.alert-error
-              a.close data-dismiss="alert" x
-              = alert
+      
         
         .span6.offset3
           h2.form-signin-heading Войти при помощи
@@ -30,7 +22,7 @@
           p
             = f.email_field :email, :autofocus => true, class: "form-control login-input", placeholder: "Электронная почта", style: "height: 30px;"
           p
-            = f.password_field :password, class: "form-control login-input-pass", placeholder: "Пароль", style: "height: 30px;"
+            
 
           /- if devise_mapping.rememberable?
           /  div
@@ -38,8 +30,56 @@
           /    = f.label :remember_me
 
         .span2.offset5
-          = f.submit "Вход", class: "btn btn-lg btn-primary btn-block btn-center"
+          =
         
         .span8.offset2
           small.create-account.text-muted
-            = render "devise/shared/links"
+            
+
+section.slice.bg-3
+  .w-section.inverse
+    .container
+      .row
+        .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+          .w-section.inverse
+            .w-box.sign-in-wr.bg-5
+              .form-header
+                h2 Войдите через свой аккаунт в социальных сетях 
+              .form-body
+                = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "form-light padding-15" }) do |f|
+
+                  = devise_error_messages! 
+                  
+                  - if alert
+                    .span6.offset3
+                      .alert.alert-error
+                        a.close data-dismiss="alert" x
+                        = alert
+
+                  .form-group style="margin-left: 40px"
+                    .col-md-3
+                      a.fa.fa-twitter.fa-4x href="#"
+                    .col-md-3
+                      a.fa.fa-facebook.fa-4x href="#"
+                    .col-md-3
+                      a.fa.fa-vk.fa-4x href="#" 
+                    .col-md-3
+                      a.fa.fa-apple.fa-4x href="#"
+                  
+                  p style="padding-top: 80px;"
+                    | Или введи данные, указанные при регистрации
+                  
+                  .form-group
+                     = f.label :email
+                     = f.email_field :email, :autofocus => true, class: "form-control", placeholder: "admin@click.ru"
+                  .form-group
+                    = f.label :password
+                    = f.password_field :password, class: "form-control", placeholder: "qweasdzxc"
+                  .row
+                    .col-md-6
+                      label.checkbox
+                        input type="checkbox" Remember me
+                    .col-md-6
+                       =  f.submit "Вход", class: "button btn btn-two pull-right"
+              .form-footer style="padding-left: 20px;"
+                = render "devise/shared/links"

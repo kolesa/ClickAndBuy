@@ -1,10 +1,11 @@
 .row
-  .col-lg-6.col-md-6.col-sm-6.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
-    h2
-      | Edit 
-      = resource_name.to_s.humanize
+  .span6.offset4
+    .span6.offset2
+      h1
+        | Edit 
+        = resource_name.to_s.humanize
     
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "form-horizontal" }) do |f|
       = devise_error_messages!
       
         = f.label :email
@@ -15,60 +16,84 @@
           | Currently waiting confirmation for: 
           = resource.unconfirmed_email
       
-      .form-group
+      .control-group
         = f.label :first_name, class: "control-label"
-        = f.text_field :first_name, :autofocus => true, class: "form-control login-input", placeholder: "First name"
+        .controls
+          = f.text_field:first_name, :autofocus => true, class: "input-xlarge", placeholder: "First name"
       
-      .form-group
+      .control-group
         = f.label :last_name, class: "control-label"
-        = f.text_field :last_name, class: "form-control login-input", placeholder: "Last name"
+        .controls
+          = f.text_field :last_name, class: "input-xlarge", placeholder: "Last name"
       
-      .form-group
+      .control-group
         = f.label :current_password, class: "control-label"
-        = f.password_field :current_password, class: "form-control login-input"
+        .controls
+          = f.password_field :current_password, class: "input-xlarge"
           
-      .form-group
-        = f.select :gender, [['Male', 0], ['Female', 1]], :class=>"form-control"
+      .control-group
+        = f.label :gender, class: "control-label"
+        .controls
+          = f.select :gender, [['Male', 0], ['Female', 1]], {}, { style: "width: 270px;"}
       
-      .form-group
-        = f.date_field :date, class: "form-control"
-      .form-group
-        = f.text_field :country, class: "form-control login-input", placeholder: "Country"
+      .control-group
+        = f.label :date, class: "control-label"
+        .controls
+          = f.date_field :date, class: "form-control", style: "width: 270px;"
+      
+      .control-group
+        = f.label :country, class: "control-label"
+        .controls
+          = f.text_field :country, class: "input-xlarge", placeholder: "Country"
       / Социалки
-      .form-group
-        = f.text_field :vk, class: "form-control login-input", placeholder: "VKontakte"
-      .form-group
-        = f.text_field :fb, class: "form-control login-input", placeholder: "Facebook"
-      .form-group
-        = f.text_field :tw, class: "form-control login-input", placeholder: "Twitter"
-      .form-group
-        = f.text_field :od, class: "form-control login-input", placeholder: "Odnoklassniki"
+      .control-group
+        = f.label :vk, class: "control-label"
+        .controls
+          = f.text_field :vk, class: "input-xlarge", placeholder: "VKontakte"
+      .control-group
+        = f.label :fb, class: "control-label"
+        .controls
+          = f.text_field :fb, class: "input-xlarge", placeholder: "Facebook"
+      .control-group
+        = f.label :tw, class: "control-label"
+        .controls
+          = f.text_field :tw, class: "input-xlarge", placeholder: "Twitter"
+      .control-group
+        = f.label :od, class: "control-label"
+        .controls
+          = f.text_field :od, class: "input-xlarge", placeholder: "Odnoklassniki"
 
-      .form-group
-        = f.file_field :avatar
+      .control-group
+        = f.label :avatar, class: "control-label"
+        .controls
+          = f.file_field :avatar
 
-      #accordion.panel-group
-      .panel.panel-default
+      /#accordion.panel-group
+        .panel.panel-default
         .panel-heading
           h4.panel-title
             a data-parent="#accordion" data-toggle="collapse" href="#collapseOne"
               | Password change
         #collapseOne.panel-collapse.collapse
           .panel-body
-            .form-group
+            .control-group
               = f.label :password, class: "control-label"
               i
                 | (leave blank if you don't want to change it)
               br
-              = f.password_field :password, :autocomplete => "off", class: "form-control login-input"
+              .controls
+                = f.password_field :password, :autocomplete => "off", class: "input-xlarge"
             
-            .form-group
+            .control-group
               = f.label :password_confirmation, class: "control-label"
+              .controls
               br
-              = f.password_field :password_confirmation, class: "form-control login-input"
+                = f.password_field :password_confirmation, class: "input-xlarge"
 
-      .form-group
-        = f.submit "Update"
+      .control-group
+        .controls
+          = f.submit "Update", class: "btn btn-large  btn-success btn-rounded"
+
     => link_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
     | |
     =< link_to "Back", :back
