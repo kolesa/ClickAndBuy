@@ -1,36 +1,37 @@
-.container
-  .span12
-    h1 Заявки от партнёров
-    - if !@partners.empty?
-      table.table.table-striped
-        thead
-          tr
-            th Компания
-            th.col-lg-2 Вид деятельности
-            th Имя
-            th Телефон
-            th Email
-            th Url
-            th
-            th
-            th
-        tbody
-        - @partners.each do |partner|
-          tr
-            td = partner.company
-            td = partner.activity
-            td = partner.name
-            td = partner.phone
-            td = partner.email
-            td = partner.url
-            td 
-              = link_to partner
-                span.fa.fa-eye<>
-            td
-              = link_to edit_partner_path(partner)
-                span.fa.fa-pencil<>
-            td
-              = link_to partner, data: {:confirm => 'Are you sure?'}, :method => :delete
-                span.fa.fa-trash-o<>
+.section.slice.bg-3
+  .w-section.inverse.container
+    .col-lg-12
+      h1 Заявки от партнёров
+      - if !@partners.empty?
+        table.table.table-striped
+          thead
+            tr
+              th Компания
+              th.col-lg-2 Вид деятельности
+              th Имя
+              th Телефон
+              th Email
+              th Url
+              th
+              th
+              th
+          tbody
+          - @partners.each do |partner|
+            tr
+              td = partner.company
+              td = partner.activity
+              td = partner.name
+              td = partner.phone
+              td = partner.email
+              td = partner.url
+              td 
+                = link_to partner
+                  span.fa.fa-eye<>
+              td
+                = link_to edit_partner_path(partner)
+                  span.fa.fa-pencil<>
+              td
+                = link_to partner, data: {:confirm => 'Are you sure?'}, :method => :delete
+                  span.fa.fa-trash-o<>
 
-    /= link_to 'New Partner', new_partner_path
+      /= link_to 'New Partner', new_partner_path

@@ -1,99 +1,126 @@
-.row
-  .span6.offset4
-    .span6.offset2
-      h1
-        | Edit 
-        = resource_name.to_s.humanize
-    
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "form-horizontal" }) do |f|
-      = devise_error_messages!
-      
-        = f.label :email
-
-        = f.email_field :email, :autofocus => true
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        div
-          | Currently waiting confirmation for: 
-          = resource.unconfirmed_email
-      
-      .control-group
-        = f.label :first_name, class: "control-label"
-        .controls
-          = f.text_field:first_name, :autofocus => true, class: "input-xlarge", placeholder: "First name"
-      
-      .control-group
-        = f.label :last_name, class: "control-label"
-        .controls
-          = f.text_field :last_name, class: "input-xlarge", placeholder: "Last name"
-      
-      .control-group
-        = f.label :current_password, class: "control-label"
-        .controls
-          = f.password_field :current_password, class: "input-xlarge"
+.section.slice.bg-3
+  .w-section.inverse.container style="padding-top: 20px;"
+    .row
+      .col-lg-6.col-lg-offset-3
+        h1
+          | Edit 
+          = resource_name.to_s.humanize
+      .col-lg-6.col-lg-offset-3
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-light padding-15" }) do |f|
+                
+          = devise_error_messages!
           
-      .control-group
-        = f.label :gender, class: "control-label"
-        .controls
-          = f.select :gender, [['Male', 0], ['Female', 1]], {}, { style: "width: 270px;"}
-      
-      .control-group
-        = f.label :date, class: "control-label"
-        .controls
-          = f.date_field :date, class: "form-control", style: "width: 270px;"
-      
-      .control-group
-        = f.label :country, class: "control-label"
-        .controls
-          = f.text_field :country, class: "input-xlarge", placeholder: "Country"
-      / Социалки
-      .control-group
-        = f.label :vk, class: "control-label"
-        .controls
-          = f.text_field :vk, class: "input-xlarge", placeholder: "VKontakte"
-      .control-group
-        = f.label :fb, class: "control-label"
-        .controls
-          = f.text_field :fb, class: "input-xlarge", placeholder: "Facebook"
-      .control-group
-        = f.label :tw, class: "control-label"
-        .controls
-          = f.text_field :tw, class: "input-xlarge", placeholder: "Twitter"
-      .control-group
-        = f.label :od, class: "control-label"
-        .controls
-          = f.text_field :od, class: "input-xlarge", placeholder: "Odnoklassniki"
+          - if alert
+            .alert.alert-danger.alert-dismissable
+              button.close aria-hidden="true" data-dismiss="alert" type="button" x
+              = alert
+          
+          - if @user.avatar_file_name
+            .row
+              .col-md-6
+                = image_tag @user.avatar.url(:thumb), class: "img-rounded img-responsive"
+              .col-md-6
+                .form-group
+                  = f.label :email
+                  = f.email_field :email, class: "form-control", placeholder: "Email Address"
+              .col-md-6
+                .form-group
+                  = f.label :first_name
+                  = f.text_field :first_name, :autofocus => true, class: "form-control", placeholder: "First name"
+              .col-md-6
+                .form-group
+                  = f.label :last_name
+                  = f.text_field :last_name, class: "form-control", placeholder: "Last name"
+          - else
+            .form-group
+                  = f.label :email
+                  = f.email_field :email, class: "form-control", placeholder: "Email Address"
+            .row
+              .col-md-6
+                .form-group
+                  = f.label :first_name
+                  = f.text_field :first_name, :autofocus => true, class: "form-control", placeholder: "First name"
+              .col-md-6
+                .form-group
+                  = f.label :last_name
+                  = f.text_field :last_name, class: "form-control", placeholder: "Last name"
 
-      .control-group
-        = f.label :avatar, class: "control-label"
-        .controls
-          = f.file_field :avatar
+            .col-md-6
+              .form-group
+                = f.label :gender
+                = f.select :gender, [['Male', 0], ['Female', 1]], {} , {:class=>"form-control"}
+            .col-md-6
+              .form-group
+                = f.label :date
+                = f.date_field :date, class: "form-control"
+          
+          .row
+            .col-md-6
+              .form-group
+                = f.label :gender
+                = f.select :gender, [['Male', 0], ['Female', 1]], {} , {:class=>"form-control"}
+            .col-md-6
+              .form-group
+                = f.label :date
+                = f.date_field :date, class: "form-control"
+          
+          .form-group
+            = f.label :country
+            = f.text_field :country, class: "form-control", placeholder: "Country"
 
-      /#accordion.panel-group
-        .panel.panel-default
-        .panel-heading
-          h4.panel-title
-            a data-parent="#accordion" data-toggle="collapse" href="#collapseOne"
-              | Password change
-        #collapseOne.panel-collapse.collapse
-          .panel-body
-            .control-group
-              = f.label :password, class: "control-label"
-              i
-                | (leave blank if you don't want to change it)
-              br
-              .controls
-                = f.password_field :password, :autocomplete => "off", class: "input-xlarge"
-            
-            .control-group
-              = f.label :password_confirmation, class: "control-label"
-              .controls
-              br
-                = f.password_field :password_confirmation, class: "input-xlarge"
+          p Social media
+          / Социалки
+          .row
+            .col-md-6
+              .form-group
+                = f.text_field :vk, class: "form-control", placeholder: "VKontakte"
+            .col-md-6
+              .form-group
+                = f.text_field :fb, class: "form-control", placeholder: "Facebook"
 
-      .control-group
-        .controls
-          = f.submit "Update", class: "btn btn-large  btn-success btn-rounded"
+          .row
+            .col-md-6
+              .form-group
+                = f.text_field :tw, class: "form-control", placeholder: "Twitter"
+            .col-md-6
+              .form-group
+                = f.text_field :od, class: "form-control", placeholder: "Odnoklassniki"
 
-    => link_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
-    | |
-    =< link_to "Back", :back
+          .form-group
+                = f.label :current_password
+                = f.password_field :current_password, class: "form-control", placeholder: "Password confirmation"
+          
+          .row
+            .col-md-6
+              .form-group
+                  = f.label :avatar
+                  = f.file_field :avatar
+            .col-md-6
+              .form-group
+                  = f.submit "Update", class: "btn btn-two pull-right", style: "margin-top: 15px;"
+          /#accordion.panel-group
+            .panel.panel-default
+            .panel-heading
+              h4.panel-title
+                a data-parent="#accordion" data-toggle="collapse" href="#collapseOne"
+                  | Password change
+            #collapseOne.panel-collapse.collapse
+              .panel-body
+                .control-group
+                  = f.label :password, class: "control-label"
+                  i
+                    | (leave blank if you don't want to change it)
+                  br
+                  .controls
+                    = f.password_field :password, :autocomplete => "off", class: "input-xlarge"
+                
+                .control-group
+                  = f.label :password_confirmation, class: "control-label"
+                  .controls
+                  br
+                    = f.password_field :password_confirmation, class: "input-xlarge"
+
+
+        => link_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
+        | |
+        =< link_to "Back", :back

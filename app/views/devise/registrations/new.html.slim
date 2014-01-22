@@ -1,52 +1,93 @@
 .container
-  .container.text-center
-    .col-lg-6.col-lg-offset-3
-      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-horizontal" }) do |f|
-        = devise_error_messages!
-        
-        - if alert
-          .alert.alert-danger.alert-dismissable
-            button.close aria-hidden="true" data-dismiss="alert" type="button" x
-            = alert
+  .row
+    .col-md-12
+      .text-center
+        h2 Welcome to Boomerang Bootstrap Template
+        p style="font-size:16px;"
+          | Create your own account and explore more.
+  .row
+    .col-md-8.col-md-offset-2.col-sm-6.col-sm-offset-3
+      .w-section.inverse
+        .w-box.sign-in-wr.bg-5
+          .form-header
+            h2 Create your own account
+          .form-body
+            p
+              | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            
+            = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-light padding-15" }) do |f|
+              
+              = devise_error_messages!
+              
+              - if alert
+                .alert.alert-danger.alert-dismissable
+                  button.close aria-hidden="true" data-dismiss="alert" type="button" x
+                  = alert
+              
+              .form-group
+                = f.label :email
+                = f.email_field :email, class: "form-control", placeholder: "Email Address"
 
-        h2.form-signin-heading Sign Up
+              .row
+                .col-md-6
+                  .form-group
+                    = f.label :first_name
+                    = f.text_field :first_name, :autofocus => true, class: "form-control", placeholder: "First name"
+                .col-md-6
+                  .form-group
+                    = f.label :last_name
+                    = f.text_field :last_name, class: "form-control", placeholder: "Last name"
+              
+              .row
+                .col-md-6
+                  .form-group
+                    = f.label :password
+                    = f.password_field :password, class: "form-control", placeholder: "Password"
+                .col-md-6
+                  .form-group
+                    = f.label :password_confirmation
+                    = f.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation"
+              .row
+                .col-md-6
+                  .form-group
+                    = f.label :gender
+                    = f.select :gender, [['Male', 0], ['Female', 1]], {} , {:class=>"form-control"}
+                .col-md-6
+                  .form-group
+                    = f.label :date
+                    = f.date_field :date, class: "form-control"
+              
+              .form-group
+                = f.label :country
+                = f.text_field :country, class: "form-control", placeholder: "Country"
 
-        .col-lg-8.col-lg-offset-2
+              p Social media
+              / Социалки
+              .row
+                .col-md-6
+                  .form-group
+                    = f.text_field :vk, class: "form-control", placeholder: "VKontakte"
+                .col-md-6
+                  .form-group
+                    = f.text_field :fb, class: "form-control", placeholder: "Facebook"
+              
 
-          .form-group
-            = f.text_field :first_name, :autofocus => true, class: "form-control login-input", placeholder: "First name"
-          .form-group
-            = f.text_field :last_name, class: "form-control login-input", placeholder: "Last name"
-          .form-group
-            = f.email_field :email, class: "form-control login-input", placeholder: "Email Address"
-          .form-group
-            = f.password_field :password, class: "form-control login-input", placeholder: "Password"
-          .form-group
-            = f.password_field :password_confirmation, class: "form-control login-input-pass", placeholder: "Password confirmation"
-          
-          .form-group
-            = f.select :gender, [['Male', 0], ['Female', 1]], :class=>"form-control"
-          
-          .form-group
-            = f.date_field :date, class: "form-control"
-          .form-group
-            = f.text_field :country, class: "form-control login-input", placeholder: "Country"
-          / Социалки
-          .form-group
-            = f.text_field :vk, class: "form-control login-input", placeholder: "VKontakte"
-          .form-group
-            = f.text_field :fb, class: "form-control login-input", placeholder: "Facebook"
-          .form-group
-            = f.text_field :tw, class: "form-control login-input", placeholder: "Twitter"
-          .form-group
-            = f.text_field :od, class: "form-control login-input", placeholder: "Odnoklassniki"
+              .row
+                .col-md-6
+                  .form-group
+                    = f.text_field :tw, class: "form-control", placeholder: "Twitter"
+                .col-md-6
+                  .form-group
+                    = f.text_field :od, class: "form-control", placeholder: "Odnoklassniki"
 
-          .form-group
-            = f.file_field :avatar
-
-        .col-lg-4.col-lg-offset-3
-          = f.submit "Sign UP", class: "btn btn-lg btn-primary btn-block btn-center"
-        
-        .col-lg-8.col-lg-offset-2
-          small.create-account.text-muted
-            = render "devise/shared/links"
+              .row
+                .col-md-6
+                  .form-group
+                      = f.label :avatar
+                      = f.file_field :avatar
+                .col-md-6
+                  = f.submit "Sign Up", class: "btn btn-two pull-right", style: "margin-top: 15px;"
+              
+                
+            .form-footer
+                = render "devise/shared/links"

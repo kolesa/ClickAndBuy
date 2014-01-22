@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function () {
 	// Active Theme: Select the theme you want to activate on the entire website
 	$("body").addClass("wp-theme-1");
 	

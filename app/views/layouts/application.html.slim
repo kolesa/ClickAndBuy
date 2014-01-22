@@ -1,5 +1,5 @@
 doctype
-html.js.cssanimations.csstransitions
+html
   head
     meta charset="utf-8"
     title Boomerang Bootstrap Template: Welcome
@@ -9,7 +9,8 @@ html.js.cssanimations.csstransitions
     = javascript_include_tag 'jquery_ujs'
     = csrf_meta_tags
   body
-    section#asideMenu.aside-menu
+    /боковое меню
+    /section#asideMenu.aside-menu
       form.form-inline.form-search
         .input-group
           input.form-control placeholder="Search..." type="search"
@@ -46,7 +47,7 @@ html.js.cssanimations.csstransitions
         p hello@webpixels.ro
         h5 Phone
         p +10 724 1234 567
-    .wrapper
+    .wrapper.slice.bg-3
       .top-header
         .container
           .row
@@ -144,162 +145,175 @@ html.js.cssanimations.csstransitions
                 span.sr-only
                   | Toggle
                   | navigation
-              a.navbar-brand href="index.html"
+              a.navbar-brand href=root_path
                 img alt="Boomerang Bootstrap Template Logo" src=image_path"boomerang-logo.png"
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
-                li.active
-                  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href=root_path
-                    | Home
-                  
-                li.dropdown
-                  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
-                    | Pages
-                  ul.dropdown-menu
-                    li
-                      a href="about.html"
-                        | About us:
-                        | One
-                    li
-                      a href="about2.html"
-                        | About us:
-                        | Two
-                    li
-                      a href="services.html"
-                        | Services:
-                        | One
-                    li
-                      a href="services2.html"
-                        | Services:
-                        | Two
-                    li
-                      a href="team.html"
-                    li
-                      a href="listings.html"
-                    li
-                      a href="pricing.html"
-                        | Pricing
-                        | plans
-                    li
-                      a href="timeline.html"
-                    li
-                      a href="sign-in.html"
-                    li
-                      a href="sign-up.html"
-                    li
-                      a href="shop-account.html"
-                        | Sign
-                        | in/Sign up
-                    li
-                      a href="faq.html"
-                    li
-                      a href="404.html"
-                li.dropdown
-                  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
-                    | Work
-                  ul.dropdown-menu
-                    li
-                      a href="work.html"
-                        | Work: Basic 3
-                        | columns
-                    li
-                      a href="work2.html"
-                        | Work: Basic 4
-                        | columns
-                    li
-                      a href="work3.html"
-                        | Work: With header
-                        | 3 columns
-                    li
-                      a href="work4.html"
-                        | Work: With header
-                        | 4 columns
-                    li
-                      a href="work-project.html"
-                        | Single
-                        | project: Fluid
-                    li
-                      a href="work-project2.html"
-                        | Single
-                        | project: Vertical
-                li.dropdown
-                  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
-                    | Blog
-                  ul.dropdown-menu
-                    li
-                      a href="blog-grid.html"
-                        | Blog: Grid
-                        | Large
-                    li
-                      a href="blog-grid2.html"
-                        | Blog: Grid
-                        | Medium
-                    li
-                      a href="blog-list.html"
-                        | Blog:
-                        | List
-                    li
-                      a href="blog-masonry.html"
-                        | Blog:
-                        | Masonry
-                    li
-                      a href="blog-post.html"
-                        | Post:
-                        | Standard
-                    li
-                      a href="blog-post2.html"
-                        | Post:
-                        | Fluid
-                li.dropdown
-                  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
-                    | Shop
-                  ul.dropdown-menu
-                    li
-                      a href="shop-home.html"
-                    li
-                      a href="shop-products.html"
-                        | All
-                        | products
-                    li
-                      a href="shop-product.html"
-                        | Single
-                        | product
-                    li
-                      a href="shop-cart.html"
-                    li
-                      a href="shop-account.html"
-                    li
-                      a href="shop-profile.html"
-                        | User
-                        | profile
-                    li
-                      a href="shop-order-history.html"
-                        | Order
-                        | history
-                    li
-                      a href="shop-whishlist.html"
-                    li
-                      a href="shop-invoice.html"
-                li.dropdown
-                  a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
-                    | Contact
-                  ul.dropdown-menu
-                    li
-                      a href="contact.html"
-                        | Contact:
-                        | Fluid
-                    li
-                      a href="contact2.html"
-                        | Contact:
-                        | Compact
-                li.dropdown style="z-index:500;"
-                  a.dropdown-toggle.dropdown-form-toggle data-toggle="dropdown" href="#" SMS
-                  ul.dropdown-menu.dropdown-menu-user
-                    li#dropdownForm
-                      .dropdown-form
-                        form.p-15
-                          .form-group
-                            input#email.form-control placeholder="Enter email" type="search"
-                li.hidden-xs
+                /old
+                  li.active
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href=root_path
+                      | Home
+                  li.dropdown
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
+                      | Pages
+                    ul.dropdown-menu
+                      li
+                        a href="about.html"
+                          | About us:
+                          | One
+                      li
+                        a href="about2.html"
+                          | About us:
+                          | Two
+                      li
+                        a href="services.html"
+                          | Services:
+                          | One
+                      li
+                        a href="services2.html"
+                          | Services:
+                          | Two
+                      li
+                        a href="team.html"
+                      li
+                        a href="listings.html"
+                      li
+                        a href="pricing.html"
+                          | Pricing
+                          | plans
+                      li
+                        a href="timeline.html"
+                      li
+                        a href="sign-in.html"
+                      li
+                        a href="sign-up.html"
+                      li
+                        a href="shop-account.html"
+                          | Sign
+                          | in/Sign up
+                      li
+                        a href="faq.html"
+                      li
+                        a href="404.html"
+                  li.dropdown
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
+                      | Work
+                    ul.dropdown-menu
+                      li
+                        a href="work.html"
+                          | Work: Basic 3
+                          | columns
+                      li
+                        a href="work2.html"
+                          | Work: Basic 4
+                          | columns
+                      li
+                        a href="work3.html"
+                          | Work: With header
+                          | 3 columns
+                      li
+                        a href="work4.html"
+                          | Work: With header
+                          | 4 columns
+                      li
+                        a href="work-project.html"
+                          | Single
+                          | project: Fluid
+                      li
+                        a href="work-project2.html"
+                          | Single
+                          | project: Vertical
+                  li.dropdown
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
+                      | Blog
+                    ul.dropdown-menu
+                      li
+                        a href="blog-grid.html"
+                          | Blog: Grid
+                          | Large
+                      li
+                        a href="blog-grid2.html"
+                          | Blog: Grid
+                          | Medium
+                      li
+                        a href="blog-list.html"
+                          | Blog:
+                          | List
+                      li
+                        a href="blog-masonry.html"
+                          | Blog:
+                          | Masonry
+                      li
+                        a href="blog-post.html"
+                          | Post:
+                          | Standard
+                      li
+                        a href="blog-post2.html"
+                          | Post:
+                          | Fluid
+                  li.dropdown
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
+                      | Shop
+                    ul.dropdown-menu
+                      li
+                        a href="shop-home.html"
+                      li
+                        a href="shop-products.html"
+                          | All
+                          | products
+                      li
+                        a href="shop-product.html"
+                          | Single
+                          | product
+                      li
+                        a href="shop-cart.html"
+                      li
+                        a href="shop-account.html"
+                      li
+                        a href="shop-profile.html"
+                          | User
+                          | profile
+                      li
+                        a href="shop-order-history.html"
+                          | Order
+                          | history
+                      li
+                        a href="shop-whishlist.html"
+                      li
+                        a href="shop-invoice.html"
+                  li.dropdown
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#"
+                      | Contact
+                    ul.dropdown-menu
+                      li
+                        a href="contact.html"
+                          | Contact:
+                          | Fluid
+                      li
+                        a href="contact2.html"
+                          | Contact:
+                          | Compact
+                  li.dropdown style="z-index:500;"
+                    a.dropdown-toggle.dropdown-form-toggle data-toggle="dropdown" href="#" SMS
+                    ul.dropdown-menu.dropdown-menu-user
+                      li#dropdownForm
+                        .dropdown-form
+                          form.p-15
+                            .form-group
+                              input#email.form-control placeholder="Enter email" type="search"
+                  li.hidden-xs
                   a#cmdAsideMenu.dropdown-toggle.dropdown-form-toggle href="#" title="Open sidebar" SideBar.wrapper
-      = yield
+                li
+                  = link_to 'Магазины', shops_path
+                li
+                  = link_to 'Товары', items_path
+                li
+                  = link_to 'Категории', tagged_path
+                
+                / Для админа
+                - if signed_in? and current_user.is_admin
+                  li
+                    = link_to 'Пользователи', users_path
+                  li
+                    = link_to 'Заявки от партнёров', partners_path    
+    = yield

@@ -1,13 +1,13 @@
-.section
-  .container style="margin-top: 20px;"
+.section.slice.bg-3
+  .w-section.inverse.container style="padding-top: 20px;"
     .row
-      .span8
+      .col-lg-8
         .bs-example.bs-example-type
           table.table.table-striped.table-hover
             tbody
               /- @likes.map do |like|
                 tr
-                  td.span2
+                  td.col-lg-2
                     = link_to like.item
                       = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
                   td
@@ -38,11 +38,11 @@
                         .progress-bar.progress-bar-warning style="width: 20%; background-color: #2b2b2b"
                           |25%
 
-                  td.span2
+                  td.col-lg-2
                     .btn-lg style="margin-top:5px;"
                       = like.item.price 
                       span.fa.fa-rub<>
-      .span3.col-offset-lg-1.well.well-sm style="background-color: whiteSmoke;"
+      .col-lg-3.col-offset-lg-1
           - if @user.avatar_file_name
             = image_tag @user.avatar.url, class: "img-rounded img-responsive"
           - else
@@ -76,5 +76,3 @@
             - if @user.od?
               = link_to "http://#{@user.od}"
                 i.fa.fa-globe.fa-2x<>
-            p
-              =link_to 'edit', edit_user_registration_path

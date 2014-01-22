@@ -1,19 +1,19 @@
 - if signed_in? and current_user.is_admin
-  .container
-  
-      .span6.offset1 style="margin-top: 10px"
+  .section.slice.bg-3
+    .w-section.inverse.container
+      .col-md-6.offset1.widget.widget-highlight style="margin-top: 10px"
         .input-group
           input.form-control placeholder="Поиск по фамилии"
           span.input-group-addon
             i.fa.fa-search
 
-      table.table.table-hover.span10.offset1
+      table.table.table-hover.col-lg-10.table-striped
         thead
           tr
-            th.span1
-            th.span6 Имя
-            th.span2 
-            th.span2 Действие
+            th.col-md-1
+            th.col-md-6 Имя
+            th.col-md-2 
+            th.col-md-2 Действие
         tbody
         - @users.map do |item|
           tr
@@ -39,32 +39,25 @@
                   span.label.label-default
                     |banned
             td
-              /.btn-group
-                a.btn.btn-primary href="#"
-                = link_to user_info_path(item), class: "btn btn-primary"
-                  i.fa.fa-user.fa-fw
-                  | Показать
-              .btn-group style="margin-top: 14px;"
-                = link_to user_info_path(item), class: "btn btn-medium btn-primary btn-rounded"
-                  i.fa.fa-user.fa-fw
-                  | Показать
-                a.btn.dropdown-toggle data-toggle="dropdown" href="#" style="background-color: #2BA6CB;  padding-top: 6px;padding-bottom: 9px;border-left: 1px solid darkcyan;"
+              .btn-group
+                button.btn.btn-info type="button"
+                  = link_to user_info_path(item), style: "color: white;"
+                    i.fa.fa-user.fa-fw
+                    | Показать
+                button.btn.btn-info.dropdown-toggle data-toggle="dropdown" type="button" style="padding: 14px 10px;"
                   span.caret
-
                 ul.dropdown-menu
-                  li
-                    = link_to user_delete_path(item), method: 'delete'
-                      i.fa.fa-trash-o.fa-fw
-                      | Удалить
-                  li
-                    = link_to user_ban_path(item), method: 'post'
+                  li = link_to user_delete_path(item), method: 'delete'
+                    i.fa.fa-trash-o.fa-fw
+                    | Удалить 
+                  li = link_to user_ban_path(item), method: 'post'
                       i.fa.fa-ban.fa-fw
                       - unless item.is_banned
                         | Забанить
                       - else
                         | Разбанить
-                  li
-                    = link_to user_make_admin_path(item), method: 'post'
+                  li.divider
+                  li = link_to user_make_admin_path(item), method: 'post'
                       i.i
                       - unless item.is_admin
                         | Сделать админом
