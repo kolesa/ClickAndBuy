@@ -7074,7 +7074,7 @@ header .navbar-brand img {
 }
 
 .aside-menu::-webkit-scrollbar {
-    display: none !importat;
+    display: none;
     width: 0 !important;
 }
 
