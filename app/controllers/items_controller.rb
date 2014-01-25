@@ -24,12 +24,15 @@ class ItemsController < ApplicationController
 
   # GET /items/1/like
   def like
-    like = Like.new(user: current_user, item: @item)
-    if like.save
-      redirect_to @item, notice: 'Item was not successfully created.'
+    #like = Like.new(user: current_user, item: @item)
+    note = 'Item was liked.'
+    unless Like.exists?(user: current_user, item: @item)
+      like = Like.create(user: current_user, item: @item)
+      Counter.create(user: current_user, like: like)
     else
-      redirect_to @item, notice: 'Item was successfully created.'
+      note = 'Item was already liked'
     end
+    redirect_to @item, notice: note
   end
 
   # POST /items

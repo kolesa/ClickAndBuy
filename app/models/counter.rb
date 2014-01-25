@@ -1,18 +1,15 @@
 # == Schema Information
 #
-# Table name: likes
+# Table name: counters
 #
 #  id         :integer          not null, primary key
+#  like_id    :integer          not null
 #  user_id    :integer          not null
-#  item_id    :integer          not null
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Like < ActiveRecord::Base
+class Counter < ActiveRecord::Base
   belongs_to :user
-  belongs_to :item
-
-  has_many :users, :through => :counters
-  has_many :counters
+  belongs_to :like
 end

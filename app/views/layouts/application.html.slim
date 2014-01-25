@@ -58,7 +58,7 @@ html
               nav.top-header-menu
                 ul.menu
                   - if signed_in?
-                    li= link_to current_user.email, user_path
+                    li= link_to current_user.email, user_info_path(current_user)
                     li= link_to "Выход", destroy_user_session_path, method: "delete"
                   - else
                     li= link_to "Вход", new_user_session_path
@@ -317,3 +317,74 @@ html
                   li
                     = link_to 'Заявки от партнёров', partners_path    
     = yield
+    footer
+      .container
+        .row
+          .col-md-3
+            .col
+              h4 Contact us
+              ul
+                li 5th Avenue, New York - United States
+                li Phone: +10 724 1234 567 | Fax: +10 724 1234 567
+                li
+                  | Email:
+                  a href="mailto:hello@example.com" title="Email Us"
+                li
+                  | Skype:
+                  a href="skype:my.business?call" title="Skype us"
+                li Creating great templates is our passion
+          .col-md-3
+            .col
+              h4 Mailing list
+              p Sign up if you would like to receive occasional treats from us.
+              form.form-inline
+                .input-group
+                  input.form-control placeholder="Your email address..." type="text"
+                    span.input-group-btn
+                      button.btn.btn-two type="button"
+                        | &nbsp;
+                        i.fa.fa-search
+
+          .col-md-3
+            .col.col-social-icons
+              h4 Follow us
+              a href="#"
+                i.fa.fa-facebook
+              a href="#"
+                i.fa.fa-google-plus
+              a href="#"
+                i.fa.fa-linkedin
+              a href="#"
+                i.fa.fa-twitter
+              a href="#"
+                i.fa.fa-skype
+              a href="#"
+                i.fa.fa-pinterest
+              a href="#"
+                i.fa.fa-youtube-play
+              a href="#"
+                i.fa.fa-flickr
+          .col-md-3
+            .col
+              h4 About us
+              p
+                | Boomerang Bootstrap Template is made with love and passion for your own business.
+              br
+              a.btn.btn-two href="#" data-target="#myModal" data-toggle="modal"
+                | Отправить заявку
+                span.fa.fa-arrow-right<>
+        hr
+          .row
+            .col-lg-9.copyright
+              | 2013 © Web Pixels. All rights reserverd.
+              a href="#"
+            .col-lg-3.footer-logo
+
+    #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close aria-hidden="true" data-dismiss="modal" type="button"
+            h4#myModalLabel.modal-title Заявка
+          .modal-body
+            == render 'shared/partner_form'

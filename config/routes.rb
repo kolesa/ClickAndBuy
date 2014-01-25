@@ -6,10 +6,9 @@ ClickAndBuy::Application.routes.draw do
   resources :items
 
   devise_for :users
-
-  get    '/user'            => "users#profile"
   get    '/users'           => "users#index"
 
+  get    '/vote/:id/:like'  => "users#vote",   as: :user_vote
   get    '/user/:id'        => "users#show",   as: :user_info
   post   '/user/:id/admin'  => "users#admin",  as: :user_make_admin
   post   '/user/:id/ban'    => "users#ban",    as: :user_ban

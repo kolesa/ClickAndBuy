@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115080338) do
+ActiveRecord::Schema.define(version: 20140124095102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "counter", force: true do |t|
+    t.integer  "like_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "counter", ["like_id", "user_id"], name: "index_counter_on_like_id_and_user_id", unique: true, using: :btree
+  add_index "counter", ["like_id"], name: "index_counter_on_like_id", using: :btree
+  add_index "counter", ["user_id"], name: "index_counter_on_user_id", using: :btree
+
+  create_table "counters", force: true do |t|
+    t.integer  "like_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "counters", ["like_id", "user_id"], name: "index_counters_on_like_id_and_user_id", unique: true, using: :btree
+  add_index "counters", ["like_id"], name: "index_counters_on_like_id", using: :btree
+  add_index "counters", ["user_id"], name: "index_counters_on_user_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -39,6 +61,7 @@ ActiveRecord::Schema.define(version: 20140115080338) do
   end
 
   add_index "likes", ["item_id"], name: "index_likes_on_item_id", using: :btree
+  add_index "likes", ["user_id", "item_id"], name: "index_likes_on_user_id_and_item_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "partners", force: true do |t|

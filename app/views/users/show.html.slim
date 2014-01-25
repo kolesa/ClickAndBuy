@@ -5,7 +5,7 @@
         .bs-example.bs-example-type
           table.table.table-striped.table-hover
             tbody
-              /- @likes.map do |like|
+              - @likes.map do |like|
                 tr
                   td.col-lg-2
                     = link_to like.item
@@ -20,8 +20,8 @@
                     div style="margin-top: 15px"
                       | Лайки
                       .progress
-                        .progress-bar.progress-bar-info style="width: 25%"
-                          |500
+                        .progress-bar.progress-bar-info style="width: #{like.counters.count}%"
+                          = like.counters.count
 
                         
                     div
@@ -37,11 +37,32 @@
                           |20%
                         .progress-bar.progress-bar-warning style="width: 20%; background-color: #2b2b2b"
                           |25%
-
+                    
+                    #accordion.panel-group
+                      .panel.panel-default
+                        .panel-heading
+                          h4.panel-title
+                            a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion"
+                              | Кто лайкнул
+                              = 
+                        .panel-collapse.collapse*{id: like.item.id.to_s}
+                          .panel-body
+                            - like.counters.each do |item|
+                              .name style="float: left; margin: 2px;"
+                                =link_to user_info_path(item.user)
+                                  - if item.user.avatar_file_name 
+                                    = image_tag item.user.avatar.url(:thumb), class: "img-rounded img-responsive", title: "#{item.user.first_name} #{item.user.last_name}"
+                                  - else
+                                      img.img-rounded.img-responsive src="http://placehold.it/80x80&text=User" *{title: "#{item.user.first_name} #{item.user.last_name}"} 
                   td.col-lg-2
                     .btn-lg style="margin-top:5px;"
                       = like.item.price 
                       span.fa.fa-rub<>
+                    .btn-lg style="margin-top:5px; color: #e74c3c;"
+                      =link_to user_vote_path like.users.first.id, like.counters.first.like.id
+                        span.fa.fa-heart.fa-4x<>
+                        
+
       .col-lg-3.col-offset-lg-1
           - if @user.avatar_file_name
             = image_tag @user.avatar.url, class: "img-rounded img-responsive"
@@ -54,8 +75,10 @@
               = @user.last_name
             h5
               cite title="Москва"
-                | 23 года, 
-                = @user.country
+                => @user.date
+                - if @user.country?
+                  |,
+                  =< @user.country
                 i.fa.fa-map-marker<>
             p
               i.fa.fa-envelope<> style="margin-bottom: 10px;"
@@ -76,3 +99,5 @@
             - if @user.od?
               = link_to "http://#{@user.od}"
                 i.fa.fa-globe.fa-2x<>
+            p
+              =link_to 'edit', edit_user_registration_path

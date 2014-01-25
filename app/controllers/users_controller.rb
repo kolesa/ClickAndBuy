@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :index_item, only: [:index]
+  before_action :get_user,   only: [:show, :vote]
   before_action :set_item,   only: [:delete, :admin, :ban]
 
   # GET /users
@@ -7,15 +8,16 @@ class UsersController < ApplicationController
 
   end
 
-  # GET /user
-  def profile
-    @user  = current_user
-    @likes = Like.where(user: current_user)
+  def vote
+    unless Counter.exists?(user: current_user, like: Like.find(params[:like]))
+      Counter.create(user: current_user, like: Like.find(params[:like]))
+    end
+    redirect_to user_info_path(User.find(params[:id]))
   end
 
   # GET /user/:id
   def show
-    @user = User.find(params[:id])
+    @likes = Like.where(user: @user)
   end
 
   # DELETE /user/:id/delete
@@ -53,6 +55,10 @@ class UsersController < ApplicationController
 
     def set_item
       redirect_to root_path unless signed_in? and current_user.is_admin
+      @user = User.find(params[:id])
+    end
+
+    def get_user
       @user = User.find(params[:id])
     end
 
