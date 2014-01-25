@@ -11,6 +11,8 @@ module ClickAndBuy
     
     ActsAsTaggableOn.remove_unused_tags = true
     ActsAsTaggableOn.force_lowercase = true
+
+    config.assets.precompile += ['jquery.js', 'jquery_ujs.js']
     
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
