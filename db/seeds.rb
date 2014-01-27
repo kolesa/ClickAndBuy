@@ -1,4 +1,5 @@
 # Admin
+include ActionView::Helpers::AssetTagHelper
 
 admin = User.create(
   email: 'admin@click.ru',
@@ -44,7 +45,7 @@ Shop.create(
   url:        Faker::Internet.url,
   vk:         Faker::Internet.url,
   fb:         Faker::Internet.url,
-  avatar:     File.open([Rails.root, helper.image_path('seed/shop.png')].join)
+  avatar:     File.open([Rails.root, '/app/assets', image_path("seed/shop.png")].join)
   )
 
 # Items
@@ -70,7 +71,7 @@ for file in 1..6 do
     published:  true,
     price:      Faker::Number.number(3),
     discount:   Faker::Number.digit,
-    avatar: File.open([Rails.root, helper.image_path('seed/#{file}.jpg')].join)
+    avatar: File.open([Rails.root, '/app/assets', image_path("seed/#{file}.jpg")].join)
   )  
 end
 
