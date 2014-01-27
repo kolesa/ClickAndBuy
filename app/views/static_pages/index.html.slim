@@ -63,6 +63,7 @@ section.slice.bg-2.p-15
             | yours!
         .col-md-4
           a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
+            | GO!
 section.slice
   .w-section.inverse
     .container
@@ -92,7 +93,7 @@ section.slice
             h2 Launching and Monitoring
             p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
 
-section.slice.bg-5
+/section.slice.bg-5
   .w-section.inverse
     .container
       .row
@@ -198,7 +199,7 @@ section.slice.bg-5
                       | moon officia aute, non
                       | cupidatat skateboard dolor
                       | brunch.
-section.slice.relative.animate-hover-slide.bg-3
+/section.slice.relative.animate-hover-slide.bg-3
   .w-section.inverse
     .container
       h3.section-title Our portfolio
@@ -381,7 +382,7 @@ section.slice.relative.animate-hover-slide.bg-3
                         span.count
                           small 123
 
-section.slice.bg-banner-1
+/section.slice.bg-banner-1
   .w-section.inverse
     .container
       .row
@@ -401,7 +402,7 @@ section.slice.bg-banner-1
               a.btn.btn-lg.btn-one.mt-20.ext-source href="http://player.vimeo.com/video/22290612"
                 | Whatch
                 | our video
-section.slice.bg-5
+/section.slice.bg-5
   .w-section.inverse
     .container
       h3.section-title Our services
@@ -442,7 +443,7 @@ section.slice.bg-5
               | porta gravida at eget metus. Fusce dapibus,
               | tellus ac cursus commodo, tortor mauris
               | condimentum nibh, ut fermentum.
-section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
+/section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
   .carousel-inner
     .item.active
       .container
@@ -506,94 +507,326 @@ section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
             img.img-responsive alt="" src=image_path"prv/device-4.png"
   a.left.carousel-control data-slide="prev" href="#companyCarousel"
   a.right.carousel-control data-slide="next" href="#companyCarousel"
-section.slice.animate-hover-slide.bg-5
+
+section.slice.animate-hover-slide 
   .w-section.inverse
     .container
       h3.section-title Latest news
       .row
-        .col-md-3
-          .w-box
-            .figure
-              img.img-responsive alt="" src=image_path"prv/wk-img-1.jpg"
-                span.date-over.small
-                  strong
-                    | December 10,
-                    | 2013
-                .figcaption.bg-2
-                .figcaption-btn
-                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-1.jpg"
-                  a.btn.btn-xs.btn-one href="#"
-                    | View
-            h2 Lovely template design
-            p
-              | Donec id elit non mi porta gravida at eget
-              | metus. Fusce dapibus, tellus ac cursus
-              | commodo.
-        .col-md-3
-          .w-box
-            .figure
-              img.img-responsive alt="" src=image_path"prv/wk-img-2.jpg"
-                span.date-over.small
-                  strong
-                    | December 23,
-                    | 2013
-                .figcaption.bg-2
-                .figcaption-btn
-                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-2.jpg"
-                  a.btn.btn-xs.btn-one href="#"
-                    | View
-            h2 Awesome features
-            p
-              | Donec id elit non mi porta gravida at eget
-              | metus. Fusce dapibus, tellus ac cursus
-              | commodo.
-        .col-md-3
-          .w-box
-            .figure
-              img.img-responsive alt="" src=image_path"prv/wk-img-4.jpg"
-                span.date-over.small
-                  strong
-                    | December 25,
-                    | 2013
-                .figcaption.bg-2
-                .figcaption-btn
-                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-3.jpg"
-                  a.btn.btn-xs.btn-one href="#"
-                    | View
-            h2 Adpative design
-            p
-              | Donec id elit non mi porta gravida at eget
-              | metus. Fusce dapibus, tellus ac cursus
-              | commodo.
-        .col-md-3
-          .w-box
-            .figure
-              img.img-responsive alt="" src=image_path"prv/wk-img-5.jpg"
-                span.date-over.small
-                  strong
-                    | January
-                    | 03
-                .figcaption.bg-2
-                .figcaption-btn
-                  a.btn.btn-xs.btn-one.theater href="../images/prv/col-img-4.jpg"
-                  a.btn.btn-xs.btn-one href="#"
-                    | View
-            h2 New Bootstrap template
-            p
-              | Donec id elit non mi porta gravida at eget
-              | metus. Fusce dapibus, tellus ac cursus
-              | commodo.
-section.slice.bg-2.p-15
-  .cta-wr
-    .container
-      .row
-        .col-md-9
-          h1
-            | Enhance shopping experience with our template.
-            | Start selling your products!
-        .col-md-3
-          a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
-section.slice.bg-3
+        - 2.times do
+          - @item.each do |item|
+            .col-md-4
+              .w-box style="border: 0px;"
+                .figure
+                  img.img-responsive alt="#{item.name}" style="margin: auto;" src=item.avatar.url(:medium)
+                    span.date-over
+                      strong
+                        /= "#{item.created_at.day}.#{item.created_at.month},#{item.created_at.year}"
+                        = "-#{item.discount}%"
+                    .figcaption.bg-2
+                    .figcaption-btn
+                      a.btn.btn-large.btn-one.theater href=item_path(item) style="height: 40px;width: 56px;"
+                        i.fa.fa-heart.fa-2x
+                .row
+                  .col-xs-9
+                    h2 
+                      a href=item_path(item) style="text-decoration: underline;"
+                        = item.name
+                      small
+                        a href=shop_path(item.shop) style="color:#afafaf"
+                          = item.shop.name
+                  .col-xs-3
+                    .like-button
+                      span.button.liked
+                        = link_to like_path(item), :method => :post
+                          i.fa.fa-heart
+                      span.count
+                        small 123
+
+/.container
+  .row
+    .col-md-12
+      .sort-list-btn
+        button.btn.btn-two.filter data-filter="all" type="button"
+          i.fa.fa-th-large
+          | Show all
+        button.btn.btn-five.filter data-filter="category_1 category_2 category_3" type="button"
+          | Cat 
+        button.btn.btn-five.filter data-filter="category_3 category_5 category_6 category_7 category_8" type="button"
+          | Cat 
+        button.btn.btn-five.filter data-filter="category_6 category_7 category_8" type="button"
+          | Cat 
+        button.btn.btn-five.filter.active data-filter="category_3" type="button"
+          | Cat 
+  .row
+    #ulSorList style="     "
+      .mix.category_1.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="1" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-1.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-1.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Bootstrap template
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_2.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="2" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-2.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-2.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Complete features
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_3.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="3" style="  display: inline-block; opacity: 1;"
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-3.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-3.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Shop template included
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_4.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="4" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-4.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-4.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 600+ fonts from Google
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_5.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="5" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-5.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-5.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 300+ icons
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_6.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="6" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-6.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-6.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Business ready
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_7.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="7" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-7.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-7.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Easy customization
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_8.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="8" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-8.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-8.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Full support included
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_9.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="9" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-1.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-1.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Made for you
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_10.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="10" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-3.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-3.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Bootstrap based
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_11.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="11" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-5.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-5.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 Music, videos and more
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .mix.category_12.col-lg-4.col-md-4.col-sm-6.mix_all data-cat="12" style=" "
+        .w-box.inverse
+          .figure
+            img.img-responsive alt="" src="images/prv/wk-img-7.jpg"
+              .figcaption.bg-2
+              .figcaption-btn
+                a.btn.btn-xs.btn-one.theater href="images/prv/wk-img-7.jpg"
+                  i.fa.fa-plus-circle
+                  | Zoom
+                a.btn.btn-xs.btn-one href="#"
+                  i.fa.fa-link
+                  | View
+          .row
+            .col-xs-9
+              h2 New shopping experience
+              small Brand creation
+            .col-xs-3
+              .like-button
+                span.button
+                  i.fa.fa-heart
+                span.count
+                  small 123
+      .gap
+
+/section.slice.bg-3
   .w-section.inverse
     .container
       h3.section-title Our products

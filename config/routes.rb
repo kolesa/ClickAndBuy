@@ -14,9 +14,9 @@ ClickAndBuy::Application.routes.draw do
   post   '/user/:id/ban'    => "users#ban",    as: :user_ban
   delete '/user/:id/delete' => "users#delete", as: :user_delete
 
-  get  '/item' => "static_pages#item"
+  #get  '/item' => "static_pages#item"
   
-  get  '/shops/:id/items' => "shops#items", as: :shop_items
+  get  '/shops/:id/items' => "shops#items",    as: :shop_items
   post '/shops/:id/items' => "shops#add_item", as: :shop_add_item
 
   get  '/tagged'          => 'items#tagged', as: :tagged

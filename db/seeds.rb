@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Admin
+
 admin = User.create(
   email: 'admin@click.ru',
   password: 'qweasdzxc',
@@ -12,6 +7,7 @@ admin = User.create(
   is_admin: 1
 )
 
+# Users
 10.times do |user|
   user = User.create(
     email:      Faker::Internet.safe_email,
@@ -28,16 +24,68 @@ admin = User.create(
   )  
 end
 
-#  id         :integer          not null, primary key
-#  company    :text
-#  activity   :string(255)
-#  name       :text
-#  phone      :text
-#  email      :text
-#  url        :text
-#  created_at :datetime
-#  updated_at :datetime
-#
+# Shop
+  #  id                  :integer          not null, primary key
+  #  name                :string(255)
+  #  desc                :text
+  #  url                 :string(255)
+  #  fb                  :string(255)
+  #  vk                  :string(255)
+  #  created_at          :datetime
+  #  updated_at          :datetime
+  #  avatar_file_name    :string(255)
+  #  avatar_content_type :string(255)
+  #  avatar_file_size    :integer
+  #  avatar_updated_at   :datetime
+  #
+Shop.create(
+  name:       Faker::Company.name,
+  desc:       Faker::Lorem.sentence(30),
+  url:       Faker::Internet.url,
+  vk:         Faker::Internet.url,
+  fb:         Faker::Internet.url,
+  avatar: File.open("#{Rails.root}/app/assets/images/seed/shop.png")
+  )
+
+# Items
+  #  id                  :integer          not null, primary key
+  #  name                :string(255)
+  #  desc                :text
+  #  published           :boolean
+  #  price               :integer
+  #  created_at          :datetime
+  #  updated_at          :datetime
+  #  avatar_file_name    :string(255)
+  #  avatar_content_type :string(255)
+  #  avatar_file_size    :integer
+  #  avatar_updated_at   :datetime
+  #  discount            :integer
+  #  shop_id             :integer
+  #
+for file in 1..6 do
+  Item.create(
+    shop_id:    Shop.first.id,
+    name:       Faker::Commerce.product_name,
+    desc:       Faker::Lorem.sentence(20),
+    published:  true,
+    price:      Faker::Number.number(3),
+    discount:   Faker::Number.digit,
+    avatar: File.open("#{Rails.root}/app/assets/images/seed/#{file}.jpg")
+  )  
+end
+
+
+# Partners
+  #  id         :integer          not null, primary key
+  #  company    :text
+  #  activity   :string(255)
+  #  name       :text
+  #  phone      :text
+  #  email      :text
+  #  url        :text
+  #  created_at :datetime
+  #  updated_at :datetime
+  #
 10.times do |partnet|
   partnet = Partner.create(
     company:   Faker::Company.name,
@@ -48,3 +96,4 @@ end
     url:       Faker::Internet.url,
   )  
 end
+

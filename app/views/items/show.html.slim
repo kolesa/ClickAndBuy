@@ -1,4 +1,4 @@
-.section
+/.section
   .container
     .row
       .col-lg-8
@@ -52,3 +52,180 @@
                 i.fa.fa-twitter.fa-2x>
               a href="#"
                 i.fa.fa-google-plus.fa-2x>
+
+.pg-opt.pin
+  .container
+    .row
+      .col-lg-8
+        = notice
+      .col-md-6
+        h2 =@item.name
+      .col-md-6
+        ol.breadcrumb
+          li
+            a href=root_path
+              | Home
+          li
+            a href=shop_path(@item.shop)
+              = @item.shop.name
+          li.active
+            = @item.name
+section.slice.bg-3
+  .w-section.inverse.shop
+    .container
+      .row
+        .col-md-9
+          .row
+            .col-md-6
+              .product-gallery
+                .primary-image
+                  a.theater href="#" rel="group"
+                    img.img-responsive alt="" src=@item.avatar.url
+                /.thumbnail-images
+                  a.theater href="images/prv/product-3.png" rel="group"
+                    img alt="" src="images/prv/product-3.jpg"
+                  a.theater href="images/prv/product-3.png" rel="group"
+                    img alt="" src="images/prv/product-3.jpg"
+                  a.theater href="images/prv/product-3.png" rel="group"
+                    img alt="" src="images/prv/product-3.jpg"
+            .col-md-6
+              .product-info
+                h3 = @item.name
+                span.star-rating.pull-left
+                  i.fa.fa-star style="margin: 1px;"
+                  i.fa.fa-star  style="margin: 1px;"
+                  i.fa.fa-star  style="margin: 1px;"
+                  i.fa.fa-star-half-empty  style="margin: 1px;"
+                  i.fa.fa-star-o  style="margin: 1px;"
+                span.review-rating.pull-left style="margin-left:15px;"
+                  a> href="#" прочитать комментарии(23)
+                span.clearfix
+                p
+                  = @item.desc
+                /input name="cant" style="width:60px; text-align:center; margin-right:5px; height:34px;" type="number" value="1"
+                  button.btn.btn-two name="submit" type="submit"
+                  .product-short-info
+                    p
+                      strong> Shipping
+                      | : Free
+                    p
+                      strong> Category
+                      | : Apple
+                    p
+                      strong> Availability
+                      | : In Stock
+                    p
+                      strong> Tags
+                      | : laptop, notebook, asus
+          .row
+            .col-md-12
+              .widget
+                .tabs
+                  ul.nav.nav-tabs
+                    li.active
+                      a data-toggle="tab" href="#one"
+                        i.icon-star
+                        | Description
+                    li
+                      a data-toggle="tab" href="#three"
+                        | Reviews (23)
+                  .tab-content
+                    #one.tab-pane.active
+                      p
+                        =@item.desc
+                    #three.tab-pane
+                      .comments-wr
+                        - 5.times do
+                          .comment
+                            img.img-thumbnail src="http://placehold.it/80x80&text=foto"
+                              p
+                                span.comment-author
+                                  a href=""
+                                    = Faker::Name.name
+                                =Faker::Lorem.sentence(20)
+                      p
+                        a.btn.btn-xs.btn-three data-toggle="modal" href="#commentModal" title="Click to open modal form example"
+                          i.fa.fa-comment-o
+                          | Write a review
+        .col-md-3
+          .widget
+            /shop desc here
+            = image_tag @item.shop.avatar.url, class: "img-thumbnail img-responsive"
+            h2 
+              =link_to shop_path(@item.shop)
+                =@item.shop.name
+            p
+              i.fa.fa-globe>
+              a href="#" style="color: #c0c0c0" =@item.shop.url
+            p = @item.shop.desc 
+            p
+              a href="#"
+                i.fa.fa-facebook.fa-2x>
+              a href="#"
+                i.fa.fa-vk.fa-2x>
+              a href="#"
+                i.fa.fa-twitter.fa-2x>
+              a href="#"
+                i.fa.fa-google-plus.fa-2x>
+            
+            /ul.categories
+              li
+                a href="#"
+                  | Laptops
+                  i (20)
+              li
+                a href="#"
+                  | Tablets
+                  i (8)
+              li
+                a href="#"
+                  | Phones
+                  i (16)
+              li
+                a href="#"
+                  | Mice
+                  i (82)
+              li
+                a href="#"
+                  | Cameras
+                  i (33)
+          h3.section-title Search products
+          .widget.widget-highlight
+            form role="form"
+              .form-group
+                label Search for products
+                input.form-control placeholder="I want to find..." type="text"
+              .form-group
+                label Category
+                select.form-control
+                  option Phones
+                  option Laptops
+                  option Cameras
+                  option Tablets
+              .checkbox
+                label
+                  input type="checkbox"
+                    | Display all
+              button.btn.btn-two type="submit"
+                |Search
+          h3.section-title More stuff
+          .widget.widget-highlight
+            ul.featured
+              - @rand.map do |item|
+                li
+                  img.pull-left alt="" src=item.avatar.url(:thumb) style="max-width: 70px;max-height: 70px; width: auto;"
+                    p
+                      a href="#"
+                        = item.name
+                      span.star-rating
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-full
+                        i.fa.fa-star-o
+                      span.price.discount>
+                        = (item.price*item.discount/100).ceil
+                        i.fa.fa-rub<> style="display: inline"
+                      span.price<
+                        = item.price
+                        i.fa.fa-rub<> style="display: inline"

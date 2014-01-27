@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-
+    @rand = Item.order('RANDOM()').limit(3)
   end
 
   # GET /items/new
@@ -25,12 +25,15 @@ class ItemsController < ApplicationController
   # GET /items/1/like
   def like
     #like = Like.new(user: current_user, item: @item)
-    note = 'Item was liked.'
-    unless Like.exists?(user: current_user, item: @item)
-      like = Like.create(user: current_user, item: @item)
-      Counter.create(user: current_user, like: like)
-    else
-      note = 'Item was already liked'
+    note = 'Sign In first!'
+    if signed_in?
+      note = 'Item was liked.'
+      unless Like.exists?(user: current_user, item: @item)
+        like = Like.create(user: current_user, item: @item)
+        Counter.create(user: current_user, like: like)
+      else
+        note = 'Item was already liked'
+      end
     end
     redirect_to @item, notice: note
   end
