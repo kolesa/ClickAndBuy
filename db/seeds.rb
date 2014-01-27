@@ -1,4 +1,6 @@
 # Admin
+# AKIAJHNEN7RZNC2VG3LA
+# JWELknr9Lis57YQn55kCsT6fr1E44MxutO+Jo/fK
 include ActionView::Helpers::AssetTagHelper
 
 admin = User.create(

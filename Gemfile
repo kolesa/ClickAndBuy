@@ -14,7 +14,7 @@ gem 'annotate'
 
 gem 'rails_12factor', group: :production
 gem 'cancan'
-
+gem 'aws-sdk'
 gem 'slim-rails'
 gem 'paperclip'
 gem 'will_paginate'

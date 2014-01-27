@@ -518,7 +518,9 @@ section.slice.animate-hover-slide
             .col-md-4
               .w-box style="border: 0px;"
                 .figure
-                  img.img-responsive alt="#{item.name}" style="margin: auto;" src=item.avatar.url(:medium)
+                  /img.img-responsive alt="#{item.name}" style="margin: auto;" src=item.avatar.url(:medium)
+                  = image_tag item.avatar.url(:medium)
+                  /, style: "margin: auto;", alt: "#{item.name}", class: "img-responsive"
                     span.date-over
                       strong
                         /= "#{item.created_at.day}.#{item.created_at.month},#{item.created_at.year}"

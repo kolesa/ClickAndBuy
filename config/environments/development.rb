@@ -31,4 +31,15 @@ ClickAndBuy::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.paperclip_defaults = {
+  :storage        => :s3,
+  :s3_protocol    => 'http',
+  :s3_credentials => {
+    :bucket            => 'clickandbuy',
+    :access_key_id     => 'AKIAJHNEN7RZNC2VG3LA',
+    :secret_access_key => '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'
+    }
+  }
+  
 end

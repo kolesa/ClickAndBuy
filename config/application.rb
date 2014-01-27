@@ -13,6 +13,11 @@ module ClickAndBuy
     ActsAsTaggableOn.force_lowercase = true
 
     config.assets.precompile += ['jquery.js', 'jquery_ujs.js']
+
+    config.paperclip_defaults = {
+        :storage => :s3,
+        :s3_host_name => 's3-eu-west-1.amazonaws.com'
+    }
     
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
