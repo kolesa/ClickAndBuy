@@ -41,10 +41,10 @@ end
 Shop.create(
   name:       Faker::Company.name,
   desc:       Faker::Lorem.sentence(30),
-  url:       Faker::Internet.url,
+  url:        Faker::Internet.url,
   vk:         Faker::Internet.url,
   fb:         Faker::Internet.url,
-  avatar: File.open("#{Rails.root}/app/assets/images/seed/shop.png")
+  avatar:     File.open([Rails.root, helper.image_path('seed/shop.png')].join)
   )
 
 # Items
@@ -70,7 +70,7 @@ for file in 1..6 do
     published:  true,
     price:      Faker::Number.number(3),
     discount:   Faker::Number.digit,
-    avatar: File.open("#{Rails.root}/app/assets/images/seed/#{file}.jpg")
+    avatar: File.open([Rails.root, helper.image_path('seed/#{file}.jpg')].join)
   )  
 end
 
