@@ -23,8 +23,16 @@ ClickAndBuy::Application.routes.draw do
   post '/items/:id/like'  => "items#like",   as: :like
   
 
-  root "static_pages#index"
+  get  '/categories'      => "static_pages#category",  as: :category
 
+  post '/sort/categories'        => "static_pages#category_sort",        as: :category_sort
+  post '/sort/categories/add'    => "static_pages#category_sort_add",    as: :category_sort_add
+  post '/sort/categories/delete' => "static_pages#category_sort_delete", as: :category_sort_delete
+  post '/sort/categories/edit'   => "static_pages#category_sort_edit",   as: :category_sort_edit
+  
+  #get '/autocomplete_user_last_name' => "users#autocomplete_user_last_name", as: :autocomplete_user_last_name
+
+  root "static_pages#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

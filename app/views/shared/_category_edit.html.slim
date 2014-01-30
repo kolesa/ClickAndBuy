@@ -1,0 +1,11 @@
+li.well.well-sm data={id: "#{category.id}"}
+  span.display<> = category.name
+  input.edit type="text" data={url: category_sort_edit_path} style="display:none"
+  .float
+    a#category_delete href="#" data={id: "#{category.id}", url: category_sort_delete_path }
+      span.fa.fa-trash-o<>
+  - if main
+      ol.category_child
+        - if ActsAsTaggableOn::Tag.where(:parent => category.id).count > 0
+          - ActsAsTaggableOn::Tag.where(:parent => category.id).map do |category|
+            == render "shared/category_edit", { category: category, main: false } 

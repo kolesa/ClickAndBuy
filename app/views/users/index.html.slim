@@ -2,7 +2,11 @@
   .section.slice.bg-3
     .w-section.inverse.container
       .col-md-6.offset1.widget.widget-highlight style="margin-top: 10px"
-        .input-group
+        = form_tag '', :method => :get do
+          = search_field_tag :last_name, params[:last_name], :class=> "input-large", :value => ''
+          = submit_tag "Filter", :name => nil, :class => 'button btn', :id => "search_bn"
+
+        /.input-group
           input.form-control placeholder="Поиск по фамилии"
           span.input-group-addon
             i.fa.fa-search
@@ -58,8 +62,28 @@
                         | Разбанить
                   li.divider
                   li = link_to user_make_admin_path(item), method: 'post'
-                      i.i
                       - unless item.is_admin
                         | Сделать админом
                       - else
                         | Сделать юзером
+  
+
+  / javascript:
+    $("input#last_name").autocomplete({
+          source: '#{autocomplete_user_last_name_path}?last_name=#{params[:last_name]}',
+          minLength: 2,
+          delay: 300,
+          focus: function(event, ui) {
+              element.val(ui.item.id);
+              return false;
+          },
+          select: function(event, ui) {
+              element.val(ui.item.id);
+              return false;
+          }
+      }).data('autocomplete')._renderItem = function(ul, item) {
+          return $('<li></li>')
+              .data('item.autocomplete', item)
+              .append('<a><img src="' + item.id + '" />' + item.first_name + '<br></a>')
+              .appendTo(ul);
+      };

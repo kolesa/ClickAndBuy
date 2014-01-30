@@ -12,6 +12,11 @@ gem 'faker'
 gem 'devise'
 gem 'annotate'
 
+gem 'jquery-sortable-rails'
+gem "select2-rails"
+#gem 'jquery-ui-rails'
+#gem 'rails3-jquery-autocomplete'
+
 gem 'rails_12factor', group: :production
 gem 'cancan'
 gem 'aws-sdk'

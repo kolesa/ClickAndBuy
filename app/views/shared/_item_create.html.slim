@@ -31,7 +31,7 @@
 
     .form-group
       = f.label :tag_list, class: "control-label"
-      = f.text_field :tag_list, class: 'form-control'
+      = f.text_field :tag_list, class: 'form-control tags', style: "padding: 0;"
 
     .form-group
       = f.label :published, class: "control-label"
@@ -46,3 +46,13 @@
       = f.text_field :shop_id, class: 'form-control', value: @shop ? @shop.id : @item.shop.id
 
     = f.submit 'Save', class: "btn btn-info"
+javascript:
+    $('.tags').select2({
+      createSearchChoice:function(term, data) {
+        if ($(data).filter( function() { return this.text.localeCompare(term)===0; }).length===0) {
+          return {id:term, text:term};} 
+      },
+      multiple: true,
+      //data: [{id: 0, text: 'story'},{id: 1, text: 'bug'},{id: 2, text: 'task'}]
+      data: #{{tags_to_json}}
+    });

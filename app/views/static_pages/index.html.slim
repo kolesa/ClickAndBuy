@@ -1,4 +1,5 @@
 
+/ Banner
 section.slider-wrapper
   .responisve-container
     .slider
@@ -52,6 +53,8 @@ section.slider-wrapper
             br
               a.btn.btn-one href="#"
                 | Read more
+
+/ Suggestion
 section.slice.bg-2.p-15
   .cta-wr
     .container
@@ -64,6 +67,8 @@ section.slice.bg-2.p-15
         .col-md-4
           a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
             | GO!
+
+/ 3 simple steps
 section.slice
   .w-section.inverse
     .container
@@ -508,12 +513,14 @@ section.slice
   a.left.carousel-control data-slide="prev" href="#companyCarousel"
   a.right.carousel-control data-slide="next" href="#companyCarousel"
 
+
+/ Gallery
 section.slice.animate-hover-slide 
   .w-section.inverse
     .container
       h3.section-title Latest news
       .row
-        - 2.times do
+        - 1.times do
           - @item.each do |item|
             .col-md-4
               .w-box style="border: 0px;"
@@ -827,7 +834,6 @@ section.slice.animate-hover-slide
                 span.count
                   small 123
       .gap
-
 /section.slice.bg-3
   .w-section.inverse
     .container

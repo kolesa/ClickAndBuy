@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ * require jquery.ui.all
+ *= require select2
  *= require_tree .
  */
 
@@ -19,4 +21,29 @@
        url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
        url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.affix {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+ol.category li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.category li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+ol li {
+  margin: 0 0 9px 25px;
+  padding: 0;
+  
+}
+li > .float{
+  display: inline-block;
+  float: right;
 }

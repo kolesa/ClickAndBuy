@@ -3,9 +3,14 @@ class UsersController < ApplicationController
   before_action :get_user,   only: [:show, :vote]
   before_action :set_item,   only: [:delete, :admin, :ban]
 
+
+  def autocomplete_user_last_name
+    users = User.where("last_name LIKE ?" , "%#{params[:last_name]}%")
+    render json: users.map { |x| [x.id, x.last_name]}
+  end
+
   # GET /users
   def index
-
   end
 
   def vote
