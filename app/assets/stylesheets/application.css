@@ -38,10 +38,13 @@ ol.category li.placeholder:before {
   /** Define arrowhead **/
 }
 
+.breadcrumb li {
+  margin: 0;
+}
+
 ol li {
   margin: 0 0 9px 25px;
   padding: 0;
-  
 }
 li > .float{
   display: inline-block;

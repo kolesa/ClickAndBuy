@@ -1,58 +1,3 @@
-/.section
-  .container
-    .row
-      .col-lg-8
-        = notice
-        .col-lg-12
-          = image_tag @item.avatar.url(:medium), class: "img-rounded img-responsive"
-        / thumbnails  
-        /.row
-        /  - 6.times
-        /    .col-lg-2
-        /      img.img-thumbnail.img-responsive alt="" src="http://placehold.it/150x150&text=thumb"
-        
-        .row
-          .col-lg-4.col-md-4.col-sm-4
-            = link_to like_path, method: "POST"
-               i.fa.fa-heart.fa-5x
-
-          .col-lg-8.col-md-8.col-sm-8
-            h3 
-              = @item.name
-              small<>
-                = @item.price
-                span.fa.fa-rub<
-            p  = @item.desc
-      .col-lg-4
-        = link_to shop_path(@item.shop)
-          = image_tag @item.shop.avatar.url, class: "img-thumbnail img-responsive", style: "margin-left: -15px;"
-          .row
-            h3
-              = @item.shop.name
-            h5
-              i.fa.fa-globe<>
-              =link_to @item.shop.url
-            p
-              i.fa.fa-envelope<>
-              = @item.shop.fb
-            p
-              = @item.shop.desc
-            p
-              - @item.tags.any?
-                - @item.tags.each do |tag|
-                  = link_to tagged_url(:tag => tag.name)
-                    span.label.label-success<>  
-                      = tag.name
-            p
-              a href="#"
-                i.fa.fa-facebook.fa-2x>
-              a href="#"
-                i.fa.fa-vk.fa-2x>
-              a href="#"
-                i.fa.fa-twitter.fa-2x>
-              a href="#"
-                i.fa.fa-google-plus.fa-2x>
-
 .pg-opt.pin
   .container
     .row
@@ -63,8 +8,7 @@
       .col-md-6
         ol.breadcrumb
           li
-            a href=root_path
-              | Home
+            a href=root_path Главная
           li
             a href=shop_path(@item.shop)
               = @item.shop.name

@@ -1,3 +1,18 @@
+.pg-opt.pin
+  .container
+    .row
+      .col-lg-8
+        = notice
+      .col-md-6
+        h2 Редактирование товара
+      .col-md-6
+        ol.breadcrumb
+          li
+            a href=root_path Главная
+          li
+            a href=shop_path(@item.shop)
+              =@item.shop.name
+          li.active Редактирование товара
 .container
   .row
     .col-lg-9.col-md-9.col-sm-9
