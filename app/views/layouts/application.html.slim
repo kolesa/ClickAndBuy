@@ -26,7 +26,7 @@ html
             li
               = link_to 'Пользователи', users_path
             li
-              = link_to 'Категориями', category_path
+              = link_to 'Категории', category_path
         h5.side-section-title Партнёры
         .nav
           ul
@@ -71,19 +71,20 @@ html
                           ul.dropdown-menu
                             - ActsAsTaggableOn::Tag.where(:parent => category.id).map do |sub_cat|
                               li
-                                a href="" =sub_cat.name
-                                    li.dropdown
+                                a href=category_search_path(sub_cat.name)
+                                  = sub_cat.name
                 - if signed_in?
                   li= link_to current_user.email, user_info_path(current_user)
-                  li= link_to destroy_user_session_path
+                  li= link_to destroy_user_session_path, :method => 'DELETE'
                     i.fa.fa-sign-out
                 - else
                   li= link_to new_user_session_path
                     i.fa.fa-sign-in
 
-                li.hidden-xs
-                  a#cmdAsideMenu.dropdown-toggle.dropdown-form-toggle href="#" title="Open sidebar"
-                    i.fa.fa-outdent
+                - if signed_in? and current_user.is_admin
+                  li.hidden-xs
+                    a#cmdAsideMenu.dropdown-toggle.dropdown-form-toggle href="#" title="Open sidebar"
+                      i.fa.fa-outdent
       = yield
       footer
         .container

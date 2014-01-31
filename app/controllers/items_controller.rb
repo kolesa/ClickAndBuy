@@ -1,6 +1,17 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :like, :tag]
   
+  # Tags
+  def tagged
+    if params[:tag].present? 
+      @item = Item.tagged_with(params[:tag]).where(published: true)
+    else 
+      @item = Item.all.where(published: true)
+    end
+    render 'static_pages/index'
+  end
+  
+
   # GET /items
   # GET /items.json
   def index
@@ -76,15 +87,6 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_url }
       format.json { head :no_content }
-    end
-  end
-
-  # Tags
-  def tagged
-    if params[:tag].present? 
-      @item = Item.tagged_with(params[:tag])
-    else 
-      @item = Item.all
     end
   end
 

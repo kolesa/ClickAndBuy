@@ -11,102 +11,104 @@
             a href=root_path Главная
           li.active
             =@shop.name
-.container
-    .row
-      .col-lg-8 
-        .col-lg-8
-          = link_to shop_items_path, class: "btn btn-success", style: "margin: 10px;"
-            i.fa.fa-plus.fa-lg>
-            |добавить товар
-          a.btn.btn-success href="#" style="margin: 10px;"
-            i.fa.fa-plus.fa-lg>
-            |добавить категорию 
-        .col-lg-4.text-right
-          = link_to edit_shop_path(@shop), class: "btn btn-success", style: "margin: 10px;"
-              i.fa.fa-pencil.fa-lg>
-              |Редактировать
+section.slice.bg-3
+  .w-section.inverse.shop
+    .container
+        .row
+          .col-lg-8 
+            .col-lg-8 style='margin-left: -15px;'
+              = link_to shop_items_path, class: "btn btn-success btn-two"
+                i.fa.fa-plus.fa-lg>
+                |добавить товар
+              a.btn.btn-success.btn-two href="#" style="margin: 10px;"
+                i.fa.fa-plus.fa-lg>
+                |добавить категорию 
+            .col-lg-4.text-right
+              = link_to edit_shop_path(@shop), class: "btn btn-success btn-two", style: "margin: 10px -30px 10px 10px;"
+                  i.fa.fa-pencil.fa-lg>
+                  |Редактировать
 
-        table.table.table-striped.table-hover
-          thead
-            tr
-              th.col-lg-2.col-md-2.col-sm-2
-              th.col-lg-2.col-md-2.col-sm-6 Название
-              th.col-lg-2.col-md-2.col-sm-2 Цена
-              th.col-lg-2.col-md-2.col-sm-3 Действие
-          tbody
-            - @items.each do |item|
-
+            table.table.table-hover
+              thead
                 tr
-                  td
-                    = link_to item_path(item.id)
-                      = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
-                  td
-                    h5
-                      = link_to item_path(item.id)
-                        = item.name
-                  td
-                    h5
-                      = item.price
-                      i.fa.fa-rub<
-                      
-                  td
-                    .btn-group
-                      = link_to item_path(item.id), class: "btn btn-primary"
-                        i.fa.fa-user.fa-fw
-                        | Показать
-                      a.btn.btn-primary.dropdown-toggle data-toggle="dropdown" href="#" style="padding: 9px 10px;"
-                        span.fa.fa-caret-down
-                      ul.dropdown-menu
-                        li
-                          = link_to edit_item_path(item)
-                            i.fa.fa-pencil.fa-fw
-                            | Редактировать
-                        li
-                          = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
-                            i.fa.fa-trash-o.fa-fw
-                            | Удалить
-                        li
-                          a href="#"
-                            - if item.published
-                              i.fa.fa-ban.fa-fw
-                              | Заблокировать
-                            - else
-                              i.fa.fa-ban.fa-fw
-                              | Разблокировать
-                        li.divider
-                        li
-                          a href="#"
-                            i.i
-                            | Make admin
-              
-              
+                  th.col-lg-2.col-md-2.col-sm-2
+                  th.col-lg-2.col-md-2.col-sm-6 Название
+                  th.col-lg-2.col-md-2.col-sm-2 Цена
+                  th.col-lg-2.col-md-2.col-sm-3 Действие
+              tbody
+                - @items.each do |item|
+
+                    tr
+                      td
+                        = link_to item_path(item.id)
+                          = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+                      td
+                        h5
+                          = link_to item_path(item.id)
+                            = item.name
+                      td
+                        h5
+                          = item.price
+                          i.fa.fa-rub<
+                          
+                      td
+                        .btn-group
+                          = link_to item_path(item.id), class: "btn btn-primary btn-two"
+                            i.fa.fa-user.fa-fw
+                            | Показать
+                          a.btn.btn-primary.dropdown-toggle.btn-two data-toggle="dropdown" href="#" style="padding: 9px 10px;"
+                            span.fa.fa-caret-down
+                          ul.dropdown-menu
+                            li
+                              = link_to edit_item_path(item)
+                                i.fa.fa-pencil.fa-fw
+                                | Редактировать
+                            li
+                              = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
+                                i.fa.fa-trash-o.fa-fw
+                                | Удалить
+                            li
+                              a href="#"
+                                - if item.published
+                                  i.fa.fa-ban.fa-fw
+                                  | Заблокировать
+                                - else
+                                  i.fa.fa-ban.fa-fw
+                                  | Разблокировать
+                            li.divider
+                            li
+                              a href="#"
+                                i.i
+                                | Make admin
+                  
+                  
 
 
-      .col-lg-4
-        h2 = @shop.name
-        p
-          = image_tag @shop.avatar.url, class: "img-rounded img-responsive"
-        p
-          i.fa.fa-globe>
-          a href="#" =@shop.url
-        
-        p = @shop.desc
-        
-        p
-          a href="#"
-            i.fa.fa-facebook.fa-2x>
-          a href="#"
-            i.fa.fa-vk.fa-2x>
-          a href="#"
-            i.fa.fa-twitter.fa-2x>
-          a href="#"
-            i.fa.fa-google-plus.fa-2x>
-    /ul.pagination
-      li.disabled
-        a href="#"
-      li.active
-        a href="#"
-          | 1
-          span.sr-only (current)
-      li
-        a href="#" 2
+          .col-lg-4
+            h2 = @shop.name
+            p
+              = image_tag @shop.avatar.url, class: "img-rounded img-responsive"
+            p
+              i.fa.fa-globe>
+              a href="#" =@shop.url
+            
+            p = @shop.desc
+            
+            p
+              a href="#"
+                i.fa.fa-facebook.fa-2x>
+              a href="#"
+                i.fa.fa-vk.fa-2x>
+              a href="#"
+                i.fa.fa-twitter.fa-2x>
+              a href="#"
+                i.fa.fa-google-plus.fa-2x>
+        /ul.pagination
+          li.disabled
+            a href="#"
+          li.active
+            a href="#"
+              | 1
+              span.sr-only (current)
+          li
+            a href="#" 2

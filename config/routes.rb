@@ -23,7 +23,8 @@ ClickAndBuy::Application.routes.draw do
   post '/items/:id/like'  => "items#like",   as: :like
   
 
-  get  '/categories'      => "static_pages#category",  as: :category
+  get  '/categories'      => "static_pages#category", as: :category
+  get  '/category/:tag'    => "items#tagged",         as: :category_search
 
   post '/sort/categories'        => "static_pages#category_sort",        as: :category_sort
   post '/sort/categories/add'    => "static_pages#category_sort_add",    as: :category_sort_add
