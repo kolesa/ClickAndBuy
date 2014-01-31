@@ -2,7 +2,12 @@ doctype
 html
   head
     meta charset="utf-8"
-    title Boomerang Bootstrap Template: Welcome
+    title =yield(:title)
+    
+    meta name="title" content=yield(:title)
+    meta name="description" content=yield(:description)
+    link rel="image_src" href=yield(:image)
+
     meta content="width=(device-width,)initial-scale=1.0" name="viewport"  
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
