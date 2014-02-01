@@ -13,18 +13,21 @@ section.slice.bg-3
                   = devise_error_messages! 
                   
                   - if alert
-                    .span6.offset3
+                    .col-lg-6
                       .alert.alert-error
                         a.close data-dismiss="alert" x
                         = alert
 
                   .form-group style="margin-left: 40px"
                     .col-md-3
-                      a.fa.fa-twitter.fa-4x href="#"
+                      =link_to user_omniauth_authorize_path(:twitter)
+                        i.fa.fa-twitter.fa-4x href="#"
                     .col-md-3
-                      a.fa.fa-facebook.fa-4x href="#"
+                      =link_to user_omniauth_authorize_path(:facebook)
+                        i.fa.fa-facebook.fa-4x
                     .col-md-3
-                      a.fa.fa-vk.fa-4x href="#" 
+                      =link_to user_omniauth_authorize_path(:vkontakte)
+                        i.fa.fa-vk.fa-4x
                     .col-md-3
                       a.fa.fa-apple.fa-4x href="#"
                   
@@ -44,4 +47,4 @@ section.slice.bg-3
                     .col-md-6
                        =  f.submit "Вход", class: "button btn btn-two pull-right"
               .form-footer style="padding-left: 20px;"
-                = render "devise/shared/links"
+                /= render "devise/shared/links"

@@ -5,7 +5,11 @@ ClickAndBuy::Application.routes.draw do
   resources :shops
   resources :items
 
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => {
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
+
   get    '/users'           => "users#index"
 
   get    '/vote/:id/:like'  => "users#vote",   as: :user_vote

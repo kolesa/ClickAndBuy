@@ -12,6 +12,11 @@ gem 'faker'
 gem 'devise'
 gem 'annotate'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+
 gem 'jquery-sortable-rails'
 gem "select2-rails"
 #gem 'jquery-ui-rails'

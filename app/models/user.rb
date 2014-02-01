@@ -36,8 +36,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,\
+     :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :vkontakte, :twitter]
+
   has_many :items, :through => :likes
   has_many :likes
 
@@ -56,7 +57,60 @@ class User < ActiveRecord::Base
     },
     :url => "/:image/:id/:style/:basename.:extension",
     :path => ":image/:id/:style/:basename.:extension"
-    
-  validates_attachment :avatar, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
-  
+
+  def self.find_for_facebook_oauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      unless user.persisted?
+        user.provider   = auth.provider
+        user.uid        = auth.uid
+        user.email      = auth.info.email
+        user.password   = Devise.friendly_token[0,20]
+        user.first_name = auth.info.first_name
+        user.last_name  = auth.info.last_name
+        user.avatar     = auth.info.image
+        user.country    = auth.info.location
+        user.save!
+      end
+    end
+  end
+
+  def self.find_for_vkontakte_oauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      unless user.persisted?
+        user.provider   = auth.provider
+        user.uid        = auth.uid
+        user.email      = "#{auth.uid}@vk.com"
+        user.password   = Devise.friendly_token[0,20]
+        user.first_name = auth.info.first_name
+        user.last_name  = auth.info.last_name
+        user.avatar     = auth.info.image
+        user.country    = auth.info.location
+        user.save!
+      end
+    end
+  end
+
+  def self.find_for_twitter_oauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      unless user.persisted?
+        user.provider   = auth.provider
+        user.uid        = auth.uid
+        user.email      = "#{auth.info.nickname}@twitter.com"
+        user.password   = Devise.friendly_token[0,20]
+        user.first_name = auth.info.name
+        user.avatar     = auth.info.image
+        user.country    = auth.info.location
+        user.save!
+      end
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
+
 end
