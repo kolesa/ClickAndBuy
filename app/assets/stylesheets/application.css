@@ -23,6 +23,42 @@
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+.mark-sale {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+}
+.mark-sale-wrap {
+  font: bold 14px Verdana;
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px 0px #000;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform:    rotate(-45deg);
+  -ms-transform:     rotate(-45deg);
+  -o-transform:      rotate(-45deg);
+  position: relative;
+  padding: 7px 0;
+  left:-25px;
+  top:15px;
+  width: 120px;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+
+  background: rgb(255,48,25); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255,48,25,1) 0%, rgba(207,4,4,1) 69%, rgba(207,4,4,1) 99%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,48,25,1)), color-stop(69%,rgba(207,4,4,1)), color-stop(99%,rgba(207,4,4,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,48,25,1) 0%,rgba(207,4,4,1) 69%,rgba(207,4,4,1) 99%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,48,25,1) 0%,rgba(207,4,4,1) 69%,rgba(207,4,4,1) 99%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,48,25,1) 0%,rgba(207,4,4,1) 69%,rgba(207,4,4,1) 99%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(255,48,25,1) 0%,rgba(207,4,4,1) 69%,rgba(207,4,4,1) 99%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+}
+
 .affix {
     position: fixed;
     top: 0;

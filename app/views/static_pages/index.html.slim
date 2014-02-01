@@ -515,27 +515,41 @@ section.slice
 
 
 / Gallery
-section.slice.animate-hover-slide 
+section.slice.animate-hover-slide
   .w-section.inverse
     .container
       h3.section-title Latest news
       .row
         - 1.times do
           - @item.each do |item|
-            .col-md-4
-              .w-box style="border: 0px;"
+            .col-lg-4.col-md-4.col-sm-12
+              .w-box
                 .figure
-                  /img.img-responsive alt="#{item.name}" style="margin: auto;" src=item.avatar.url(:medium)
-                  = image_tag item.avatar.url(:medium)
-                  /, style: "margin: auto;", alt: "#{item.name}", class: "img-responsive"
-                    span.date-over
-                      strong
-                        /= "#{item.created_at.day}.#{item.created_at.month},#{item.created_at.year}"
-                        = "-#{item.discount}%"
-                    .figcaption.bg-2
-                    .figcaption-btn
-                      a.btn.btn-large.btn-one.theater href=item_path(item) style="height: 40px;width: 56px;"
-                        i.fa.fa-heart.fa-2x
+                  /ribbon
+                  .mark-sale
+                      = "-#{item.discount}%"
+                  
+                  = image_tag item.avatar.url(:medium), class: "img-responsive img-center"
+                  
+                  .figcaption.bg-2
+                      .figcaption-btn style="margin-left: -15px;"
+                        = link_to like_path(item), :method => :post, class: "btn btn-xs btn-one theater"
+                          i.fa.fa-plus-circle 
+                          | добавить
+
+                  /animated pop up with social links
+                  /.figcaption
+                    ul.social-icons.text-right
+                      li.text.pull-left More on:
+                      li.facebook
+                        a href="#"
+                          i.fa.fa-facebook
+                      li.twitter
+                        a href="#"
+                          i.fa.fa-twitter
+                      li.linkedin
+                        a href="#"
+                          i.fa.fa-linkedin
                 .row
                   .col-xs-9
                     h2 
@@ -545,12 +559,13 @@ section.slice.animate-hover-slide
                         a href=shop_path(item.shop) style="color:#afafaf"
                           = item.shop.name
                   .col-xs-3
-                    .like-button
+                    .like-button style="margin-right: 10px;"
                       span.button.liked
                         = link_to like_path(item), :method => :post
-                          i.fa.fa-heart
+                          i.fa.fa-heart style=" color: rgba(255,48,25,1);"
                       span.count
                         small 123
+
 
 /.container
   .row
