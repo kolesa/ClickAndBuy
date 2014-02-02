@@ -16,7 +16,12 @@ Devise.setup do |config|
         :force_login => 'true',
         :lang => 'ru'
       }
-    }# The secret key used by Devise. Devise uses this key to generate
+    }
+
+  require "omniauth-odnoklassniki"
+  config.omniauth :odnoklassniki, '217979648', "07D56036E2595D3ACDA7244B", :public_key => "CBAMBPPNABABABABA", :scope => 'VALUABLE_ACCESS'
+
+  # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   config.secret_key = 'ee79a726d8d5b74fea39b611b10e5d0f826c0c9e936f07fcfb7574dbc557726a3b853b9ef79c34d5fe8e8e45869a4ac10f8bd3c533b5da6f728fc471c245b00c'

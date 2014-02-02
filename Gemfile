@@ -16,6 +16,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+gem "omniauth-odnoklassniki"
 
 gem 'jquery-sortable-rails'
 gem "select2-rails"

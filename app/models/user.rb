@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,\
-     :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :vkontakte, :twitter]
+     :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :vkontakte, :twitter,:odnoklassniki]
 
   has_many :items, :through => :likes
   has_many :likes
@@ -64,6 +64,22 @@ class User < ActiveRecord::Base
         user.provider   = auth.provider
         user.uid        = auth.uid
         user.email      = auth.info.email
+        user.password   = Devise.friendly_token[0,20]
+        user.first_name = auth.info.first_name
+        user.last_name  = auth.info.last_name
+        user.avatar     = auth.info.image
+        user.country    = auth.info.location
+        user.save!
+      end
+    end
+  end
+
+  def self.find_for_odnoklassniki_oauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      unless user.persisted?
+        user.provider   = auth.provider
+        user.uid        = auth.uid
+        user.email      = "#{auth.info.nickname}@odnoklassniki.ru"
         user.password   = Devise.friendly_token[0,20]
         user.first_name = auth.info.first_name
         user.last_name  = auth.info.last_name
