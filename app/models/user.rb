@@ -75,15 +75,17 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_odnoklassniki_oauth(auth)
+    p auth.info
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       unless user.persisted?
         user.provider   = auth.provider
         user.uid        = auth.uid
-        user.email      = "#{auth.info.nickname}@odnoklassniki.ru"
+        user.email      = "#{auth.uid}@odnoklassniki.ru"
         user.password   = Devise.friendly_token[0,20]
         user.first_name = auth.info.first_name
         user.last_name  = auth.info.last_name
-        user.avatar     = auth.info.image
+        # it`s so HARD
+        user.avatar     = auth.info.image.split('&')[0]
         user.country    = auth.info.location
         user.save!
       end
