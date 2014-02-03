@@ -18,9 +18,15 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem "omniauth-odnoklassniki"
 
-gem 'newrelic_rpm'
+
+# Speed Up Heroku app
+gem 'rack-cache'
+gem 'kgio'
 gem 'memcachier'
 gem 'dalli'
+gem 'newrelic_rpm'
+gem "asset_sync"
+gem 'unf'
 
 gem 'jquery-sortable-rails'
 gem "select2-rails"

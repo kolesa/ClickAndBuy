@@ -12,6 +12,9 @@ module ClickAndBuy
     ActsAsTaggableOn.remove_unused_tags = true
     ActsAsTaggableOn.force_lowercase = true
 
+    config.assets.enabled = true
+    config.assets.digest = true
+
     config.assets.precompile += ['jquery.js', 'jquery_ujs.js']
 
     config.paperclip_defaults = {
