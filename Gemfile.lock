@@ -27,9 +27,6 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.0.1)
       rails (>= 3, < 5)
-    annotate (2.6.1)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
     arel (4.0.1)
     atomic (1.1.14)
     aws-sdk (1.32.0)
@@ -52,6 +49,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    dalli (2.7.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -82,12 +80,14 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    newrelic_rpm (3.7.1.188)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -184,8 +184,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.1.1)
-      coffee-rails
     tzinfo (0.3.38)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -200,18 +198,20 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
-  annotate
   aws-sdk
   bcrypt-ruby
   bootstrap-will_paginate
   cancan
   coffee-rails
+  dalli
   devise
   faker
   font-awesome-sass
   jbuilder
   jquery-rails
   jquery-sortable-rails
+  memcachier
+  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-odnoklassniki
@@ -225,6 +225,5 @@ DEPENDENCIES
   sass-rails
   select2-rails
   slim-rails
-  turbolinks
   uglifier
   will_paginate

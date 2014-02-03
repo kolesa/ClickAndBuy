@@ -10,13 +10,17 @@ gem 'pg'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
-gem 'annotate'
+#gem 'annotate'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem "omniauth-odnoklassniki"
+
+gem 'newrelic_rpm'
+gem 'memcachier'
+gem 'dalli'
 
 gem 'jquery-sortable-rails'
 gem "select2-rails"
@@ -35,7 +39,7 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks'
+#gem 'turbolinks'
 gem 'acts-as-taggable-on'
 
 

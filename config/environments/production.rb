@@ -1,6 +1,8 @@
 ClickAndBuy::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.assets.cache_store = :dalli_store
+  
   config.serve_static_assets = true
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
   config.assets.compile = true
