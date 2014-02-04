@@ -37,10 +37,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
-    bootstrap-will_paginate (0.0.9)
-      will_paginate
     builder (3.1.4)
-    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -106,6 +103,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
+    netrc (0.7.7)
     newrelic_rpm (3.7.1.188)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -173,6 +171,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.1.1)
+    rest_client (1.7.2)
+      netrc (~> 0.7.7)
     ruby-hmac (0.4.0)
     sass (3.2.13)
     sass-rails (4.0.1)
@@ -216,7 +216,6 @@ GEM
     uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
-    will_paginate (3.0.4)
 
 PLATFORMS
   ruby
@@ -226,8 +225,6 @@ DEPENDENCIES
   asset_sync
   aws-sdk
   bcrypt-ruby
-  bootstrap-will_paginate
-  cancan
   coffee-rails
   dalli
   devise
@@ -250,9 +247,9 @@ DEPENDENCIES
   rack-cache
   rails (= 4.0.2)
   rails_12factor
+  rest_client
   sass-rails
   select2-rails
   slim-rails
   uglifier
   unf
-  will_paginate

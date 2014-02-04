@@ -40,13 +40,43 @@ class ItemsController < ApplicationController
     if signed_in?
       note = 'Item was liked.'
       unless Like.exists?(user: current_user, item: @item)
-        like = Like.create(user: current_user, item: @item)
-        Counter.create(user: current_user, like: like)
+        
+        # проверяем, может ли юзер голосовать
+        # и что срок акции не закончен
+        # и что товар есть в наличии
+        if (current_user.votes > 0) \
+          && (@item.count > 0 || @item.count.nil?) \
+          && (@item.end_date.nil? || Date.parse(@item.end_date) <= Date.today)
+          
+          # уменьшаем кол-во лайков на 1
+          User.find(current_user).decrement(:votes).save
+
+          # уменьшаем кол-во товара
+          if @item.count > 0
+            @item.decrement(:count).save
+          end
+          
+          
+          like = Like.create(user: current_user, item: @item)
+          Counter.create(user: current_user, like: like)
+        else
+          # Нельзя голосовать больше 5 раз в день
+          note = 'Likes is over ('
+        end
+
+        
       else
         note = 'Item was already liked'
       end
     end
-    redirect_to @item, notice: note
+    redirect_to user_info_path(current_user), notice: note
+  end
+
+  # DELETE like/:id
+  def like_delete
+    p params[:id]
+    Like.where(id: params[:id]).first.delete
+    render nothing: true
   end
 
   # POST /items
@@ -69,7 +99,8 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     p item_params
-    respond_to do |format|
+=begin
+  respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
@@ -78,6 +109,8 @@ class ItemsController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
+=end
+    
   end
 
   # DELETE /items/1
@@ -98,6 +131,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :tag_list)
+      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :tag_list, :id, :end_date, :count)
     end
 end

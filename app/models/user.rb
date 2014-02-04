@@ -131,4 +131,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.update_likes
+    User.update_all(votes: 5)
+  end
+
 end

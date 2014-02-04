@@ -21,6 +21,16 @@ module ClickAndBuy
         :storage => :s3,
         :s3_host_name => 's3-eu-west-1.amazonaws.com'
     }
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :port           => ENV['MAILGUN_SMTP_PORT'],
+      :address        => ENV['MAILGUN_SMTP_SERVER'],
+      :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+      :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+      :domain         => 'fast-fjord-1243.heroku.com',
+      :authentication => :plain,
+    }
     
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.

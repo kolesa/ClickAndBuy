@@ -16,7 +16,7 @@
     .row
       .col-lg-8
         .bs-example.bs-example-type
-          table.table.table-striped.table-hover
+          table.table.table-hover
             tbody
               - @likes.map do |like|
                 tr
@@ -51,11 +51,11 @@
                         .progress-bar.progress-bar-warning style="width: 20%; background-color: #2b2b2b"
                           |25%
                     
-                    #accordion.panel-group
+                    .panel-group id="accordion#{like.item.id}"
                       .panel.panel-default
                         .panel-heading
                           h4.panel-title
-                            a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion"
+                            a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion#{like.item.id}"
                               | Кто лайкнул
                               = 
                         .panel-collapse.collapse*{id: like.item.id.to_s}
@@ -68,12 +68,19 @@
                                   - else
                                       img.img-rounded.img-responsive src="http://placehold.it/80x80&text=User" *{title: "#{item.user.first_name} #{item.user.last_name}"} 
                   td.col-lg-2
+                    .del style="position: absolute;right: -5px; top: 5px;"
+                      a.btn-lg.like-delete data={url: like_delete_path(like), id: like.id} href="#"
+                        span.fa.fa-trash-o
                     .btn-lg style="margin-top:5px;"
-                      = like.item.price 
+                      = like.item.price
                       span.fa.fa-rub<>
                     .btn-lg style="margin-top:5px; color: #e74c3c;"
-                      =link_to user_vote_path like.users.first.id, like.counters.first.like.id
-                        span.fa.fa-heart.fa-4x<>
+                      /=like.item.end_date
+                      - if !like.item.end_date.nil? && Date.parse(like.item.end_date) > Date.today
+                        | Акция закончилась
+                      - else
+                        =link_to user_vote_path like.users.first.id, like.counters.first.like.id
+                          span.fa.fa-heart.fa-4x<>
                         
 
       .col-lg-3.col-offset-lg-1
@@ -114,3 +121,13 @@
                 i.fa.fa-globe.fa-2x<>
             p
               =link_to 'edit', edit_user_registration_path
+
+javascript:
+  $(".like-delete").click(function(i){
+    $.post($(this).data('url'), {id: $(this).data("id")});
+
+    var item = $(this).parent().parent().parent()
+    item.fadeOut( 400, function() {
+      item.detach();
+    });
+  });

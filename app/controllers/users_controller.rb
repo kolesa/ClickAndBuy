@@ -31,6 +31,8 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+
+
   # POST /user/:id/admin
   def admin
     if @user.is_admin

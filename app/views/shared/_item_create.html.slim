@@ -2,7 +2,6 @@
   fieldset
 
     - if @item.errors.any?
-
       #error_explanation.alert.alert-dismissable.alert-warning
         button.close data-dismiss="alert" x
         h2 = "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
@@ -11,46 +10,76 @@
             - @item.errors.full_messages.each do |message|
               li = message
 
-    .form-group
-      = f.label :name, class: "control-label"
-      = f.text_field :name, class: 'form-control col-lg-4'
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        - if @item.avatar_file_name
+          = image_tag @item.avatar.url, class: "img-rounded img-responsive"
+        - else
+          img.img-rounded.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          = f.label :name, class: "control-label"
+          = f.text_field :name, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Введите имя товара"
 
-    .form-group
-      = f.label :desc, class: "control-label"
-      = f.text_area :desc, class: 'form-control'
+        .form-group
+          = f.label :count, class: "control-label"
+          = f.number_field :count, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Введите количество товара, которое учавствет в акции. Если оставить пустым, то учавстует неограниченное количество товара"
 
-    .form-group
-      = f.label :price, class: "control-label"
-      = f.number_field :price, class: 'form-control'
+        .form-group
+          = f.label :price, class: "control-label"
+          = f.number_field :price, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Введите цену товара"
 
-    .form-group
-      = f.label :discount, class: "control-label"
-      = f.number_field :discount, class: 'form-control'
+        .form-group
+          = f.label :end_date, class: "control-label"
+          = f.date_field :end_date, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Выберете дату окончания"
 
-    .form-group
-      = f.label :tag_list, class: "control-label"
-      = f.text_field :tag_list, class: 'form-control tags', style: "padding: 0;"
+        /.form-group
+          = f.label :discount, class: "control-label"
+          = f.number_field :discount, class: 'form-control'
+        /.form-group
+          = f.label :published, class: "control-label"
+          = f.check_box :published, class: 'form-control'
 
-    .form-group
-      = f.label :published, class: "control-label"
-      = f.check_box :published, class: 'form-control'
+    .row 
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          = f.label :avatar
+          = f.file_field :avatar
+      .col-lg-6.col-md-6.col-sm-6
+        .form-group
+          = f.label :tag_list, class: "control-label"
+            |Category
+          = f.text_field :tag_list, class: 'form-control tags', style: "padding: 0;", data: {:toggle => "tooltip", :placement => "right"}, title: "Выберете категории, в которых будет представлен товар."
+    .row
+      .col-lg-12.col-md-12.col-sm-12
+        .form-group
+          = f.label :desc, class: "control-label"
+          = f.text_area :desc, class: 'form-control', cols: 40, rows: 15
 
-    .form-group
-      = f.label :avatar
-      = f.file_field :avatar
-
-    .form-group style="display: none"
-      = f.label :shop_id, class: "control-label"
-      = f.text_field :shop_id, class: 'form-control', value: @shop ? @shop.id : @item.shop.id
+      .form-group style="display: none"
+        = f.label :shop_id, class: "control-label"
+        = f.text_field :shop_id, class: 'form-control', value: @shop ? @shop.id : @item.shop.id
 
     = f.submit 'Save', class: "btn btn-info"
+
 javascript:
-    $('.tags').select2({
-      createSearchChoice:function(term, data) {
-        if ($(data).filter( function() { return this.text.localeCompare(term)===0; }).length===0) {
-          return {id:term, text:term};} 
-      },
-      multiple: true,
-      //data: [{id: 0, text: 'story'},{id: 1, text: 'bug'},{id: 2, text: 'task'}]
-      data: #{{tags_to_json}}
-    });
+  $('.tags').select2({
+    createSearchChoice:function(term, data) {
+      if ($(data).filter( function() { return this.text.localeCompare(term)===0; }).length===0) {
+        return {id:term, text:term};} 
+    },
+    multiple: true,
+    //data: [{id: 0, text: 'story'},{id: 1, text: 'bug'},{id: 2, text: 'task'}]
+    data: #{{tags_to_json}}
+  });
+
+  $("input[data-toggle='tooltip']").on('focus', function() {
+    $(this).tooltip('show')
+  });
+
+  $("input[data-toggle='tooltip']").on('blur', function() {
+      $(this).tooltip('show')
+  });
+
+css:
+  .tooltip-inner{ min-width:200px; padding: 6px;}

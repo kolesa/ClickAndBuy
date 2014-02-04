@@ -70,7 +70,7 @@ html
                   - generate_menu().each do |category|
                     ul.nav.navbar-nav
                       li.dropdown
-                        a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" = category.name
+                        a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=category_search_path(category.name) = category.name
                         
                         - if ActsAsTaggableOn::Tag.where(:parent => category.id).count > 0
                           ul.dropdown-menu
@@ -82,7 +82,10 @@ html
                 - if signed_in?
                   ul.nav.navbar-nav
                     li.dropdown
-                      a.dropdown-toggle data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" = "#{current_user.first_name} #{current_user.last_name}"
+                      a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=user_info_path(current_user)
+                        = "#{current_user.first_name} #{current_user.last_name} "
+                        =<> current_user.votes
+                        i.fa.fa-heart
                       ul.dropdown-menu
                         li= link_to user_info_path(current_user)
                           | Личный кабинет

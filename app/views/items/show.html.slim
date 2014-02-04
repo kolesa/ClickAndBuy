@@ -1,5 +1,5 @@
 - provide(:title, @item.name)
-- provide(:description, @item.desc.truncate(140))
+- provide(:description, @item.desc.truncate(100))
 - provide(:image, @item.avatar.url)
 
 .pg-opt.pin
@@ -18,8 +18,8 @@
               = @item.shop.name
           li.active
             = @item.name
-section.slice.bg-3
-  .w-section.inverse.shop
+.section.slice.bg-3
+  .w-section.inverse
     .container
       .row
         .col-md-9
@@ -28,7 +28,7 @@ section.slice.bg-3
               .product-gallery
                 .primary-image
                   a.theater href="#" rel="group"
-                    img.img-responsive alt="" src=@item.avatar.url
+                    img.img-responsive alt="" src=@item.avatar.url(:medium)
                 /.thumbnail-images
                   a.theater href="images/prv/product-3.png" rel="group"
                     img alt="" src="images/prv/product-3.jpg"

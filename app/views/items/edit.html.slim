@@ -13,11 +13,13 @@
             a href=shop_path(@item.shop)
               =@item.shop.name
           li.active Редактирование товара
-.container
-  .row
-    .col-lg-9.col-md-9.col-sm-9
-      br
-      .col-lg-offset-3.col-md-offset-3.col-sm-offset-3
-        == render 'shared/item_create'
+.section.slice.bg-3
+  .w-section.inverse
+    .container
+      .row
+        .col-lg-9.col-md-9.col-sm-9
+          br
+          .col-lg-offset-3.col-md-offset-3.col-sm-offset-3
+            == render 'shared/item_create'
 
-        = link_to 'Back', items_path
+            /= link_to 'Back', items_path

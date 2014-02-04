@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201175809) do
+ActiveRecord::Schema.define(version: 20140204081359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20140201175809) do
   add_index "counters", ["like_id"], name: "index_counters_on_like_id", using: :btree
   add_index "counters", ["user_id"], name: "index_counters_on_user_id", using: :btree
 
+  create_table "discounts", force: true do |t|
+    t.integer  "discount"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "likes"
+  end
+
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "desc"
@@ -40,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140201175809) do
     t.datetime "avatar_updated_at"
     t.integer  "discount"
     t.integer  "shop_id"
+    t.date     "end_date"
+    t.integer  "count"
   end
 
   create_table "likes", force: true do |t|
@@ -131,6 +141,7 @@ ActiveRecord::Schema.define(version: 20140201175809) do
     t.boolean  "is_banned",              default: false
     t.string   "provider"
     t.string   "uid"
+    t.integer  "votes"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

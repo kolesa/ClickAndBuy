@@ -12,6 +12,8 @@ gem 'faker'
 gem 'devise'
 #gem 'annotate'
 
+gem 'rest_client'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -34,12 +36,12 @@ gem "select2-rails"
 #gem 'rails3-jquery-autocomplete'
 
 gem 'rails_12factor', group: :production
-gem 'cancan'
+#gem 'cancan'
 gem 'aws-sdk'
 gem 'slim-rails'
 gem 'paperclip'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+#gem 'will_paginate'
+#gem 'bootstrap-will_paginate'
 gem 'font-awesome-sass'
 gem 'sass-rails'
 gem 'uglifier'

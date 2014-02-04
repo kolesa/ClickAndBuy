@@ -23,7 +23,6 @@
               th.col-lg-2 name
               th.col-lg-4 desc
               th.col-lg-1 url
-              th.col-lg-2 social
               th.col-lg-1 action
 
             tbody  
@@ -33,11 +32,8 @@
                   = link_to item
                     = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
                 td = item.name
-                td = item.desc
+                td = item.desc.truncate(50)
                 td = item.url
-                td
-                  = item.fb
-                  = item.vk
                 td
                   = link_to item do
                     i.fa.fa-eye.fa-fw
