@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
         # проверяем, может ли юзер голосовать
         # и что срок акции не закончен
         # и что товар есть в наличии
-        if (User.find(current_user).votes > 0) \
+        if (User.find(current_user).votes.to_i > 0) \
           && (Item.find(@item).count.to_i > 0 || Item.find(@item).count.nil?) \
           && (Item.find(@item).end_date.nil? || Date.parse(Item.find(@item).end_date) <= Date.today)
           
