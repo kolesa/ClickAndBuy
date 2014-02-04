@@ -36,7 +36,7 @@ gem "select2-rails"
 #gem 'rails3-jquery-autocomplete'
 
 gem 'rails_12factor', group: :production
-#gem 'cancan'
+gem 'cancan'
 gem 'aws-sdk'
 gem 'slim-rails'
 gem 'paperclip'
