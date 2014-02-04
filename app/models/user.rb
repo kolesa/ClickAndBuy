@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
         user.last_name  = auth.info.last_name
         user.avatar     = auth.info.image
         user.country    = auth.info.location
+        user.votes      = 5
         user.save!
       end
     end
@@ -87,6 +88,7 @@ class User < ActiveRecord::Base
         # it`s so HARD
         user.avatar     = auth.info.image.split('&')[0]
         user.country    = auth.info.location
+        user.votes      = 5
         user.save!
       end
     end
@@ -103,6 +105,7 @@ class User < ActiveRecord::Base
         user.last_name  = auth.info.last_name
         user.avatar     = auth.info.image
         user.country    = auth.info.location
+        user.votes      = 5
         user.save!
       end
     end
@@ -118,6 +121,7 @@ class User < ActiveRecord::Base
         user.first_name = auth.info.name
         user.avatar     = auth.info.image
         user.country    = auth.info.location
+        user.votes      = 5
         user.save!
       end
     end
