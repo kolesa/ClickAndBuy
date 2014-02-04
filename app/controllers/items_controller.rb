@@ -44,9 +44,9 @@ class ItemsController < ApplicationController
         # проверяем, может ли юзер голосовать
         # и что срок акции не закончен
         # и что товар есть в наличии
-        if (current_user.votes > 0) \
-          && (@item.count.to_i > 0 || @item.count.nil?) \
-          && (@item.end_date.nil? || Date.parse(@item.end_date) <= Date.today)
+        if (User.find(current_user).votes > 0) \
+          && (Item.find(@item).count.to_i > 0 || Item.find(@item).count.nil?) \
+          && (Item.find(@item).end_date.nil? || Date.parse(Item.find(@item).end_date) <= Date.today)
           
           # уменьшаем кол-во лайков на 1
           User.find(current_user).decrement(:votes).save
