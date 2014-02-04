@@ -45,14 +45,14 @@ class ItemsController < ApplicationController
         # и что срок акции не закончен
         # и что товар есть в наличии
         if (current_user.votes > 0) \
-          && (@item.count > 0 || @item.count.nil?) \
+          && (@item.count.to_i > 0 || @item.count.nil?) \
           && (@item.end_date.nil? || Date.parse(@item.end_date) <= Date.today)
           
           # уменьшаем кол-во лайков на 1
           User.find(current_user).decrement(:votes).save
 
           # уменьшаем кол-во товара
-          if @item.count > 0
+          if @item.count.to_i > 0
             @item.decrement(:count).save
           end
           

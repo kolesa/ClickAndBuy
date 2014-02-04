@@ -68,35 +68,16 @@
                     i.fa.fa-trash-o.fa-fw
                     | Удалить 
                   li = link_to user_ban_path(item), method: 'post'
-                      i.fa.fa-ban.fa-fw
-                      - unless item.is_banned
-                        | Забанить
-                      - else
-                        | Разбанить
+                    i.fa.fa-ban.fa-fw
+                    - unless item.is_banned
+                      | Забанить
+                    - else
+                      | Разбанить
                   li.divider
                   li = link_to user_make_admin_path(item), method: 'post'
-                      - unless item.is_admin
-                        | Сделать админом
-                      - else
-                        | Сделать юзером
-  
-
-  / javascript:
-    $("input#last_name").autocomplete({
-          source: '#{autocomplete_user_last_name_path}?last_name=#{params[:last_name]}',
-          minLength: 2,
-          delay: 300,
-          focus: function(event, ui) {
-              element.val(ui.item.id);
-              return false;
-          },
-          select: function(event, ui) {
-              element.val(ui.item.id);
-              return false;
-          }
-      }).data('autocomplete')._renderItem = function(ul, item) {
-          return $('<li></li>')
-              .data('item.autocomplete', item)
-              .append('<a><img src="' + item.id + '" />' + item.first_name + '<br></a>')
-              .appendTo(ul);
-      };
+                    - unless item.is_admin
+                      | Сделать админом
+                    - else
+                      | Сделать юзером
+                  li = link_to user_delete_path(item), method: 'delete'
+                    | Сделать владельцем магазина
