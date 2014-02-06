@@ -1,0 +1,20 @@
+a.btn.btn-success.btn-two href=shop_items_path style="margin: 10px;"
+  i.fa.fa-plus.fa-lg>
+  |добавить товар
+a.btn.btn-success.btn-two href="#" style="margin: 10px;"
+  i.fa.fa-archive.fa-lg>
+  |История
+a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
+  i.fa.fa-users.fa-lg>
+  |Участники
+a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
+  i.fa.fa-tags.fa-lg>
+  |Купоны
+.row
+  form.form.mt-20 method="post"
+    .form-group style="margin-left: 10px;"
+      .col-lg-6
+        input.form-control placeholder="Search..."
+      /.col-lg-6
+        |Show catgory 
+        =<> select_tag :id, options_for_select(tags_to_json)

@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   def vote
     unless Counter.exists?(user: current_user, like: Like.find(params[:like]))
       Counter.create(user: current_user, like: Like.find(params[:like]))
+      #Array(User.pluck(:id)).map{|x| Counter.create(user_id: x, like: Like.find( Like.where(user_id: 1).pluck(:id).shuffle.first)) }
+
     end
     redirect_to user_info_path(User.find(params[:id]))
   end

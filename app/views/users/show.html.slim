@@ -76,7 +76,7 @@
                       span.fa.fa-rub<>
                     .btn-lg style="margin-top:5px; color: #e74c3c;"
                       /=like.item.end_date
-                      - if !like.item.end_date.nil? && Date.parse(like.item.end_date) > Date.today
+                      - if !like.item.end_date.nil? && like.item.end_date > Date.today
                         | Акция закончилась
                       - else
                         =link_to user_vote_path like.users.first.id, like.counters.first.like.id

@@ -38,16 +38,11 @@ $(document).on('ready page:load', function () {
 		offset: 300,
 		triggerOnce: false
 	}
-	$('.animate-in-view, .chart').waypoint(function(direction) {
-		var barColor;
-		// Easy Pie Chart
+
+	$(function() {
 		$(".chart").easyPieChart({
 			size:150,
-			easing: 'easeOutBounce',
-			onStep: function(from, to, percent) {
-				$(this.el).find('.percent').text(Math.round(percent));
-			},
-			barColor:'#FFF',
+			barColor:'#59b2e5',
 			delay: 3000,
 			trackColor:'rgba(255,255,255,0.2)',
 			scaleColor:false,
@@ -55,6 +50,7 @@ $(document).on('ready page:load', function () {
 			lineCap:'butt'
 		});
 	});
+
 	$("#btnSignIn").click(function(){
 		$("#dropdownForm").hide();
 		$("#dropdownProfile").fadeIn(300);	

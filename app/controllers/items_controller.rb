@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    p url_for controller: 'items', action: 'like', id: 41
     @rand = Item.order('RANDOM()').limit(3)
   end
 

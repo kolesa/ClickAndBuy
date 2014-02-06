@@ -20,12 +20,13 @@ ClickAndBuy::Application.routes.draw do
 
   #get  '/item' => "static_pages#item"
   
-  get  '/shops/:id/items' => "shops#items",    as: :shop_items
-  post '/shops/:id/items' => "shops#add_item", as: :shop_add_item
+  get  '/shops/:id/items'      => "shops#items",    as: :shop_items
+  post '/shops/:id/items'      => "shops#add_item", as: :shop_add_item
+  get  '/shops/:id/statistics' => "shops#stat",     as: :shop_stat
 
-  get    '/tagged'         => 'items#tagged',      as: :tagged
-  post   '/items/:id/like' => "items#like",        as: :like
-  post   '/like/:id'       => "items#like_delete", as: :like_delete
+  get  '/tagged'         => 'items#tagged',      as: :tagged
+  post '/items/:id/like' => "items#like",        as: :like
+  post '/like/:id'       => "items#like_delete", as: :like_delete
   
 
   get  '/categories'      => "static_pages#category", as: :category

@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat]
 
   # GET /shops
   # GET /shops.json
@@ -16,6 +16,10 @@ class ShopsController < ApplicationController
   # GET /shops/new
   def new
     @shop = Shop.new
+  end
+
+  # GET /shop/:id/statistics
+  def stat
   end
 
   # GET /shops/1/edit
