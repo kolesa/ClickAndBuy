@@ -20,58 +20,39 @@ section.slice.bg-3
         .row
           .col-lg-8 
             == render 'shop_menu'
+
+            .main
+              table.table.table-hover
+                thead
+                  tr
+                    th.col-lg-2.col-md-2.col-sm-2
+                    th.col-lg-2.col-md-2.col-sm-6 Название
+                    th.col-lg-2.col-md-2.col-sm-2 Цена
+                    th.col-lg-2.col-md-2.col-sm-3 Действие
+                tbody.items
+                  == render 'item', {items: @items}
             .row
               .col-sm-6.col-md-3
                 .chart data-color="e74c3c" data-percent="91"
                   span.percent 
-                    = Counter.where( like_id: Like.where(item_id: @shop.items.pluck(:id)) ).count
+                    = @likes
                   .chart-text
                     h3 Всего лайков
               
               .col-sm-6.col-md-3
                 .chart data-color="e74c3c" data-percent="91"
                   span.percent 
-                    =@shop.items.count
+                    = @users.count
                   .chart-text
-                    h3 Всего товаров
+                    h3 Всего участвует
 
-              .col-sm-6.col-md-3
-                .chart data-color="e74c3c" data-percent="91"
-                  span.percent 
-                    = Counter.select(:user_id).where( like_id: Like.where(item_id: @shop.items.pluck(:id)) ).distinct.pluck(:user_id).count
-                  .chart-text
-                    h3 Всего проголосовало
+              - @users.each do |i|
+                p 
+                  = "#{i.user.first_name} #{i.user.last_name}"
+                  =<> Counter.where(like_id: i).count
+                  i.fa.fa-heart<>
+
             
                 
           .col-lg-4
-            h2 = @shop.name
-            p
-              = image_tag @shop.avatar.url, class: "img-rounded img-responsive"
-            p
-              i.fa.fa-globe>
-              a href="#" =@shop.url
-            
-            p = @shop.desc
-            
-            a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
-              i.fa.fa-pencil.fa-lg>
-              |Редактировать
-
-            p
-              a href="#"
-                i.fa.fa-facebook.fa-2x>
-              a href="#"
-                i.fa.fa-vk.fa-2x>
-              a href="#"
-                i.fa.fa-twitter.fa-2x>
-              a href="#"
-                i.fa.fa-google-plus.fa-2x>
-        /ul.pagination
-          li.disabled
-            a href="#"
-          li.active
-            a href="#"
-              | 1
-              span.sr-only (current)
-          li
-            a href="#" 2
+            == render 'info', {shop: @shop}

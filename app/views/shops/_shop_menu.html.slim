@@ -1,7 +1,7 @@
 a.btn.btn-success.btn-two href=shop_items_path style="margin: 10px;"
   i.fa.fa-plus.fa-lg>
   |добавить товар
-a.btn.btn-success.btn-two href="#" style="margin: 10px;"
+a.btn.btn-success.btn-two.history href="#" style="margin: 10px;"
   i.fa.fa-archive.fa-lg>
   |История
 a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
@@ -11,10 +11,50 @@ a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
   i.fa.fa-tags.fa-lg>
   |Купоны
 .row
-  form.form.mt-20 method="post"
-    .form-group style="margin-left: 10px;"
-      .col-lg-6
-        input.form-control placeholder="Search..."
-      /.col-lg-6
-        |Show catgory 
-        =<> select_tag :id, options_for_select(tags_to_json)
+  .col-lg-6
+    / work perfectly
+    /= form_tag shop_search_path, :method => 'get' do
+      = text_field :search, params[:search], placeholder: "Search...", class: "form-control"
+      = submit_tag "Search", :name => 'shop_search'
+    
+    .input-group.margin-bottom-sm style="margin-left: 10px;"
+      input.form-control.search_text placeholder="Search..." type="text" name="search_text"
+      span.input-group-addon
+        a.search href="#" data={url: shop_search_path(@shop)}
+          i.fa.fa-search.fa-fw
+      
+  /.col-lg-6
+    |Show catgory 
+    =<> select_tag :id, options_for_select(tags_to_json)
+
+javascript:
+  $('.search').click(function(){
+    $.get(
+      $(this).data('url'),
+      { search: $(".search_text").val() },
+      
+      function(data){
+        $(".item").each(function(){
+          $(this).fadeOut('slow', function(){
+            $(this).detach();
+          });
+        });
+
+        var ids = [];
+
+        data.forEach(function(item) {
+          ids.push(item.id);
+        });
+
+        $.get("#{shop_path(@shop)}", { 'ids[]': ids }, function(data){
+          $(".items").html(data).fadeIn('slow');
+        });
+      }
+    )
+  });
+
+  $('.history').click(function(){
+    $.get("#{shop_path(@shop)}", { 'ids[]': ids }, function(data){
+      $(".items").html(data).fadeIn('slow');
+    });
+  });

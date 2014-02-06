@@ -22,7 +22,9 @@ ClickAndBuy::Application.routes.draw do
   
   get  '/shops/:id/items'      => "shops#items",    as: :shop_items
   post '/shops/:id/items'      => "shops#add_item", as: :shop_add_item
-  get  '/shops/:id/statistics' => "shops#stat",     as: :shop_stat
+  get  '/shops/:id/:item/stat' => "shops#stat",     as: :shop_stat
+  get  '/shops/:id/search'     => "shops#search",   as: :shop_search
+  get  '/shops/:id/codes'      => "shops#codes",    as: :shop_codes
 
   get  '/tagged'         => 'items#tagged',      as: :tagged
   post '/items/:id/like' => "items#like",        as: :like

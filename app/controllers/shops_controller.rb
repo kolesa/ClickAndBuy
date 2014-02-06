@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat, :search, :codes]
 
   # GET /shops
   # GET /shops.json
@@ -11,6 +11,11 @@ class ShopsController < ApplicationController
   # GET /shops/1.json
   def show
     @items = @shop.items.load
+
+    if params[:ids]
+      @items = @shop.items.where(id: params[:ids])
+      render '_item', {items: @items, layout: false}
+    end
   end
 
   # GET /shops/new
@@ -18,8 +23,21 @@ class ShopsController < ApplicationController
     @shop = Shop.new
   end
 
-  # GET /shop/:id/statistics
+  def codes
+    @codes = Code.where(item_id: @shop.items.pluck(:id))  
+  end
+
+  # GET /shops/1/search
+  def search
+    result = Item.where("lower(name) LIKE lower(?)", "%#{params[:search].downcase}%").where(shop: @shop)
+    render json: result
+  end
+
+  # GET /shop/:id/:item/statistics
   def stat
+    @items = Item.where(id: params[:item])
+    @likes = Counter.where( like_id: Like.where(item_id: @items.pluck(:id)) ).count
+    @users = Like.where(item_id: @items)
   end
 
   # GET /shops/1/edit
@@ -95,6 +113,6 @@ class ShopsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar)
+      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :ids, :item)
     end
 end
