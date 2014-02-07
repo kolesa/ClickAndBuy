@@ -15,6 +15,7 @@ module ClickAndBuy
     config.assets.enabled = true
     config.assets.digest = true
 
+    config.assets.initialize_on_precompile = false
     config.assets.precompile += ['jquery.js', 'jquery_ujs.js', 'jquery.easypiechart.js']
 
     config.paperclip_defaults = {

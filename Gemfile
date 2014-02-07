@@ -31,7 +31,7 @@ gem "asset_sync"
 gem 'unf'
 
 gem 'jquery-sortable-rails'
-gem "select2-rails"
+gem 'select2-rails'
 #gem 'jquery-ui-rails'
 #gem 'rails3-jquery-autocomplete'
 
