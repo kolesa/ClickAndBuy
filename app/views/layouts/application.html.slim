@@ -64,10 +64,6 @@ html
                   | Toggle navigation
               a.navbar-brand href=root_path
                 img alt="Boomerang Bootstrap Template Logo" src=image_path"boomerang-logo.png"
-              
-
-              form.navbar-form.navbar-left style="margin-top: 20;" method="post"
-                input.form-control.search.input-large.search placeholder="Search" type="hidden" name="search" style="padding: 0; border: 0;"
 
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
@@ -100,6 +96,14 @@ html
                 - else
                   li= link_to new_user_session_path
                     i.fa.fa-sign-in
+
+                li.search_menu
+                  a.dropdown-toggle href="#" data-close-others="true"
+                    i.fa.fa-search
+                  ul.dropdown-menu.search_menu_show
+                    li
+                      form.navbar-form.navbar-left style="margin: 10;" method="post"
+                        input.form-control.search.input-large.search placeholder="Search" type="hidden" name="search" style="padding: 0; border: 0;"
 
                 - if signed_in? and current_user.is_admin
                   li
@@ -195,6 +199,14 @@ html
         function movieFormatSelection(movie) {
             return movie.name;
         }
+
+        $('.search_menu').click(function(){
+          $('.search_menu_show').addClass('open').toggle();
+        });
+
+        $('li.dropdown').hover(function(){
+          $('.search_menu_show').hide();
+        });
 
         $('input[name=search]').select2({
           placeholder: "Search for a movie",
