@@ -31,8 +31,10 @@ ClickAndBuy::Application.routes.draw do
   post '/like/:id'       => "items#like_delete", as: :like_delete
   
 
-  get  '/categories'      => "static_pages#category", as: :category
-  get  '/category/:tag'    => "items#tagged",         as: :category_search
+  get  '/categories'       => "static_pages#category", as: :category
+  get  '/category/:tag'    => "items#tagged",          as: :category_search
+
+  get '/search'            => "static_pages#search",   as: :search
 
   post '/sort/categories'        => "static_pages#category_sort",        as: :category_sort
   post '/sort/categories/add'    => "static_pages#category_sort_add",    as: :category_sort_add

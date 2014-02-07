@@ -64,6 +64,11 @@ html
                   | Toggle navigation
               a.navbar-brand href=root_path
                 img alt="Boomerang Bootstrap Template Logo" src=image_path"boomerang-logo.png"
+              
+
+              form.navbar-form.navbar-left style="margin-top: 20;" method="post"
+                input.form-control.search.input-large.search placeholder="Search" type="hidden" name="search" style="padding: 0; border: 0;"
+
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
                 li.dropdown
@@ -172,6 +177,52 @@ html
         ga('create', 'UA-31315281-4', 'fast-fjord-1243.herokuapp.com');
         ga('send', 'pageview');
 
+
+
+        function movieFormatResult(movie) {
+            var markup = "<table class='movie-result'><tr>";
+            if (movie.avatar_file_name !== undefined) {
+                markup += "<td style='width: 88px; text-align:right;' class='movie-image'><img src='" + movie.avatar_file_name + "' style='height: 40%; padding: 4px'/></td>";
+            }
+            markup += "<td class='movie-info'><div class='movie-title'>" + movie.name + "</div>";
+            if (movie.desc !== undefined) {
+                markup += "<div class='movie-synopsis'>" + movie.desc + "</div>";
+            }
+            markup += "</td></tr></table>";
+            return markup;
+        }
+
+        function movieFormatSelection(movie) {
+            return movie.name;
+        }
+
+        $('input[name=search]').select2({
+          placeholder: "Search for a movie",
+          minimumInputLength: 3,
+          ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+              url: "#{{search_path}}",
+              dataType: 'json',
+              data: function (term) {
+                  return {
+                      search: $('input.select2-input').val()
+                  };
+              },
+              results: function (data) { // parse the results into the format expected by Select2.
+                  // since we are using custom formatting functions we do not need to alter remote JSON data
+                  console.log(data)
+                  return {results: data};
+              }
+          },
+          formatResult: movieFormatResult, // omitted for brevity, see the source of this page
+          formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
+          dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+          escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+        }).on("change", function(e) {
+          //console.log( e.added ); 
+          window.open(e.added.avatar_content_type);
+          return false;
+        });
+
       #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
         .modal-dialog
           .modal-content
@@ -180,3 +231,104 @@ html
               h4#myModalLabel.modal-title Заявка
             .modal-body
               == render 'shared/partner_form'
+
+    css:
+        .select2-container {
+          vertical-align: middle;
+        }
+        .select2-container.input-large {
+          width: 530px;
+        }
+        .select2-container.input-default {
+          width: 220px;
+        }
+        .select2-container[class*="span"] {
+          float: none;
+          margin-left: 0;
+        }
+
+        .select2-results .select2-highlighted{
+          background: rgba(10,80,10,0.1);
+        }
+
+        .select2-container .select2-choice,
+        .select2-container-multi .select2-choices {
+          height: 28px;
+          line-height: 29px;
+          border: 1px solid #cccccc;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+          background: none;
+          background-color: white;
+          filter: none;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+
+        .select2-container .select2-choice div, .select2-container .select2-choice .select2-arrow,
+        .select2-container.select2-container-disabled .select2-choice div,
+        .select2-container.select2-container-disabled .select2-choice .select2-arrow {
+          border-left: none;
+          background: none;
+          filter: none;
+        }
+
+        .control-group.error [class^="select2-choice"] {
+          border-color: #b94a48;
+        }
+
+        .select2-container-multi .select2-choices .select2-search-field {
+          height: 28px;
+          line-height: 27px;
+        }
+
+        .select2-drop.select2-drop-active,
+        .select2-container-active .select2-choice,
+        .select2-container-multi.select2-container-active .select2-choices {
+          border-color: rgba(82, 168, 236, 0.8);
+          border-color: #ccc\0;
+          outline: none;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+          -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+        }
+
+        [class^="input-"] .select2-container {
+          font-size: 14px;
+        }
+
+        .input-prepend [class^="select2-choice"] {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        .input-append [class^="select2-choice"] {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .select2-dropdown-open [class^="select2-choice"] {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .select2-dropdown-open.select2-drop-above [class^="select2-choice"] {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+
+        [class^="input-"] .select2-offscreen {
+          position: absolute;
+        }
+
+        /**
+         * This stops the quick flash when a native selectbox is shown and
+         * then replaced by a select2 input when javascript kicks in. This can be
+         * removed if javascript is not present
+         */
+        select.select2 {
+          height: 28px;
+          visibility: hidden;
+        }

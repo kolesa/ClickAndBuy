@@ -14,6 +14,18 @@ class StaticPagesController < ApplicationController
   def partner
   end
 
+  # GET /search
+  def search
+    p "[!]recv: #{params[:search]}"
+    result = Item.where("lower(name) LIKE lower(?)", "%#{params[:search].downcase}%")
+    
+    result.each do |s|
+      s.avatar_file_name    = s.avatar.url(:thumb)
+      s.avatar_content_type = item_url(s)
+    end
+
+    render json: result.to_json
+  end
   
   # GET /categories
   def category

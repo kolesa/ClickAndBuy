@@ -14,10 +14,14 @@ class UsersController < ApplicationController
   end
 
   def vote
-    unless Counter.exists?(user: current_user, like: Like.find(params[:like]))
-      Counter.create(user: current_user, like: Like.find(params[:like]))
-      #Array(User.pluck(:id)).map{|x| Counter.create(user_id: x, like: Like.find( Like.where(user_id: 1).pluck(:id).shuffle.first)) }
-
+    if (User.find(current_user).votes.to_i > 0) \
+      && !Counter.exists?(user: current_user, like: Like.find(params[:like]))
+      
+        # уменьшаем кол-во лайков на 1
+        User.find(current_user).decrement(:votes).save
+        
+        Counter.create(user: current_user, like: Like.find(params[:like]))
+      
     end
     redirect_to user_info_path(User.find(params[:id]))
   end
