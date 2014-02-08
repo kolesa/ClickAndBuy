@@ -1,7 +1,7 @@
 - @items.each do |item|
   - if item.id != 0
     tr
-      td
+      td align="right"
         = link_to item
           = image_tag item.avatar.url(:thumb), class: "img-rounded img-responsive"
       td
@@ -10,7 +10,7 @@
         i.small 
           = link_to item.shop.name, shop_path(item.shop)
       td = item.price
-      td = item.desc.to_s.truncate(250)
+      td = item.desc.to_s.truncate(150)
       td = item.published
       td
         = link_to item do
@@ -22,9 +22,9 @@
 
 css:
   th .current {  
-    padding-right: 12px;  
-    background-repeat: no-repeat;  
-    background-position: right center;  
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
   }  
   th .asc {
     display: inline-block;
@@ -36,7 +36,7 @@ css:
     
   }
   th .asc::after {
-    content: " \f0d8"; 
+    content: " \f0d8";
   }
     
   th .desc {
@@ -48,5 +48,5 @@ css:
     -webkit-font-smoothing: antialiased;
   } 
     th .desc::after {
-    content: " \f0d7"; 
+    content: " \f0d7";
   }

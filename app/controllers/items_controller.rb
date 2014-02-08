@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").paginate(:per_page => 5, :page => params[:page])
+    #render '_item', {items: @items, layout: false}    
   end
 
   # GET /items/1

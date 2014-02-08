@@ -1,8 +1,9 @@
 class StaticPagesController < ApplicationController
-  
+
   def index
     @partner = Partner.new
     @item = Item.where(published: true)
+    @banner = true;
   end
 
   def about

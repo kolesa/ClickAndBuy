@@ -12,23 +12,22 @@
           li.active
             |Товары
 .section.slice.bg-3
-  .w-section.inverse.container
+  .w-section.inverse.container style="padding-top: 20px;"
     .row
       .col-lg-12.col-md-12.col-sm-12
+        .row
+          .col-lg-4
+            = form_tag items_path, class: 'form-horizontal', :method => 'get' do
+              = text_field_tag :search, params[:search], :name => 'item_search', class: 'form-control ', placeholder: 'Search'
 
-        h2 Listing items
-
-        = form_tag items_path, :method => 'get' do
-          = text_field_tag :search, params[:search], :name => 'item_search', class: 'form-control', placeholder: 'Search'
-
-        table.table.table-striped
+        table.table.table-hover
           thead
-            th.col-lg-2 avatar
-            th.col-lg-2 = sortable 'name'
-            th.col-lg-2 = sortable'price'
-            th.col-lg-4 Description
-            th.col-lg-1 = sortable'published'
-            th.col-lg-1  action
+            th.col-lg-2 
+            th.col-lg-2 = sortable 'name', "Название"
+            th.col-lg-1 = sortable'price', "Цена"
+            th.col-lg-4 Описание
+            th.col-lg-1 = sortable'published', "Опубликовано"
+            th.col-lg-1 действие
 
           tbody
             == render 'item', {items: @items}

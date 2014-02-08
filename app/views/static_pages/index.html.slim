@@ -1,102 +1,103 @@
 
 / Banner
-section.slider-wrapper
-  .responisve-container
-    .slider
-      .fs_loader
-      .slide.slide-light
-        img alt="" data-delay="200" data-in="bottom" data-out="top" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-3.png"
-          img alt="" data-delay="400" data-in="bottom" data-out="bottom" data-position="20, 500" src=image_path"prv/human-img-3.png"
-            p.claim.bg-2 data-delay="100" data-in="top" data-out="bottom" data-position="70,0" data-step="1" data-time="1000" style="height: auto;"
-              | Boomerang
-              | Template. New update
-            p.claim.dark data-delay="250" data-in="top" data-out="bottom" data-position="120,0" data-step="1" data-time="3500" style="height: auto;"
-              | Check out the
-              | new features
-            p.teaser.dark.small data-delay="100" data-in="left" data-position="180,0" data-step="2" data-time="1500" style="height: auto;"
-            p.teaser.dark.small data-delay="1600" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="3100" style="height: auto;"
-              | 45+ pages models
-            p.teaser.dark.small data-delay="3000" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="5000" style="height: auto;"
-              | Enhanced shopping style
-            p.teaser.dark.small data-delay="5000" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="7000" style="height: auto;"
-              | Optional sidebar menu
-            p.teaser.dark.small data-delay="7500" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="9000" style="height: auto;"
-              | Optional header style
-      .slide
-        img alt="" data-delay="200" data-in="left" data-out="right" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-2.png"
-          img alt="" data-delay="300" data-in="bottom" data-out="fade" data-position="40, 600" data-step="1" src=image_path"slider/ipad.png"
-            img alt="" data-delay="500" data-in="left" data-out="fade" data-position="40,900" data-step="1" src=image_path"slider/iphone.png"
-              p.claim.light data-delay="100" data-in="top" data-out="top" data-position="70,0" data-step="2" style="height: auto; height: auto;"
-                | Now. Faster.
-                | Stronger
-              p.teaser.dark.small data-delay="300" data-in="bottom" data-position="130,0" data-step="2" style="height: auto;"
-              p.teaser.dark.small data-delay="600" data-in="bottom" data-position="175,0" data-step="2" style="height: auto;"
-              p.teaser.dark.small data-delay="1100" data-in="bottom" data-position="225,0" data-step="2" style="height: auto;"
-              p.teaser.dark.small data-delay="1600" data-in="bottom" data-position="275,0" data-step="2" style="height: auto;"
-              p.teaser.dark.small data-delay="2100" data-in="bottom" data-position="325,0" data-step="2" style="height: auto;"
-      .slide
-        img alt="" data-delay="100" data-in="right" data-out="left" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-7.png"
-          .video data-delay="400" data-in="top" data-out="easeOutBounce" data-position="80,0"
-            iframe height="360" src="//player.vimeo.com/video/78468485?title=0&amp;byline=0&amp;portrait=0"
-          p.claim.light data-delay="1000" data-in="top" data-out="top" data-position="80,550" style="height: auto; height: auto;"
-            | Implementing videos is
-            | easy
-          p.teaser.no-padding data-delay="2000" data-in="bottom" data-position="140,550" data-step="1" style="color:#FFF ; height: auto;"
-            | Media support for Vimeo,
-            | Youtube and much more
-          p.text.small.no-padding data-delay="3000" data-in="bottom" data-position="190,550" data-step="1" style="color:#FFF; height: auto;"
-            | Lorem ipsum dolor sit
-            | amet, eum cu sint dolores, dicat possit malorum at sit,
-            | ut natum assentior mea. Mel congue malorum te, eu cum
-            | blandit salutatus comprehensam, atqui causae ancillae
-            | cum ei. His eu ignota praesent democritum.
-            br
-              a.btn.btn-one href="#"
-                | Read more
+- if @banner
+  section.slider-wrapper
+    .responisve-container
+      .slider
+        .fs_loader
+        .slide.slide-light
+          img alt="" data-delay="200" data-in="bottom" data-out="top" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-3.png"
+            img alt="" data-delay="400" data-in="bottom" data-out="bottom" data-position="20, 500" src=image_path"prv/human-img-3.png"
+              p.claim.bg-2 data-delay="100" data-in="top" data-out="bottom" data-position="70,0" data-step="1" data-time="1000" style="height: auto;"
+                | Boomerang
+                | Template. New update
+              p.claim.dark data-delay="250" data-in="top" data-out="bottom" data-position="120,0" data-step="1" data-time="3500" style="height: auto;"
+                | Check out the
+                | new features
+              p.teaser.dark.small data-delay="100" data-in="left" data-position="180,0" data-step="2" data-time="1500" style="height: auto;"
+              p.teaser.dark.small data-delay="1600" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="3100" style="height: auto;"
+                | 45+ pages models
+              p.teaser.dark.small data-delay="3000" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="5000" style="height: auto;"
+                | Enhanced shopping style
+              p.teaser.dark.small data-delay="5000" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="7000" style="height: auto;"
+                | Optional sidebar menu
+              p.teaser.dark.small data-delay="7500" data-in="left" data-position="180,0" data-special="cycle" data-step="2" data-time="9000" style="height: auto;"
+                | Optional header style
+        .slide
+          img alt="" data-delay="200" data-in="left" data-out="right" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-2.png"
+            img alt="" data-delay="300" data-in="bottom" data-out="fade" data-position="40, 600" data-step="1" src=image_path"slider/ipad.png"
+              img alt="" data-delay="500" data-in="left" data-out="fade" data-position="40,900" data-step="1" src=image_path"slider/iphone.png"
+                p.claim.light data-delay="100" data-in="top" data-out="top" data-position="70,0" data-step="2" style="height: auto; height: auto;"
+                  | Now. Faster.
+                  | Stronger
+                p.teaser.dark.small data-delay="300" data-in="bottom" data-position="130,0" data-step="2" style="height: auto;"
+                p.teaser.dark.small data-delay="600" data-in="bottom" data-position="175,0" data-step="2" style="height: auto;"
+                p.teaser.dark.small data-delay="1100" data-in="bottom" data-position="225,0" data-step="2" style="height: auto;"
+                p.teaser.dark.small data-delay="1600" data-in="bottom" data-position="275,0" data-step="2" style="height: auto;"
+                p.teaser.dark.small data-delay="2100" data-in="bottom" data-position="325,0" data-step="2" style="height: auto;"
+        .slide
+          img alt="" data-delay="100" data-in="right" data-out="left" data-position="0,-460" height="440" src=image_path"carousel/carousel-img-7.png"
+            .video data-delay="400" data-in="top" data-out="easeOutBounce" data-position="80,0"
+              iframe height="360" src="//player.vimeo.com/video/78468485?title=0&amp;byline=0&amp;portrait=0"
+            p.claim.light data-delay="1000" data-in="top" data-out="top" data-position="80,550" style="height: auto; height: auto;"
+              | Implementing videos is
+              | easy
+            p.teaser.no-padding data-delay="2000" data-in="bottom" data-position="140,550" data-step="1" style="color:#FFF ; height: auto;"
+              | Media support for Vimeo,
+              | Youtube and much more
+            p.text.small.no-padding data-delay="3000" data-in="bottom" data-position="190,550" data-step="1" style="color:#FFF; height: auto;"
+              | Lorem ipsum dolor sit
+              | amet, eum cu sint dolores, dicat possit malorum at sit,
+              | ut natum assentior mea. Mel congue malorum te, eu cum
+              | blandit salutatus comprehensam, atqui causae ancillae
+              | cum ei. His eu ignota praesent democritum.
+              br
+                a.btn.btn-one href="#"
+                  | Read more
 
-/ Suggestion
-section.slice.bg-2.p-15
-  .cta-wr
-    .container
-      .row
-        .col-md-8
-          h1
-            strong Boomerang Bootstrap Template
-            | delivers content beyond the desktop. Make it
-            | yours!
-        .col-md-4
-          a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
-            | GO!
+  / Suggestion
+  section.slice.bg-2.p-15
+    .cta-wr
+      .container
+        .row
+          .col-md-8
+            h1
+              strong Boomerang Bootstrap Template
+              | delivers content beyond the desktop. Make it
+              | yours!
+          .col-md-4
+            a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
+              | GO!
 
-/ 3 simple steps
-section.slice
-  .w-section.inverse
-    .container
-      .row
-        .col-lg-3.col-md-6.col-sm-6
-          .w-box.w-box-inverse
-            .thmb-img
-              i.fa.fa-lightbulb-o
-            h2 Generating ideas
-            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
-        .col-lg-3.col-md-6.col-sm-6
-          .w-box.w-box-inverse
-            .thmb-img
-              i.fa.fa-keyboard-o
-            h2 Creating the model
-            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
-        .col-lg-3.col-md-6.col-sm-6
-          .w-box.w-box-inverse
-            .thmb-img
-              i.fa.fa-code
-            h2 Designing and Coding
-            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
-        .col-lg-3.col-md-6.col-sm-6
-          .w-box.w-box-inverse
-            .thmb-img
-              i.fa.fa-rocket
-            h2 Launching and Monitoring
-            p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+  / 3 simple steps
+  section.slice
+    .w-section.inverse
+      .container
+        .row
+          .col-lg-3.col-md-6.col-sm-6
+            .w-box.w-box-inverse
+              .thmb-img
+                i.fa.fa-lightbulb-o
+              h2 Generating ideas
+              p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+          .col-lg-3.col-md-6.col-sm-6
+            .w-box.w-box-inverse
+              .thmb-img
+                i.fa.fa-keyboard-o
+              h2 Creating the model
+              p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+          .col-lg-3.col-md-6.col-sm-6
+            .w-box.w-box-inverse
+              .thmb-img
+                i.fa.fa-code
+              h2 Designing and Coding
+              p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
+          .col-lg-3.col-md-6.col-sm-6
+            .w-box.w-box-inverse
+              .thmb-img
+                i.fa.fa-rocket
+              h2 Launching and Monitoring
+              p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
 
 /section.slice.bg-5
   .w-section.inverse
