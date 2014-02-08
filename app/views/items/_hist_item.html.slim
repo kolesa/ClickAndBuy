@@ -1,0 +1,49 @@
+- @items.each do |item|
+  - if item.id != 0
+    tr
+      td align="right"
+        = link_to item
+          = image_tag item.avatar.url(:thumb), class: "img-rounded img-responsive"
+      td
+        = item.name
+        br
+        small от
+        i.small 
+          =<> link_to item.shop.name, shop_path(item.shop)
+      td = item.price
+      td 
+        - item.tag_list.each do |category|
+          p.label.label-success =<> category
+      td = item.desc.to_s.truncate(150)
+      td = I18n.l item.created_at, :format => :short
+
+css:
+  th .current {  
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }  
+  th .asc {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    
+  }
+  th .asc::after {
+    content: " \f0d8";
+  }
+    
+  th .desc {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+  } 
+    th .desc::after {
+    content: " \f0d7";
+  }

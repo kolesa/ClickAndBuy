@@ -31,6 +31,9 @@
 #  tw                     :string(255)
 #  od                     :string(255)
 #  is_banned              :boolean          default(FALSE)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  votes                  :integer
 #
 
 class User < ActiveRecord::Base
@@ -58,6 +61,14 @@ class User < ActiveRecord::Base
     :url => "/:image/:id/:style/:basename.:extension",
     :path => ":image/:id/:style/:basename.:extension"
 
+  def self.search(search)
+    if search
+      where('lower(first_name) LIKE lower(?) OR lower(last_name) LIKE lower(?)', "%#{search}%", "%#{search}%")
+    else
+      scoped
+    end
+  end
+  
   def self.find_for_facebook_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       unless user.persisted?

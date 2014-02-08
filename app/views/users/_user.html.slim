@@ -1,0 +1,80 @@
+- @users.each do |user|
+  tr
+    td
+      = link_to user_info_path user
+        - if user.avatar_file_name
+            = image_tag user.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+        - else
+          img.img-polaroid src="http://placehold.it/100x100&text=img"
+    td
+      h5
+        = link_to user_info_path user
+          => user.first_name
+          => user.last_name
+      | 23 года, Москва
+    td
+      - if user.is_admin
+        h5
+          span.label.label-success
+            |admin
+      - if user.is_banned
+        h5
+          span.label.label-default
+            |banned
+    td
+      .btn-group
+        button.btn.btn-info type="button"
+          = link_to user_info_path(user), style: "color: white;"
+            i.fa.fa-user.fa-fw
+            | Показать
+        button.btn.btn-info.dropdown-toggle data-toggle="dropdown" type="button" style="padding: 14px 10px;"
+          span.caret
+        ul.dropdown-menu
+          li = link_to user_delete_path(user), method: 'delete'
+            i.fa.fa-trash-o.fa-fw
+            | Удалить 
+          li = link_to user_ban_path(user), method: 'post'
+            i.fa.fa-ban.fa-fw
+            - unless user.is_banned
+              | Забанить
+            - else
+              | Разбанить
+          li.divider
+          li = link_to user_make_admin_path(user), method: 'post'
+            - unless user.is_admin
+              | Сделать админом
+            - else
+              | Сделать юзером
+          li = link_to user_delete_path(user), method: 'delete'
+            | Сделать владельцем магазина
+
+css:
+  th .current {  
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }  
+  th .asc {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    
+  }
+  th .asc::after {
+    content: " \f0d8";
+  }
+    
+  th .desc {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+  } 
+    th .desc::after {
+    content: " \f0d7";
+  }

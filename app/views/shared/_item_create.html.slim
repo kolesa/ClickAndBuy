@@ -49,7 +49,7 @@
         .form-group
           = f.label :tag_list, class: "control-label"
             |Category
-          = f.text_field :tag_list, class: 'form-control tags', style: "padding: 0;", data: {:toggle => "tooltip", :placement => "right"}, title: "Выберете категории, в которых будет представлен товар."
+          = f.text_field :tag_list, class: 'form-control tags', style: "padding: 0;"
     .row
       .col-lg-12.col-md-12.col-sm-12
         .form-group
@@ -63,22 +63,26 @@
     = f.submit 'Save', class: "btn btn-info"
 
 javascript:
-  $('.tags').select2({
-    createSearchChoice:function(term, data) {
-      if ($(data).filter( function() { return this.text.localeCompare(term)===0; }).length===0) {
-        return {id:term, text:term};} 
-    },
-    multiple: true,
-    //data: [{id: 0, text: 'story'},{id: 1, text: 'bug'},{id: 2, text: 'task'}]
-    data: #{{tags_to_json}}
-  });
+  $(function() {
+    $('#item_tag_list').select2({
+      createSearchChoice:function(term, data) {
+        if ($(data).filter( function() { return this.text.localeCompare(term)===0; }).length===0) {
+          
+          return {id:term, text:term};} 
+        console.log( term );
+      },
+      multiple: true,
+      //data: [["apple", 0], ["mapple", 1], ["dell", 2], ["rapple", 3], ["h", 4]]
+      data: #{{tag_to_json}}
+    });
 
-  $("input[data-toggle='tooltip']").on('focus', function() {
-    $(this).tooltip('show')
-  });
-
-  $("input[data-toggle='tooltip']").on('blur', function() {
+    $("input[data-toggle='tooltip']").on('focus', function() {
       $(this).tooltip('show')
+    });
+
+    $("input[data-toggle='tooltip']").on('blur', function() {
+        $(this).tooltip('show')
+    });
   });
 
 css:

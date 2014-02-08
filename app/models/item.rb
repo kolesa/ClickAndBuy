@@ -15,6 +15,8 @@
 #  avatar_updated_at   :datetime
 #  discount            :integer
 #  shop_id             :integer
+#  end_date            :date
+#  count               :integer
 #
 
 class Item < ActiveRecord::Base

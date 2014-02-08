@@ -10,7 +10,7 @@ gem 'pg'
 gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
-#gem 'annotate'
+gem 'annotate'
 
 gem 'rest_client'
 

@@ -17,7 +17,14 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").paginate(:per_page => 5, :page => params[:page])
-    #render '_item', {items: @items, layout: false}    
+  end
+
+  def history
+    if sort_category 
+      @items = Item.tagged_with(params[:category]).search(params[:item_search]).order("#{sort_column} #{sort_direction}").order('created_at DESC').paginate(:per_page => 5, :page => params[:page])
+    else
+      @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").order('created_at DESC').paginate(:per_page => 5, :page => params[:page])
+    end
   end
 
   # GET /items/1
@@ -100,8 +107,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    p item_params
-=begin
   respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -110,9 +115,7 @@ class ItemsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
-    end
-=end
-    
+    end    
   end
 
   # DELETE /items/1
@@ -156,5 +159,9 @@ class ItemsController < ApplicationController
       
     def sort_direction  
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"   
+    end  
+
+    def sort_category 
+      Item.first.tag_list.include?(params[:category]) ?  true : false
     end  
 end

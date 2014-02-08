@@ -1,0 +1,41 @@
+- @shops.each do |shop|
+  tr
+    td
+      = link_to shop
+        = image_tag shop.avatar.url(:thumb), class: "img-thumbnail img-responsive"
+    td
+      = link_to shop
+        = shop.name
+      - if shop.blocked
+        h5
+          span.label.label-danger
+            |blocked
+    td = shop.desc.truncate(250)
+    td
+      .btn-group
+        button.btn.btn-info type="button"
+          = link_to shop, style: "color: white;"
+            i.fa.fa-user.fa-fw<>
+            | Показать
+        button.btn.btn-info.dropdown-toggle data-toggle="dropdown" type="button" style="padding: 14px 10px;"
+          span.caret
+        ul.dropdown-menu
+          li = link_to shop
+            i.fa.fa-bars.fa-fw<>
+            | Выставить категорию
+          li = link_to edit_shop_path(shop)
+            i.fa.fa-pencil.fa-fw<>
+            | Редактировать
+          li  = link_to shop, data: {:confirm => 'Are you sure?'}, :method => :delete do
+            i.fa.fa-trash-o.fa-fw<>
+            | Удалить
+          li = link_to shop_ban_path(shop), method: 'post'
+            i.fa.fa-ban.fa-fw<>
+            - unless shop.blocked
+              | Забанить
+            - else
+              | Разбанить
+          li.divider
+          li = link_to shop
+            i.fa.fa-envelope.fa-fw<>
+            | Написать сообщение

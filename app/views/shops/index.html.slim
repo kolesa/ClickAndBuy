@@ -15,32 +15,15 @@
   .w-section.inverse.container
       .row
         .col-lg-12.col-md-12.col-sm-12
-          h1 Listing shops
+          h1 Управление магазинами
 
-          table.table.table-striped
+          table.table.table-hover
             thead
-              th.col-lg-2 avatar
-              th.col-lg-2 name
-              th.col-lg-4 desc
-              th.col-lg-1 url
-              th.col-lg-1 action
-
+              th.col-lg-2
+              th.col-lg-2 Имя
+              th.col-lg-6 Описание
+              th.col-lg-2 Действие
             tbody  
-            - @shops.each do |item|
-              tr
-                td
-                  = link_to item
-                    = image_tag item.avatar.url(:thumb), class: "img-thumbnail img-responsive"
-                td = item.name
-                td = item.desc.truncate(50)
-                td = item.url
-                td
-                  = link_to item do
-                    i.fa.fa-eye.fa-fw
-                  
-                  = link_to edit_shop_path(item)
-                    i.fa.fa-pencil.fa-fw
-                  
-                  = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete do
-                    i.fa.fa-trash-o.fa-fw
+              == render 'shop', {shops: @shops}
+          
           = link_to 'New Shop', new_shop_path

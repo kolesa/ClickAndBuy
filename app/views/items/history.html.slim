@@ -1,0 +1,43 @@
+.pg-opt.pin
+  .container
+    .row
+      .col-lg-8
+        = notice
+      .col-md-6
+        h2 История публикаций
+      .col-md-6
+        ol.breadcrumb
+          li
+            a href=root_path Главная
+          li.active
+            |Товары
+.section.slice.bg-3
+  .w-section.inverse.container style="padding-top: 20px;"
+    .row
+      .col-lg-12.col-md-12.col-sm-12
+        .row
+            = form_tag history_path, class: 'form-horizontal', :method => 'get' do
+              .col-lg-4
+                = text_field_tag :search, params[:search], :name => 'item_search', class: 'form-control ', placeholder: 'Введите название товара'
+              .col-lg-4
+                = select_tag :category, options_for_select(tags_to_json), prompt: "Выберете категорию", class: 'form-control', style: "padding: 2px"
+              .col-lg-4
+                = submit_tag "Поиск", :name => nil, class: 'btn btn-two'
+              = hidden_field_tag :direction, params[:direction]
+              = hidden_field_tag :sort, params[:sort]
+
+        table.table.table-hover
+          thead
+            th.col-lg-1 
+            th.col-lg-2 = sortable 'name', "Название"
+            th.col-lg-1 = sortable 'price', "Цена"
+            th.col-lg-1 Категории
+            th.col-lg-3 Описание
+            th.col-lg-2 = sortable 'created_at', "Дата публикации"
+
+          tbody
+            == render 'hist_item', {items: @items}
+
+        = will_paginate @items, renderer: BootstrapPagination::Rails
+
+        /= link_to 'New Item', new_item_path

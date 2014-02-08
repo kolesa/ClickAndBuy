@@ -12,6 +12,8 @@ ClickAndBuy::Application.routes.draw do
 
   get    '/users'           => "users#index"
 
+  get    '/history'           => "items#history"
+
   get    '/vote/:id/:like'  => "users#vote",   as: :user_vote
   get    '/user/:id'        => "users#show",   as: :user_info
   post   '/user/:id/admin'  => "users#admin",  as: :user_make_admin
@@ -25,6 +27,7 @@ ClickAndBuy::Application.routes.draw do
   get  '/shops/:id/:item/stat' => "shops#stat",     as: :shop_stat
   get  '/shops/:id/search'     => "shops#search",   as: :shop_search
   get  '/shops/:id/codes'      => "shops#codes",    as: :shop_codes
+  post '/shop/:id/ban'         => "shops#ban",      as: :shop_ban
 
   get  '/tagged'         => 'items#tagged',      as: :tagged
   post '/items/:id/like' => "items#like",        as: :like

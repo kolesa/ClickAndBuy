@@ -27,6 +27,9 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.0.1)
       rails (>= 3, < 5)
+    annotate (2.6.1)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (4.0.1)
     asset_sync (1.0.0)
       activemodel
@@ -226,6 +229,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  annotate
   asset_sync
   aws-sdk
   bcrypt-ruby

@@ -9,6 +9,8 @@ Bundler.require(:default, Rails.env)
 module ClickAndBuy
   class Application < Rails::Application
     
+    config.i18n.default_locale = :ru
+    
     ActsAsTaggableOn.remove_unused_tags = true
     ActsAsTaggableOn.force_lowercase = true
 

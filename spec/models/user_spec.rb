@@ -31,6 +31,9 @@
 #  tw                     :string(255)
 #  od                     :string(255)
 #  is_banned              :boolean          default(FALSE)
+#  provider               :string(255)
+#  uid                    :string(255)
+#  votes                  :integer
 #
 
 require 'spec_helper'

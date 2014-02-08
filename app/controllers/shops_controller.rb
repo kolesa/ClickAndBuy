@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat, :search, :codes]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat, :search, :codes, :ban]
 
   # GET /shops
   # GET /shops.json
@@ -16,6 +16,18 @@ class ShopsController < ApplicationController
       @items = @shop.items.where(id: params[:ids])
       render '_item', {items: @items, layout: false}
     end
+  end
+
+  # POST /shop/:id/ban
+  def ban
+    if @shop.blocked
+      @shop.blocked = false
+    else
+      @shop.blocked = true
+    end
+    
+    @shop.save
+    redirect_to shops_path
   end
 
   # GET /shops/new
