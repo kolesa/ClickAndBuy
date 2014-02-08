@@ -41,5 +41,12 @@ class Item < ActiveRecord::Base
   acts_as_taggable
   #acts_as_taggable_on :category
 
+  def self.search(search)
+    if search
+      where('lower(name) LIKE lower(?)', "%#{search}%")
+    else
+      scoped
+    end
+  end
 
 end

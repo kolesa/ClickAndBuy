@@ -1,0 +1,52 @@
+- @items.each do |item|
+  - if item.id != 0
+    tr
+      td
+        = link_to item
+          = image_tag item.avatar.url(:thumb), class: "img-rounded img-responsive"
+      td
+        = item.name
+        br
+        i.small 
+          = link_to item.shop.name, shop_path(item.shop)
+      td = item.price
+      td = item.desc.to_s.truncate(250)
+      td = item.published
+      td
+        = link_to item do
+          i.fa.fa-eye.fa-fw
+        = link_to edit_item_path(item)
+          i.fa.fa-pencil.fa-fw
+        = link_to item, data: {:confirm => 'Are you sure?'}, :method => :delete
+          i.fa.fa-trash-o.fa-fw
+
+css:
+  th .current {  
+    padding-right: 12px;  
+    background-repeat: no-repeat;  
+    background-position: right center;  
+  }  
+  th .asc {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    
+  }
+  th .asc::after {
+    content: " \f0d8"; 
+  }
+    
+  th .desc {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+  } 
+    th .desc::after {
+    content: " \f0d7"; 
+  }

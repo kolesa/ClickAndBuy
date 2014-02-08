@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :like, :tag]
   
+  helper_method :sort_column, :sort_direction
   # Tags
   def tagged
     if params[:tag].present? 
@@ -15,13 +16,12 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-    p url_for controller: 'items', action: 'like', id: 41
     @rand = Item.order('RANDOM()').limit(3)
   end
 
@@ -132,6 +132,28 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :tag_list, :id, :end_date, :count)
+      params.require(:item).permit(
+        :name,
+        :desc,
+        :published,
+        :price,
+        :discount,
+        :shop_id,
+        :avatar,
+        :tag_list,
+        :id,
+        :end_date,
+        :count,
+        :sort,
+        :direction,
+        :item_search)
     end
+
+    def sort_column
+      Item.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end  
+      
+    def sort_direction  
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"   
+    end  
 end
