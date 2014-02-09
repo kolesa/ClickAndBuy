@@ -15,7 +15,7 @@
   .w-section.inverse.container style="padding-top: 20px;"
     .row
       .col-lg-12.col-md-12.col-sm-12
-        .row
+        /.row
             = form_tag history_path, class: 'form-horizontal', :method => 'get' do
               .col-lg-4
                 = text_field_tag :search, params[:search], :name => 'item_search', class: 'form-control ', placeholder: 'Введите название товара'
@@ -26,18 +26,20 @@
               = hidden_field_tag :direction, params[:direction]
               = hidden_field_tag :sort, params[:sort]
 
-        table.table.table-hover
+        table.table.table-hover.datatable
           thead
             th.col-lg-1 
-            th.col-lg-2 = sortable 'name', "Название"
-            th.col-lg-1 = sortable 'price', "Цена"
+            th.col-lg-2 Название
+            th.col-lg-1 Цена
             th.col-lg-1 Категории
             th.col-lg-3 Описание
-            th.col-lg-2 = sortable 'created_at', "Дата публикации"
+            th.col-lg-2 Дата публикации
 
           tbody
             == render 'hist_item', {items: @items}
 
-        = will_paginate @items, renderer: BootstrapPagination::Rails
-
         /= link_to 'New Item', new_item_path
+javascript:
+  $('.datatable').dataTable({
+    "sPaginationType": "bootstrap"
+  });

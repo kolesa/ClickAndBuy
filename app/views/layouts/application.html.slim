@@ -1,3 +1,9 @@
+/ users, items, shop items, partners, history
+/ jquery-datatables-rails
+/ http://railscasts.com/episodes/340-datatables
+
+/ взять кабинет юзера из http://wrapbootstrap.com/preview/WB0135486
+
 doctype
 html
   head
@@ -69,32 +75,29 @@ html
 
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
-                li.dropdown
-                  - generate_menu().each do |category|
-                    ul.nav.navbar-nav
-                      li.dropdown
-                        a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=category_search_path(category.name) = category.name
-                        
-                        - if ActsAsTaggableOn::Tag.where(:parent => category.id).count > 0
-                          ul.dropdown-menu
-                            - ActsAsTaggableOn::Tag.where(:parent => category.id).map do |sub_cat|
-                              li
-                                a href=category_search_path(sub_cat.name)
-                                  = sub_cat.name
+                - generate_menu().each do |category|
+                    li.dropdown
+                      a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=category_search_path(category.name) = category.name
+                      
+                      - if ActsAsTaggableOn::Tag.where(:parent => category.id).count > 0
+                        ul.dropdown-menu
+                          - ActsAsTaggableOn::Tag.where(:parent => category.id).map do |sub_cat|
+                            li
+                              a href=category_search_path(sub_cat.name)
+                                = sub_cat.name
                 
                 - if signed_in?
-                  ul.nav.navbar-nav
-                    li.dropdown
-                      a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=user_info_path(current_user)
-                        = "#{current_user.first_name} #{current_user.last_name} "
-                        =<> current_user.votes
-                        i.fa.fa-heart
-                      ul.dropdown-menu
-                        li= link_to user_info_path(current_user)
-                          | Личный кабинет
-                        li.devider
-                        li= link_to destroy_user_session_path, :method => 'DELETE'
-                          | Выход
+                  li.dropdown
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=user_info_path(current_user)
+                      = "#{current_user.first_name} #{current_user.last_name} "
+                      =<> current_user.votes
+                      i.fa.fa-heart
+                    ul.dropdown-menu
+                      li= link_to user_info_path(current_user)
+                        | Личный кабинет
+                      li.devider
+                      li= link_to destroy_user_session_path, :method => 'DELETE'
+                        | Выход
                 - else
                   li= link_to new_user_session_path
                     i.fa.fa-sign-in

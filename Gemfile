@@ -30,8 +30,9 @@ gem 'newrelic_rpm'
 gem "asset_sync"
 gem 'unf'
 
-gem 'jquery-sortable-rails'
+#gem 'jquery-sortable-rails'
 gem 'select2-rails'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 #gem 'jquery-ui-rails'
 #gem 'rails3-jquery-autocomplete'
 

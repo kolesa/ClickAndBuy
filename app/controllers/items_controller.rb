@@ -20,11 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def history
-    if sort_category 
-      @items = Item.tagged_with(params[:category]).search(params[:item_search]).order("#{sort_column} #{sort_direction}").order('created_at DESC').paginate(:per_page => 5, :page => params[:page])
-    else
-      @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").order('created_at DESC').paginate(:per_page => 5, :page => params[:page])
-    end
+    @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").order('created_at DESC')
   end
 
   # GET /items/1
