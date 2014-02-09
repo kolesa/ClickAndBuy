@@ -15,7 +15,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
-//= require jquery.sortable
 //= require select2
 // require jquery.ui.all
 // require autocomplete-rails
