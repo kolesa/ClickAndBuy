@@ -1,0 +1,1 @@
+$(window).load(function(){$(".slider").fractionSlider({fullWidth:!0,controls:!0,pager:!1,responsive:!0,dimensions:"1000,440",increase:!1,pauseOnHover:!0,slideTransitionSpeed:800,delay:0})});
