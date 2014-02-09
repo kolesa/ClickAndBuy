@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.search(params[:user_search]).order("#{sort_column} #{sort_direction}").paginate(:per_page => 15, :page => params[:page])
+    @users = User.search(params[:user_search]).order("#{sort_column} #{sort_direction}")
   end
 
   def vote

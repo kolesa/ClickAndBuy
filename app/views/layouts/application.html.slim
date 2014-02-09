@@ -14,16 +14,13 @@ html
     meta name="description" content=yield(:description)
     link rel="image_src" href=yield(:image)
 
-    /link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"
-
-
     meta content="width=(device-width,)initial-scale=1.0" name="viewport"  
     = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
     /боковое меню
-    - if signed_in? and current_user.is_admin
+    - if current_user.is_admin
       section#asideMenu.aside-menu
         form.form-inline.form-search
           .input-group

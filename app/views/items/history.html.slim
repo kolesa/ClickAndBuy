@@ -21,9 +21,9 @@
             th.col-lg-1 
             th.col-lg-2 Название
             th.col-lg-1 Цена
-            th.col-lg-1 Категории
-            th.col-lg-3 Описание
-            th.col-lg-2 Дата публикации
+            th.col-lg-2 Категории
+            th.col-lg-2 Описание
+            th.col-lg-1 Дата
 
           tbody
             == render 'hist_item', {items: @items}
@@ -31,5 +31,6 @@
         /= link_to 'New Item', new_item_path
 javascript:
   $('.datatable').dataTable({
-    "sPaginationType": "bootstrap"
+    "sPaginationType": "bootstrap",
+    "bJQueryUI": true
   });

@@ -10,13 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// require jquery.sortable
+// require autocomplete-rails
 // require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require jquery.sortable
 //= require bootstrap.min
 //= require select2
-// require jquery.ui.all
-// require autocomplete-rails
 //= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap3
 //= require_tree .

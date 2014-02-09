@@ -47,34 +47,3 @@
               | Сделать юзером
           li = link_to user_delete_path(user), method: 'delete'
             | Сделать владельцем магазина
-
-css:
-  th .current {  
-    padding-right: 12px;
-    background-repeat: no-repeat;
-    background-position: right center;
-  }  
-  th .asc {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    
-  }
-  th .asc::after {
-    content: " \f0d8";
-  }
-    
-  th .desc {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-  } 
-    th .desc::after {
-    content: " \f0d7";
-  }

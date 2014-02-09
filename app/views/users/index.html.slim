@@ -14,7 +14,7 @@
               |Пользователи
   .section.slice.bg-3
     .w-section.inverse.container style="padding-top: 20px;"
-      .row
+      /.row
         .col-lg-4
           = form_tag users_path, class: 'form-inline', :method => 'get' do
               = text_field_tag :search, params[:search], :name => 'user_search', placeholder: 'Введите имя', class: 'form-control', style: "display: inline-block; width: 80%;"
@@ -25,16 +25,23 @@
 
 
 
-      table.table.table-hover.col-lg-10.table-striped
+      table.table-hover.data
         thead
           tr
             th.col-md-1
-            th.col-md-6 = sortable 'first_name', "Имя"
-            th.col-md-2 
+            th.col-md-6 Имя
+            th.col-md-2 Группа
             th.col-md-2 Действие
         tbody
           == render 'user', {users: @users}
 
-      = hidden_field_tag :direction, params[:direction]
-      = hidden_field_tag :sort, params[:sort]
-      = will_paginate @items, renderer: BootstrapPagination::Rails
+      /= hidden_field_tag :direction, params[:direction]
+      /= hidden_field_tag :sort, params[:sort]
+      /= will_paginate @items, renderer: BootstrapPagination::Rails
+javascript:
+  $(function(){
+    $('.data').dataTable({
+      "sPaginationType": "bootstrap",
+      "sFilter": 'sika'
+    });
+  });
