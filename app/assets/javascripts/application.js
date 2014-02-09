@@ -12,7 +12,6 @@
 //
 // require jquery.sortable
 // require turbolinks
-//= require
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
