@@ -1,8 +1,9 @@
 # Admin
 # AKIAJHNEN7RZNC2VG3LA
 # JWELknr9Lis57YQn55kCsT6fr1E44MxutO+Jo/fK
-include ActionView::Helpers::AssetTagHelper
 
+include ActionView::Helpers::AssetTagHelper
+=begin
 admin = User.create(
   email: 'admin@click.ru',
   password: 'qweasdzxc',
@@ -26,7 +27,7 @@ admin = User.create(
     password_confirmation: '123456789',
   )  
 end
-
+=end
 # Shop
   #  id                  :integer          not null, primary key
   #  name                :string(255)
