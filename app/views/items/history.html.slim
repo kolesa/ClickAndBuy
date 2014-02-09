@@ -15,16 +15,6 @@
   .w-section.inverse.container style="padding-top: 20px;"
     .row
       .col-lg-12.col-md-12.col-sm-12
-        /.row
-            = form_tag history_path, class: 'form-horizontal', :method => 'get' do
-              .col-lg-4
-                = text_field_tag :search, params[:search], :name => 'item_search', class: 'form-control ', placeholder: 'Введите название товара'
-              .col-lg-4
-                = select_tag :category, options_for_select(tags_to_json), prompt: "Выберете категорию", class: 'form-control', style: "padding: 2px"
-              .col-lg-4
-                = submit_tag "Поиск", :name => nil, class: 'btn btn-two'
-              = hidden_field_tag :direction, params[:direction]
-              = hidden_field_tag :sort, params[:sort]
 
         table.table.table-hover.datatable
           thead
