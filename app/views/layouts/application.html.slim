@@ -165,7 +165,7 @@ html
                 p
                   | Boomerang Bootstrap Template is made with love and passion for your own business.
                 br
-                a.btn.btn-two href="#" data-target="#myModal" data-toggle="modal"
+                a.btn.btn-two href=new_partner_path
                   | Отправить заявку
                   span.fa.fa-arrow-right<>
           hr
@@ -202,6 +202,12 @@ html
             return movie.name;
         }
 
+        $('li.dropdown').mouseenter(function(){
+          $(this).children('ul.dropdown-menu').show();
+        }).mouseleave(function(){
+          $(this).children('ul.dropdown-menu').hide();
+        });
+
         $('.search_menu').click(function(){
           $('.search_menu_show').addClass('open').toggle();
         });
@@ -236,15 +242,6 @@ html
           window.open(e.added.avatar_content_type);
           return false;
         });
-
-      #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-        .modal-dialog
-          .modal-content
-            .modal-header
-              button.close aria-hidden="true" data-dismiss="modal" type="button"
-              h4#myModalLabel.modal-title Заявка
-            .modal-body
-              == render 'shared/partner_form'
 
     css:
       .select2-container {

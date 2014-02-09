@@ -1,16 +1,116 @@
-button.btn.btn-primary.btn-lg data-target="#myModal" data-toggle="modal"
-  | Отправить заявку
-  span.fa.fa-arrow-right<>
+= notice
 
-#myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close aria-hidden="true" data-dismiss="modal" type="button"
-        h4#myModalLabel.modal-title Заявка
-      .modal-body
-        == render 'shared/partner_form'
+section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
+  .carousel-inner
+    .item.active
+      .container
+        .row
+          .col-md-6
+            h2 Performance and design for your business
+            p
+              | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            p
+              | It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+          .col-md-6
+            img.img-responsive alt="" src=image_path("prv/device-3.png")
+    .item
+      .container
+        .row
+          .col-md-6
+            h2 Complete features at your hand
+            p
+              | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            p
+              | It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+          .col-md-6
+            img.img-responsive alt="" src=image_path("prv/device-4.png")
+  a.left.carousel-control data-slide="prev" href="#companyCarousel"
+    i.fa.fa-angle-left
+  a.right.carousel-control data-slide="next" href="#companyCarousel"
+    i.fa.fa-angle-right
 
 
+/ Suggestion
+section.slice.bg-2.p-15
+  .cta-wr
+    .container
+      .row
+        .col-md-8
+          h1
+            strong Boomerang Bootstrap Template
+            | delivers content beyond the desktop.
+        .col-md-4
+          a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
+            | GO!
 
-= link_to 'Back', partners_path
+section.slice.bg-5
+  .w-section.inverse
+    .container
+      h3.section-title What we do
+      .row
+        .col-lg-4.col-md-6
+          .aside-feature
+            .row
+              .col-md-3
+                .icon-feature
+                  i.fa.fa-desktop
+              .col-md-9
+                h4 Web Design
+                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+        .col-lg-4.col-md-6
+          .aside-feature
+            .row
+              .col-md-3
+                .icon-feature
+                  i.fa.fa-code
+              .col-md-9
+                h4 Coding
+                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+        .col-lg-4.col-md-6
+          .aside-feature
+            .row
+              .col-md-3
+                .icon-feature
+                  i.fa.fa-cogs
+              .col-md-9
+                h4 SEO Optimization
+                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+        .col-lg-4.col-md-6
+          .aside-feature
+            .row
+              .col-md-3
+                .icon-feature
+                  i.fa.fa-wrench
+              .col-md-9
+                h4 Technical support 24/7
+                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+        .col-lg-4.col-md-6
+          .aside-feature
+            .row
+              .col-md-3
+                .icon-feature
+                  i.fa.fa-globe
+              .col-md-9
+                h4 Fully updated
+                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient.
+        .col-lg-4.col-md-6
+          .aside-feature
+            .row
+              .col-md-3
+                .icon-feature
+                  i.fa.fa-plane
+              .col-md-9
+                h4 Ready to use
+                p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.
+  .row
+    .col-lg-8.col-lg-offset-2
+      #accordion
+        .panel.panel-default
+          .panel-heading
+            h4.panel-title
+              a.collapsed data-parent="#accordion" data-toggle="collapse" href="#collapseOne"
+                | Заполнить заявку
+          #collapseOne.panel-collapse.collapse style="height: 0px;"
+            .panel-body
+              == render 'form'
+        
