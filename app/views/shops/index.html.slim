@@ -13,11 +13,9 @@
             |Магазины
 .section.slice.bg-3
   .w-section.inverse.container
-      .row
+      .row style="margin-top: 20px;"
         .col-lg-12.col-md-12.col-sm-12
-          h1 Управление магазинами
-
-          table.table.table-hover
+          table.table.table-hover.datatable
             thead
               th.col-lg-2
               th.col-lg-2 Имя
@@ -25,5 +23,38 @@
               th.col-lg-2 Действие
             tbody  
               == render 'shop', {shops: @shops}
-          
-          = link_to 'New Shop', new_shop_path
+          /= link_to 'New Shop', new_shop_path
+javascript:
+  $(function(){
+    
+    $('.datatable').dataTable({
+      "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"ip><"clear">>',
+
+      "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 0, 2, 3 ] }
+      ],
+
+      "oLanguage": {
+        "sLengthMenu": '<a href="/shops/new" class="btn btn-two"><i class="fa fa-plus"></i> добавить магазин</button></a> _MENU_ записей',
+      },
+
+      "aoColumns": [
+        { "sTitle": "" },
+        { "sTitle": "Имя" },
+        { "sTitle": "Описание" },
+        { "sTitle": "Действие" }
+      ],
+      "sPaginationType": "bootstrap"
+    });
+
+    $('.panel-heading').css({'height': "55px"});
+    $('.dataTables_paginate').css({'margin-top': "-33px"});
+
+    $('.dataTables_length').before( $('.dataTables_filter') );
+
+    $('.dataTables_length > label > select').addClass('form-control')
+    $('.dataTables_length > label').addClass('control-label')
+
+    $('#DataTables_Table_0_filter > label > input').addClass('form-control');
+
+  });

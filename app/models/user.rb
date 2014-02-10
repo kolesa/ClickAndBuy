@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,\
      :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :vkontakte, :twitter,:odnoklassniki]
+  
+  validates :password, presence: true
+  validates :password, presence: true, length: {minimum: 5, maximum: 120}, on: :create
+  validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
 
   has_many :items, :through => :likes
   has_many :likes

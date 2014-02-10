@@ -20,7 +20,7 @@ html
     = csrf_meta_tags
   body
     /боковое меню
-    - if current_user.is_admin
+    - if signed_in? && current_user.is_admin
       section#asideMenu.aside-menu
         form.form-inline.form-search
           .input-group
@@ -86,13 +86,16 @@ html
                               a href=category_search_path(sub_cat.name)
                                 = sub_cat.name
                 
+                
                 - if signed_in?
                   li.dropdown
-                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=user_info_path(current_user)
+                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" style="padding: 17px 5px 17px 12px;" href=user_info_path(current_user)
+                      = image_tag current_user.avatar.url(:thumb), class: "img-rounded img-responsive", style: "-webkit-border-radius: 3px; -moz-border-radius: 3px;-ms-border-radius: 3px;-o-border-radius: 3px;border-radius: 3px;height: 42px;margin-right: 10px; display: inline-block"
                       = "#{current_user.first_name} #{current_user.last_name} "
-                      =<> current_user.votes
-                      i.fa.fa-heart
-                    ul.dropdown-menu
+                    .badge style="position: absolute; top: 10px;background-color: #d9534f;"
+                        =<> current_user.votes
+                        /i.fa.fa-heart
+                    ul.dropdown-menu style="width: 100%;"
                       li= link_to user_info_path(current_user)
                         | Личный кабинет
                       li.devider
@@ -187,26 +190,54 @@ html
         ga('send', 'pageview');
 
 
+        $(function(){
+          function movieFormatResult(movie) {
+              var markup = "<table class='movie-result'><tr>";
+              if (movie.avatar_file_name !== undefined) {
+                  markup += "<td style='width: 88px; text-align:right;' class='movie-image'><img src='" + movie.avatar_file_name + "' style='height: 40%; padding: 4px'/></td>";
+              }
+              markup += "<td class='movie-info'><div class='movie-title'>" + movie.name + "</div>";
+              if (movie.desc !== undefined) {
+                  markup += "<div class='movie-synopsis'>" + movie.desc + "</div>";
+              }
+              markup += "</td></tr></table>";
+              return markup;
+          }
 
-        function movieFormatResult(movie) {
-            var markup = "<table class='movie-result'><tr>";
-            if (movie.avatar_file_name !== undefined) {
-                markup += "<td style='width: 88px; text-align:right;' class='movie-image'><img src='" + movie.avatar_file_name + "' style='height: 40%; padding: 4px'/></td>";
-            }
-            markup += "<td class='movie-info'><div class='movie-title'>" + movie.name + "</div>";
-            if (movie.desc !== undefined) {
-                markup += "<div class='movie-synopsis'>" + movie.desc + "</div>";
-            }
-            markup += "</td></tr></table>";
-            return markup;
-        }
-
-        function movieFormatSelection(movie) {
-            return movie.name;
-        }
+          function movieFormatSelection(movie) {
+              return movie.name;
+          }
+        
+          $('input[name=search]').select2({
+            placeholder: "Search for a movie",
+            minimumInputLength: 3,
+            ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                url: "#{{search_path}}",
+                dataType: 'json',
+                data: function (term) {
+                    return {
+                        search: $('input.select2-input').val()
+                    };
+                },
+                results: function (data) { // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to alter remote JSON data
+                    console.log(data)
+                    return {results: data};
+                }
+            },
+            formatResult: movieFormatResult, // omitted for brevity, see the source of this page
+            formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
+            dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+            escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+          }).on("change", function(e) {
+            //console.log( e.added ); 
+            window.open(e.added.avatar_content_type);
+            return false;
+          });
+        });
 
         $('li.dropdown').mouseenter(function(){
-          $(this).children('ul.dropdown-menu').show();
+          $(this).children('ul.dropdown-menu').fadeIn();
         }).mouseleave(function(){
           $(this).children('ul.dropdown-menu').hide();
         });
@@ -219,32 +250,6 @@ html
           $('.search_menu_show').hide();
         });
 
-        $('input[name=search]').select2({
-          placeholder: "Search for a movie",
-          minimumInputLength: 3,
-          ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-              url: "#{{search_path}}",
-              dataType: 'json',
-              data: function (term) {
-                  return {
-                      search: $('input.select2-input').val()
-                  };
-              },
-              results: function (data) { // parse the results into the format expected by Select2.
-                  // since we are using custom formatting functions we do not need to alter remote JSON data
-                  console.log(data)
-                  return {results: data};
-              }
-          },
-          formatResult: movieFormatResult, // omitted for brevity, see the source of this page
-          formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page
-          dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-          escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
-        }).on("change", function(e) {
-          //console.log( e.added ); 
-          window.open(e.added.avatar_content_type);
-          return false;
-        });
 
     css:
       .select2-container {

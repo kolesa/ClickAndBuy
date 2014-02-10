@@ -28,9 +28,27 @@
           tbody
             == render 'hist_item', {items: @items}
 
-        /= link_to 'New Item', new_item_path
 javascript:
-  $('.datatable').dataTable({
-    "sPaginationType": "bootstrap",
-    "bJQueryUI": true
+  $(function(){
+    
+    $('.datatable').dataTable({
+      "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"ip><"clear">>',
+
+      "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 0, 4 ] }
+      ],
+
+      "sPaginationType": "bootstrap"
+    });
+
+    $('.panel-heading').css({'height': "55px"});
+    $('.dataTables_paginate').css({'margin-top': "-33px"});
+
+    $('.dataTables_length').before( $('.dataTables_filter') );
+
+    $('.dataTables_length > label > select').addClass('form-control')
+    $('.dataTables_length > label').addClass('control-label')
+
+    $('#DataTables_Table_0_filter > label > input').addClass('form-control');
+
   });
