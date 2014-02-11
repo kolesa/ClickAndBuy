@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208205208) do
+ActiveRecord::Schema.define(version: 20140211070323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,11 @@ ActiveRecord::Schema.define(version: 20140208205208) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "likes"
+    t.integer  "count"
+    t.boolean  "active"
   end
+
+  add_index "discounts", ["item_id", "discount"], name: "index_discounts_on_item_id_and_discount", unique: true, using: :btree
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -55,10 +59,8 @@ ActiveRecord::Schema.define(version: 20140208205208) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "discount"
     t.integer  "shop_id"
     t.date     "end_date"
-    t.integer  "count"
   end
 
   create_table "likes", force: true do |t|

@@ -24,23 +24,16 @@
       .row
         .col-md-9
           .row
-            .col-md-6
+            .col-md-7
               .product-gallery
                 .primary-image
                   a.theater href="#" rel="group"
-                    img.img-responsive alt="" src=@item.avatar.url(:medium)
-                /.thumbnail-images
-                  a.theater href="images/prv/product-3.png" rel="group"
-                    img alt="" src="images/prv/product-3.jpg"
-                  a.theater href="images/prv/product-3.png" rel="group"
-                    img alt="" src="images/prv/product-3.jpg"
-                  a.theater href="images/prv/product-3.png" rel="group"
-                    img alt="" src="images/prv/product-3.jpg"
-            .col-md-6
+                    img.img-responsive alt="" src=@item.avatar.url
+            .col-md-5
               .product-info
                 h3 = @item.name
                 - @item.tag_list.each do |tag|
-                  |tag 
+                  |tag
                   =tag
                 span.star-rating.pull-left
                   i.fa.fa-star style="margin: 1px;"
@@ -68,6 +61,13 @@
                     p
                       strong> Tags
                       | : laptop, notebook, asus
+                p
+                  - unless Like.where(user_id: current_user.id, item_id: @item.id).exists?
+                    = link_to like_path(@item), :method => :post
+                      i.fa.fa-heart style=" color: rgba(200,20,20,0.8); zoom: 8;"
+                  - else
+                      | Уже лайкнул 
+                      i.fa.fa-heart style=" color: rgba(250,28,25,1);"
           .row
             .col-md-12
               .widget
@@ -76,14 +76,26 @@
                     li.active
                       a data-toggle="tab" href="#one"
                         i.icon-star
-                        | Description
+                        | Описание
                     li
                       a data-toggle="tab" href="#three"
-                        | Reviews (23)
+                        | Информация
                   .tab-content
                     #one.tab-pane.active
                       p
-                        =@item.desc
+                        h3 Доступно товара
+                        table.table
+                          thead
+                            th Скидка
+                            th Кол-во товара
+                            th Кол-во голосов
+                          tbody
+                            - @item.discounts.where(active: true).each do |d|
+                              tr
+                                td ="#{d.discount}%"
+                                td ="#{d.count} шт."
+                                td ="#{d.likes}"
+
                     #three.tab-pane
                       .comments-wr
                         - 5.times do
@@ -111,7 +123,7 @@
             p = @item.shop.desc 
             
             p
-              - signed_in?
+              - if signed_in?
                 a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external"
                   i.fa.fa-facebook.fa-2x>
                 
@@ -178,7 +190,7 @@
                         i.fa.fa-star
                         i.fa.fa-star-half-full
                         i.fa.fa-star-o
-                      span.price.discount>
+                      /span.price.discount>
                         = item.discount
                         i.fa.fa-rub<> style="display: inline"
                       span.price<

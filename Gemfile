@@ -11,6 +11,8 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
 gem 'annotate'
+#gem "nifty-generators"
+
 
 gem 'rest_client'
 

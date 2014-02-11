@@ -3,11 +3,12 @@
 # Table name: discounts
 #
 #  id         :integer          not null, primary key
-#  discount   :integer
 #  item_id    :integer
+#  discount   :integer
+#  count      :integer
+#  likes      :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  likes      :integer
 #
 
 class Discount < ActiveRecord::Base

@@ -50,16 +50,10 @@ class ItemsController < ApplicationController
         # и что срок акции не закончен
         # и что товар есть в наличии
         if (User.find(current_user).votes.to_i > 0) \
-          && (Item.find(@item).count.to_i > 0 || Item.find(@item).count.nil?) \
           && (Item.find(@item).end_date.nil? || Date.parse(Item.find(@item).end_date) <= Date.today)
           
           # уменьшаем кол-во лайков на 1
           User.find(current_user).decrement(:votes).save
-
-          # уменьшаем кол-во товара
-          if @item.count.to_i > 0
-            @item.decrement(:count).save
-          end
           
           
           like = Like.create(user: current_user, item: @item)
@@ -104,6 +98,13 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
   respond_to do |format|
+      # костыль, потом разобраться с nested_form
+      # Discount.where(item_id: @item).delete_all
+      #Discount.where(item_id: @item).update()
+
+      p item_params
+
+
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
@@ -137,16 +138,15 @@ class ItemsController < ApplicationController
         :desc,
         :published,
         :price,
-        :discount,
         :shop_id,
         :avatar,
         :tag_list,
         :id,
         :end_date,
-        :count,
         :sort,
         :direction,
-        :item_search)
+        :item_search,
+        discounts_attributes: [:id, :item_id, :discount, :count, :likes, :active ])
     end
 
     def sort_column

@@ -27,7 +27,7 @@ admin = User.create(
     password_confirmation: '123456789',
   )  
 end
-=end
+
 # Shop
   #  id                  :integer          not null, primary key
   #  name                :string(255)
@@ -50,7 +50,7 @@ Shop.create(
   fb:         Faker::Internet.url,
   avatar:     File.open([Rails.root, '/app/assets', image_path("seed/shop.png")].join)
   )
-
+=end
 # Items
   #  id                  :integer          not null, primary key
   #  name                :string(255)
@@ -73,10 +73,16 @@ for file in 1..6 do
     desc:       Faker::Lorem.sentence(20),
     published:  true,
     price:      Faker::Number.number(3),
-    discount:   Faker::Number.digit,
     avatar: File.open([Rails.root, '/app/assets', image_path("seed/#{file}.jpg")].join)
   )  
 end
+
+Item.where(id: [1..600]).each do |item|
+  for i in 1..5 do
+    Discount.create(item_id: item.id, discount: (i*5), count: i*5, likes: i*10 , active: true)
+  end
+end
+
 
 
 # Partners
@@ -90,6 +96,7 @@ end
   #  created_at :datetime
   #  updated_at :datetime
   #
+=begin
 10.times do |partnet|
   partnet = Partner.create(
     company:   Faker::Company.name,
@@ -100,4 +107,4 @@ end
     url:       Faker::Internet.url,
   )  
 end
-
+=end
