@@ -151,9 +151,12 @@ section.slice.animate-hover-slide
                 .col-xs-3
                   .like-button style="margin-right: 10px;"
                     span.button.liked
-                      - unless Like.where(user_id: current_user.id, item_id: item.id).exists?
-                        = link_to like_path(item), :method => :post
-                          i.fa.fa-heart style=" color: rgba(200,20,20,0.8);"
+                      -if signed_in?
+                        - unless Like.where(user_id: current_user.id, item_id: item.id).exists?
+                          = link_to like_path(item), :method => :post
+                            i.fa.fa-heart style=" color: rgba(200,20,20,0.8);"
+                        - else
+                            i.fa.fa-heart style=" color: rgba(250,28,25,1);"
                       - else
                           i.fa.fa-heart style=" color: rgba(250,28,25,1);"
                     span.count
