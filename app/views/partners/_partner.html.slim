@@ -1,0 +1,16 @@
+- @partners.each do |partner|
+  tr
+    td = partner.name
+    /td = partner.phone
+    /td = partner.email
+    td = partner.company
+    td = partner.activity
+    /td = partner.url
+    td
+
+      = link_to partner
+        span.fa.fa-eye<>
+      = link_to edit_partner_path(partner)
+        span.fa.fa-pencil<>
+      = link_to partner, data: {:confirm => 'Are you sure?'}, :method => :delete
+        span.fa.fa-trash-o<>

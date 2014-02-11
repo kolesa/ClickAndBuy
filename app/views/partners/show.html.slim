@@ -1,24 +1,35 @@
-p#notice = notice
+.section.slice.bg-3
+  .w-section.inverse.container
+    .col-lg-12
+      p#notice = notice
+      
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Информация о партнёре
+        .panel-body
+          .col-lg-6
+            .form-group
+              i Name:
+              h4 = @partner.name
+            .form-group
+              i Phone:
+              h4 = @partner.phone
+            .form-group
+              i Email:
+              h4 = @partner.email
+          .col-lg-6
+            .form-group
+              i Company:
+              h4 = @partner.company
+            .form-group
+              i Activity:
+              h4 = @partner.activity
+            .form-group
+              i Url:
+              h4 = @partner.url
+          .col-lg-12
+            i Дата создания заявки:
+            h4= I18n.l @partner.created_at, :format => :long
 
-p
-  strong Company:
-  = @partner.company
-p
-  strong Activity:
-  = @partner.activity
-p
-  strong Name:
-  = @partner.name
-p
-  strong Phone:
-  = @partner.phone
-p
-  strong Email:
-  = @partner.email
-p
-  strong Url:
-  = @partner.url
 
-= link_to 'Edit', edit_partner_path(@partner)
-'|
-= link_to 'Back', partners_path
+      = link_to 'Назад', partners_path, class: "btn btn-two", style: "margin-bottom: 20px;"

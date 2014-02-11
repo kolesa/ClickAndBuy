@@ -1,6 +1,6 @@
 = notice
-
-section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
+script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"
+/section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
   .carousel-inner
     .item.active
       .container
@@ -28,10 +28,7 @@ section#companyCarousel.carousel.carousel-2.slide.bg-3 data-ride="carousel"
     i.fa.fa-angle-left
   a.right.carousel-control data-slide="next" href="#companyCarousel"
     i.fa.fa-angle-right
-
-
-/ Suggestion
-section.slice.bg-2.p-15
+/section.slice.bg-2.p-15
   .cta-wr
     .container
       .row
@@ -42,8 +39,7 @@ section.slice.bg-2.p-15
         .col-md-4
           a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
             | GO!
-
-section.slice.bg-5
+/section.slice.bg-5
   .w-section.inverse
     .container
       h3.section-title What we do
@@ -114,3 +110,77 @@ section.slice.bg-5
             .panel-body
               == render 'form'
         
+section.slice.no-padding
+  #mapCanvas.map-canvas.no-margin
+section.slice.bg-3
+  .w-section.inverse
+    .container
+      .row
+        .col-md-6
+          == render 'form'
+        .col-md-6
+          .row
+            .col-md-6
+              h3.section-title Business info
+              .contact-info
+                h5 Address
+                p 5th Avenue, New York - United States
+                h5 Email
+                p hello@webpixels.ro
+                h5 Phone
+                p +10 724 1234 567
+            .col-md-6
+              h3.section-title Program
+              .contact-info
+                h5 Monday - Friday
+                p 10:00 AM - 6:00 PM
+                h5 Saturday
+                p Closed
+                h5 Sunday
+                p Closed
+          h3.section-title Stay connected
+          p
+            | Lorem ipsum dolor sit amet, consectetur acing elit. Aenean esrsel piesn qersl ioinm sersoe non urna dolor aecena.
+          .social-media
+            a href="#"
+              i.fa.fa-facebook.facebook
+            a href="#"
+              i.fa.fa-google-plus.google
+            a href="#"
+              i.fa.fa-twitter.twitter
+
+javascript:
+  $(function(){
+    function initialize() {
+      var myLatlng = new google.maps.LatLng(55.7508, 37.5656);
+      var mapOptions = {
+        zoom: 14,
+        scrollwheel: false,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+    
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          title: 'Hello World!'
+      });
+      
+      var contentString = '<div class="info-window-content"><h2>Like and Buy</h2>'+
+                          '<h3>Designing forward</h3>'+
+                          '<p>Some more details for directions or company informations...</p></div>';
+                          
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+      });
+      
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
+    }
+    
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+  });

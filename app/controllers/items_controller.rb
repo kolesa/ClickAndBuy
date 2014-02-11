@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
           && (Item.find(@item).end_date.nil? || Date.parse(Item.find(@item).end_date) <= Date.today)
           
           # уменьшаем кол-во лайков на 1
-          User.find(current_user).decrement(:votes).save
+          User.find(current_user).decrement!(:votes)
           
           
           like = Like.create(user: current_user, item: @item)

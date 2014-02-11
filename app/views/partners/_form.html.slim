@@ -1,4 +1,9 @@
-= form_for @partner do |f|
+h3.section-title
+  | Contact us
+p
+  | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+= form_for( @partner, html: {class: "form-light mt-20"} )do |f|
   - if @partner.errors.any?
     #error_explanation
       h2 = "#{pluralize(@partner.errors.count, "error")} prohibited this partner from being saved:"
@@ -7,24 +12,30 @@
           li = message
 
   .form-group
-    = f.label :company, class: "control-label col-lg-1", style: "display: inline-block;"
-    = f.text_field :company, class: 'form-control', style: "display: inline-block; width: 80%; margin-ledt: 20px;"
+    = f.label :name, "Имя"
+    = f.text_field :name, class: "form-control", :required => true
+  .row
+    .col-md-6
+      .form-group
+        = f.label :company, "Компания"
+        = f.text_field :company, class: "form-control", :required => true
+    .col-md-6
+      .form-group
+        = f.label :activity, "Вид деятельности"
+        = f.text_field :activity, class: "form-control"
+  .row
+    .col-md-6
+      .form-group
+        = f.label :email, "Почта"
+        = f.email_field :email, class: "form-control", :required => true
+    .col-md-6
+      .form-group
+        = f.label :phone, "Телефон"
+        = f.phone_field :phone, class: "form-control", :required => true
   .form-group
-    = f.label :activity, class: "control-label col-lg-1", style: "display: inline-block;"
-    = f.text_field :activity, class: 'form-control', style: "display: inline-block; width: 80%; margin-ledt: 20px;"
+      = f.label :url
+      = f.url_field :url, class: "form-control"
   .form-group
-    = f.label :name, class: "control-label col-lg-1", style: "display: inline-block;"
-    = f.text_field :name, class: 'form-control', style: "display: inline-block; width: 80%; margin-ledt: 20px;"
-  .form-group
-    = f.label :phone, class: "control-label col-lg-1", style: "display: inline-block;"
-    = f.text_field :phone, class: 'form-control', style: "display: inline-block; width: 80%; margin-ledt: 20px;"
-  .form-group
-    = f.label :email, class: "control-label col-lg-1", style: "display: inline-block;"
-    = f.text_field :email, class: 'form-control', style: "display: inline-block; width: 80%; margin-ledt: 20px;"
-  .form-group
-    = f.label :url, class: "control-label col-lg-1", style: "display: inline-block;"
-    = f.text_field :url, class: 'form-control', style: "display: inline-block; width: 80%; margin-ledt: 20px;"
-  
-  .modal-footer    
-    = f.submit 'Save', class: "btn btn-success", style: "margin:0"
-    button.btn.btn-default data-dismiss="modal" type="button" close
+    = f.submit 'Отправить', class: "btn btn-two"
+javascript:
+  $("form").validator();

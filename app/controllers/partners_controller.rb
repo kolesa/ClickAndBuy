@@ -1,5 +1,6 @@
 class PartnersController < ApplicationController
-  before_action :set_partner, only: [:show, :edit, :update, :destroy]
+  before_action :set_partner, only: [:edit, :update, :destroy]
+  before_action :check_auth, only: [:index, :show]
 
   # GET /partners
   # GET /partners.json
@@ -65,6 +66,11 @@ class PartnersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_partner
       @partner = Partner.find(params[:id])
+    end
+
+    def check_auth
+      redirect_to root_path unless signed_in? && current_user.is_admin
+      set_partner if params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

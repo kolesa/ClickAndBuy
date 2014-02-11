@@ -1,37 +1,38 @@
 .section.slice.bg-3
   .w-section.inverse.container
-    .col-lg-12
-      h1 Заявки от партнёров
-      - if !@partners.empty?
-        table.table.table-striped
-          thead
-            tr
-              th Компания
-              th.col-lg-2 Вид деятельности
-              th Имя
-              th Телефон
-              th Email
-              th Url
-              th
-              th
-              th
-          tbody
-          - @partners.each do |partner|
-            tr
-              td = partner.company
-              td = partner.activity
-              td = partner.name
-              td = partner.phone
-              td = partner.email
-              td = partner.url
-              td 
-                = link_to partner
-                  span.fa.fa-eye<>
-              td
-                = link_to edit_partner_path(partner)
-                  span.fa.fa-pencil<>
-              td
-                = link_to partner, data: {:confirm => 'Are you sure?'}, :method => :delete
-                  span.fa.fa-trash-o<>
+    .row
+      .col-lg-12
+        h1 Заявки от партнёров
+        - if !@partners.empty?
+          table.table.table-hover.data
+            thead
+              tr
+                th Имя
+                /th Телефон
+                /th Email
+                th Компания
+                th Вид деятельности
+                /th Url
+                th
+            tbody
+              == render 'partner', {partners: @partners}
+javascript:
+  $(function(){
+    $('.data').dataTable({
+    "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"ip><"clear">>',
+      "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 3 ] }
+      ],
+      "sPaginationType": "bootstrap"
+    });
 
-      /= link_to 'New Partner', new_partner_path
+    $('.panel-heading').css({'height': "55px"});
+    $('.dataTables_paginate').css({'margin-top': "-33px"});
+
+    $('.dataTables_length').before( $('.dataTables_filter') );
+
+    $('.dataTables_length > label > select').addClass('form-control')
+    $('.dataTables_length > label').addClass('control-label')
+
+    $('#DataTables_Table_0_filter > label > input').addClass('form-control');
+  });
