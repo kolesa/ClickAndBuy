@@ -125,9 +125,13 @@
                         = I18n.l like.item.end_date, :format => :long
                 .row style="position: absolute;right: 15;"
                   /a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external"
-                  a href="http://www.facebook.com/share.php?s=100&p[title]=#{like.item.name}&p[url]=#{request.original_url}&p[summary]=#{like.item.desc.truncate(50)}&p[images][0]=#{like.item.avatar.url(:thumb)}" rel="external" target="_blank"
+                  = link_to share_with_facebook_url({\
+                    :url   => request.original_url,
+                    :title => like.item.name,
+                    :images => {0 => like.item.avatar.url(:thumb)},
+                    :summary => like.item.desc.truncate(100) }), :target => :blank
 
-                    i.fa.fa-facebook.fa-2x>
+                      i.fa.fa-facebook.fa-2x>
 
                 
                   a href="http://vkontakte.ru/share.php?url=#{request.original_url}" target="_blank" rel="external"
@@ -217,16 +221,18 @@
                 =link_to 'edit', edit_user_registration_path
 
 javascript:
-  $(".like-delete").click(function(i){
-    $.post($(this).data('url'), {id: $(this).data("id")});
+  $(function(){
+    $(".like-delete").click(function(i){
+      $.post($(this).data('url'), {id: $(this).data("id")});
 
-    var item = $(this).parent().parent().parent()
-    item.fadeOut( 400, function() {
-      item.detach();
+      var item = $(this).parent().parent().parent()
+      item.fadeOut( 400, function() {
+        item.detach();
+      });
     });
-  });
 
-  $('.tip').tooltip();
+    $('.tip').tooltip();
+  });
 
 css:
   .price {
