@@ -126,7 +126,7 @@
             p = @item.shop.desc 
             
             p
-              - if signed_in?
+              - if signed_in? && Like.where(item_id: @item.id, user_id: current_user.id).exists?
                 a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external" target="_blank"
                   i.fa.fa-facebook.fa-2x>
                 

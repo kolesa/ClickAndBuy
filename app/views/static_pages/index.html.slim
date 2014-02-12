@@ -103,66 +103,70 @@
 section.slice.animate-hover-slide
   .w-section.inverse
     .container
-      h3.section-title Latest news
-      .row
-        - @item.each do |item|
-          .col-lg-4.col-md-4.col-sm-12
-            .label.label-danger.price.price-over
-              = "-#{item.discounts.where(active: true).maximum(:discount)}%"
-              p
-                = "- #{item.price/100*item.discounts.where(active: true).maximum(:discount)} "
-                i.fa.fa-rub
-              /sup 99
-            .w-box
-              .figure
-                /ribbon
-                /.mark-sale
-                    = "-#{item.discounts.where(active: true).maximum(:discount)}%"
-                
-                = image_tag item.avatar.url(:medium), class: "img-responsive img-center"
-                
-                .figcaption.bg-2
-                    .figcaption-btn style="margin-left: -15px;"
-                      = link_to like_path(item), :method => :post, class: "btn btn-xs btn-one theater"
-                        i.fa.fa-plus-circle 
-                        | добавить
+      - if @item.count > 0
+        h3.section-title Latest news
+        .row
+        
+          - @item.each do |item|
+            .col-lg-4.col-md-4.col-sm-12
+              .label.label-danger.price.price-over
+                = "-#{item.discounts.where(active: true).maximum(:discount)}%"
+                p
+                  = "- #{item.price/100*item.discounts.where(active: true).maximum(:discount)} "
+                  i.fa.fa-rub
+                /sup 99
+              .w-box
+                .figure
+                  /ribbon
+                  /.mark-sale
+                      = "-#{item.discounts.where(active: true).maximum(:discount)}%"
+                  
+                  = image_tag item.avatar.url(:medium), class: "img-responsive img-center"
+                  
+                  .figcaption.bg-2
+                      .figcaption-btn style="margin-left: -15px;"
+                        = link_to like_path(item), :method => :post, class: "btn btn-xs btn-one theater"
+                          i.fa.fa-plus-circle 
+                          | добавить
 
-                /animated pop up with social links
-                /.figcaption
-                  ul.social-icons.text-right
-                    li.text.pull-left More on:
-                    li.facebook
-                      a href="#"
-                        i.fa.fa-facebook
-                    li.twitter
-                      a href="#"
-                        i.fa.fa-twitter
-                    li.linkedin
-                      a href="#"
-                        i.fa.fa-linkedin
-              .row
-                .col-xs-9
-                  h2 
-                    a href=item_path(item) style="text-decoration: underline;"
-                      = item.name
-                    small
-                      a href=shop_path(item.shop) style="color:#afafaf"
-                        = item.shop.name
-                .col-xs-3
-                  .like-button style="margin-right: 10px;"
-                    span.button.liked
-                      -if signed_in?
-                        - unless Like.where(user_id: current_user.id, item_id: item.id).exists?
-                          = link_to like_path(item), :method => :post
-                            i.fa.fa-heart style=" color: rgba(200,20,20,0.8);"
+                  /animated pop up with social links
+                  /.figcaption
+                    ul.social-icons.text-right
+                      li.text.pull-left More on:
+                      li.facebook
+                        a href="#"
+                          i.fa.fa-facebook
+                      li.twitter
+                        a href="#"
+                          i.fa.fa-twitter
+                      li.linkedin
+                        a href="#"
+                          i.fa.fa-linkedin
+                .row
+                  .col-xs-9
+                    h2 
+                      a href=item_path(item) style="text-decoration: underline;"
+                        = item.name
+                      small
+                        a href=shop_path(item.shop) style="color:#afafaf"
+                          = item.shop.name
+                  .col-xs-3
+                    .like-button style="margin-right: 10px;"
+                      span.button.liked
+                        -if signed_in?
+                          - unless Like.where(user_id: current_user.id, item_id: item.id).exists?
+                            = link_to like_path(item), :method => :post
+                              i.fa.fa-heart style=" color: rgba(200,20,20,0.8);"
+                          - else
+                              i.fa.fa-heart style=" color: rgba(250,28,25,1);"
                         - else
                             i.fa.fa-heart style=" color: rgba(250,28,25,1);"
-                      - else
-                          i.fa.fa-heart style=" color: rgba(250,28,25,1);"
-                    span.count
-                      small 
-                      = Counter.where(like_id: Like.where(item_id: item.id)).count
-
+                      span.count
+                        small 
+                        = Counter.where(like_id: Like.where(item_id: item.id)).count
+      - else
+        p Тут пока ничего нет %)
+        
 /.container
   .row
     .col-md-12
