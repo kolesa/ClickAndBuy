@@ -1,0 +1,52 @@
+- if signed_in? and current_user.is_admin
+  .pg-opt.pin
+    .container
+      .row
+        .col-lg-8
+          = notice
+        .col-md-6
+          h2 Управление пользователями
+        .col-md-6
+          ol.breadcrumb
+            li
+              a href=root_path Главная
+            li.active
+              |Пользователи
+  .section.slice.bg-3
+    .w-section.inverse.container style="padding-top: 20px;"
+      .row
+        = form_tag user_own_path(@user) do
+          .col-lg-4.col-lg-offset-1
+            .panel.panel-default
+              .panel-heading 
+                = select_tag :user, options_for_select( User.all.map {|x| ["#{x.first_name} #{x.last_name}", x.id] }, @user.id), prompt: "Select user", class: 'form-control'
+              .panel-body
+                = link_to user_info_path @user
+                  - if @user.avatar_file_name
+                      = image_tag @user.avatar.url, class: "img-thumbnail img-responsive"
+                  - else
+                    img.img-thumbnail.img-responsive src="http://placehold.it/500x500&text=img"
+                div
+                  h4
+                    = link_to user_info_path @user
+                      => @user.first_name
+                      => @user.last_name
+          .col-lg-2 style="text-align: center"
+              = submit_tag nil, class: 'btn btn-two'
+                i.fa.fa-arrow-left.fa-4x
+          .col-lg-4
+            .panel.panel-default
+              .panel-heading 
+                = select_tag :shop, options_from_collection_for_select( Shop.all, "id", "name"), prompt: "Select shop", class: 'form-control' 
+              .panel-body
+                = link_to user_info_path @user
+                  - if @user.avatar_file_name
+                      = image_tag @user.avatar.url, class: "img-thumbnail img-responsive"
+                  - else
+                    img.img-thumbnail.img-responsive src="http://placehold.it/500x500&text=img"
+                div
+                  h4
+                    = link_to user_info_path @user
+                      => @user.first_name
+                      => @user.last_name               
+

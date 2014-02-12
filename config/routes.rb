@@ -21,6 +21,8 @@ ClickAndBuy::Application.routes.draw do
   post   '/user/:id/admin'  => "users#admin",  as: :user_make_admin
   post   '/user/:id/ban'    => "users#ban",    as: :user_ban
   delete '/user/:id/delete' => "users#delete", as: :user_delete
+  get    '/user/:id/own'    => "users#owned" , as: :user_owned
+  post   '/user/:id/own'    => "users#own"   , as: :user_own
 
   #get  '/item' => "static_pages#item"
   

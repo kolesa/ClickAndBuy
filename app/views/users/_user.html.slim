@@ -17,6 +17,10 @@
         h5
           span.label.label-success
             |admin
+      - if user.owned_shop != 0
+        h5
+          span.label.label-info
+            = "#{Shop.find(user.owned_shop).name}"
       - if user.is_banned
         h5
           span.label.label-default
@@ -45,5 +49,5 @@
               | Сделать админом
             - else
               | Сделать юзером
-          li = link_to user_delete_path(user), method: 'delete'
+          li = link_to user_owned_path(user)
             | Сделать владельцем магазина

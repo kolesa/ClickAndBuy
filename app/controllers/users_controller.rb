@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :index_item, only: [:index]
   before_action :get_user,   only: [:show, :vote]
-  before_action :set_item,   only: [:delete, :admin, :ban]
+  before_action :set_item,   only: [:delete, :admin, :ban, :owned, :own]
 
   helper_method :sort_column, :sort_direction
 
@@ -42,6 +42,18 @@ class UsersController < ApplicationController
       @bars.push( id: like.id, total: total, discounts: discounts, width: width )
     end
 
+  end
+
+  # GET /user/:id/own
+  def owned
+  end
+
+  # POST /user/:id/own
+  def own
+    u = User.find(@user.id)
+    u.owned_shop = params[:shop]
+    u.save
+    redirect_to user_owned_path(@user), :notice => 'Owned!'
   end
 
   # DELETE /user/:id/delete

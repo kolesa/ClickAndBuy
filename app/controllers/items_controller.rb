@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :like, :tag]
+  before_action :check_auth, only: [:index, :history]
   
   helper_method :sort_column, :sort_direction
   # Tags
@@ -131,8 +132,13 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
+    def check_auth
+      redirect_to root_path unless signed_in? && current_user.is_admin
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
+
       params.require(:item).permit(
         :name,
         :desc,

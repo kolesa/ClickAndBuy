@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat, :search, :codes, :ban]
+  before_action :check_auth, only: [:index, :ban, :create, :destroy, :edit]
 
   # GET /shops
   # GET /shops.json
@@ -117,6 +118,10 @@ class ShopsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
       @shop = Shop.find(params[:id])
+    end
+
+    def check_auth
+      redirect_to root_path unless signed_in? && current_user.is_admin
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
