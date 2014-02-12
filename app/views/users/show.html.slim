@@ -14,12 +14,18 @@
 .section.slice.bg-3
   .w-section.inverse.container style="padding-top: 20px;"
     .row
-      .col-lg-10
+      .col-lg-8.col-lg-offset-1
         - @likes.map do |like|
           .row
+
             .col-lg-3
               = link_to like.item
-                = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"          
+                = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
+              - if current_user == @user
+                .del style="position: absolute;left: -20px; top: 5px;"
+                  a.btn-lg.like-delete data={url: like_delete_path(like), id: like.id} href="#"
+                    span.fa.fa-trash-o
+
             .col-lg-6
               = link_to like.item, style: "color: #428bca; font-size: 24px"
                 => like.item.name
@@ -27,24 +33,111 @@
               i
                 = link_to shop_path like.item.shop
                   = like.item.shop.name
-              div style="margin-top: 15px"
+              br
+
+              /div style="margin-top: 15px"
                 | Лайки
                 .progress
                   .progress-bar.progress-bar-info style="width: #{like.counters.count}%"
                     = like.counters.count
-              div
-                | Скидка
-                .progress
-                  .progress-bar.progress-bar-success style="width: 20%; background-color: rgba(92, 184, 92, 0.96)"
-                    |5%
-                  .progress-bar.progress-bar-warning style="width: 20%; background-color: #a0a0a0"
-                    |10%
-                  .progress-bar.progress-bar-warning style="width: 20%; background-color: #757575"
-                    |15%
-                  .progress-bar.progress-bar-warning style="width: 20%; background-color: #535353"
-                    |20%
-                  .progress-bar.progress-bar-warning style="width: 20%; background-color: #2b2b2b"
-                    |25%
+              .col-lg-12 style="padding: 0"
+                / HELL HARDCODE LEVEL 9000
+                - max_discount = 0
+                - @bars.each do |x|
+                  - if x[:id] == like.id
+                    - array = x[:discounts]
+                    - total = x[:total]
+                    
+                    / смотрим в какую скидку мы попадаем
+                    - for i in 0 ... array.size
+
+                      
+                      / расчет для первого прогрессбара
+                      - if array.first == array[i]
+
+                        - if x[:total] <= array.first.likes
+                          - width = 100.0*x[:total]/array.first.likes
+                        - else
+                          - width = 100.0
+                          - max_discount = array.first.discount
+
+                        .progress.tip style="width: #{x[:width]}%; display: inline-block; border-top-right-radius: 0; border-bottom-right-radius: 0; " data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
+                          .progress-bar.progress-bar-info style="width: #{width}%"
+                            - if width == 100
+                              span style="position: absolute;top: 8px; text-align: center;"
+                                i.fa.fa-thumbs-o-up
+                      
+
+                      - elsif array.last == array[i]
+                        
+                        - if x[:total] <= array.last.likes and x[:total] > array.slice(-2,1).first.likes
+                          - width = 100.0*x[:total]/array.last.likes
+                          - max_discount = array.slice(-2,1).first.discount
+                        - elsif x[:total] > array.last.likes
+                          - width = 100.0
+                          - max_discount = array.last.discount
+                        - else
+                          - width = 0
+                        
+                        .progress.tip style="width: #{x[:width]}%; display: inline-block; border-top-left-radius: 0; border-bottom-left-radius: 0;" data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
+                          .progress-bar.progress-bar-info style="width: #{width}%"
+                            - if width == 100
+                                span style="position: absolute;top: 8px; text-align: center;"
+                                  i.fa.fa-thumbs-o-up
+
+                      - else
+
+                        - if x[:total] > array[i-1].likes and x[:total] <= array[i].likes  
+                          - width = 100.0*( x[:total] )/array[i].likes
+                          - max_discount = array[i-1].discount
+                        - elsif x[:total] > array[i].likes
+                          - width = 100.0
+                          - max_discount = array[i].discount
+                        - else
+                          - width = 0
+
+                        .progress.tip style="width: #{x[:width]}%; display: inline-block; border-radius: 0; border-left: 1px solid rgba(210, 233, 255, 0.88);border-right: 1px solid rgba(210, 233, 255, 0.88);" data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
+                          .progress-bar.progress-bar-info style="width: #{width}%"
+                            - if width == 100
+                                span style="position: absolute;top: 8px; text-align: center;"
+                                  i.fa.fa-thumbs-o-up
+                    
+                    
+
+
+                      
+
+                /.progress
+                /="Получить купон на скидку #{}%"
+                - if signed_in? && current_user == @user
+                  - if max_discount > 0
+                    a.label.label-danger.price.price-over.btn-two.tip href="#" style="position: absolute; left: 10px; top: 40px;" data-toggle="tooltip" data-placement="right" title=" Получить купон на скидку! "
+                      p = "-#{max_discount}%"
+                      p
+                        = "- #{like.item.price/100*max_discount} "
+                        i.fa.fa-rub
+
+                .row.text-right style="position: absolute;bottom: -90;right: 15;"
+                  small
+                    i 
+                      = "дата окончания: "
+                      strong
+                        = I18n.l like.item.end_date, :format => :long
+                .row style="position: absolute;right: 15;"
+                  /a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external"
+                  a href="http://www.facebook.com/share.php?s=100&p[title]=#{like.item.name}&p[url]=#{request.original_url}&p[summary]=#{like.item.desc.truncate(50)}&p[images][0]=#{like.item.avatar.url(:thumb)}" rel="external" target="_blank"
+
+                    i.fa.fa-facebook.fa-2x>
+
+                
+                  a href="http://vkontakte.ru/share.php?url=#{request.original_url}" target="_blank" rel="external"
+                    i.fa.fa-vk.fa-2x>
+                  
+                  a href="https://plus.google.com/share?url=#{request.original_url}"
+                    i.fa.fa-google-plus.fa-2x>
+                  
+                  a href="http://twitter.com/share?text=#{like.item.desc.truncate(100)}&url=#{request.original_url}"
+                    i.fa.fa-twitter.fa-2x>
 
               /.panel-group id="accordion#{like.item.id}"
                 .panel.panel-default
@@ -64,20 +157,18 @@
                                 img.img-rounded.img-responsive src="http://placehold.it/80x80&text=User" *{title: "#{item.user.first_name} #{item.user.last_name}"} 
 
             .col-lg-2
-              - if current_user == @user
-                .del style="position: absolute;right: -5px; top: 5px;"
-                  a.btn-lg.like-delete data={url: like_delete_path(like), id: like.id} href="#"
-                    span.fa.fa-trash-o
-              .btn-lg style="margin-top:5px;"
+
+              span.label.label-success style="margin-top:5px;"
                 = like.item.price
-                span.fa.fa-rub<>
+                i.fa.fa-rub<>
               .btn-lg style="margin-top:5px; color: #e74c3c;"
                 /=like.item.end_date
-                - if !like.item.end_date.nil? && like.item.end_date > Date.today
+                - if !like.item.end_date.nil? && Date.today > like.item.end_date
                   | Акция закончилась
                 - else
                   =link_to user_vote_path like.users.first.id, like.counters.first.like.id
                     span.fa.fa-heart.fa-4x<>
+            /h4 = like.counters.count
           hr
       .col-lg-2
           - if @user.avatar_file_name
@@ -86,37 +177,44 @@
             img.img-rounded.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
         
           .row style="margin: 10px 0 0 0;"
-            h3 
+            h4 
               => @user.first_name
               = @user.last_name
+            
             h5
               cite title="Москва"
-                => @user.date
-                - if @user.country?
+                - if @user.date
+                  /= I18n.l (Date.today - @user.date), :format => :long
+                  = "#{Date.today.year - @user.date.year} лет"
+                - if @user.date && @user.country?
                   |,
-                  =< @user.country
-                i.fa.fa-map-marker<>
-            p
-              i.fa.fa-envelope<> style="margin-bottom: 10px;"
-              = @user.email
+                - if @user.country?
+                  =<> @user.country
+                  i.fa.fa-map-marker<>
+            - if signed_in? && current_user.is_admin
+              p
+                i.fa.fa-envelope<> style="margin-bottom: 10px;"
+                = @user.email
 
             - if @user.vk?
-              = link_to "http://#{@user.vk}"
+              = link_to "#{@user.vk}", target: "_blank"
                 i.fa.fa-vk.fa-2x<>
 
             - if @user.tw?
-              = link_to "http://#{@user.tw}"
+              = link_to "#{@user.tw}", target: "_blank"
                 i.fa.fa-twitter.fa-2x<>
 
             - if @user.fb?
-              = link_to "http://#{@user.fb}"
+              = link_to "#{@user.fb}", target: "_blank"
                 i.fa.fa-facebook.fa-2x<>
 
             - if @user.od?
-              = link_to "http://#{@user.od}"
+              = link_to "#{@user.od}", target: "_blank"
                 i.fa.fa-globe.fa-2x<>
-            p
-              =link_to 'edit', edit_user_registration_path
+            
+            - if signed_in? && current_user.is_admin
+              p
+                =link_to 'edit', edit_user_registration_path
 
 javascript:
   $(".like-delete").click(function(i){
@@ -127,3 +225,26 @@ javascript:
       item.detach();
     });
   });
+
+  $('.tip').tooltip();
+
+css:
+  .price {
+    font-size:125%;
+    line-height:110%;
+    position:absolute;
+    z-index:10;
+    margin-left:-5px;
+    margin-top:5px;
+    width:100px;
+    padding: 0px;
+    text-align:center;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Use for rotating price (IE9+) */
+    -webkit-transform:rotate(350deg);
+    -moz-transform:rotate(350deg);
+    -o-transform:rotate(350deg);
+    -ms-transform:rotate(350deg);
+  }

@@ -16,11 +16,11 @@ class UsersController < ApplicationController
   end
 
   def vote
-    if (User.find(current_user).votes.to_i > 0) \
+    if signed_in? && (User.find(current_user).votes.to_i > 0) \
       && !Counter.exists?(user: current_user, like: Like.find(params[:like]))
       
         # уменьшаем кол-во лайков на 1
-        User.find(current_user).decrement(:votes).save
+        User.find(current_user).decrement!(:votes)
         
         Counter.create(user: current_user, like: Like.find(params[:like]))
       
@@ -31,6 +31,17 @@ class UsersController < ApplicationController
   # GET /user/:id
   def show
     @likes = Like.where(user: @user)
+    @bars = []
+    
+    @likes.each do |like|
+      total = like.counters.count
+      
+      discounts = like.item.discounts.where(active: true).order("discount ASC")
+      width = 100.0/discounts.count
+
+      @bars.push( id: like.id, total: total, discounts: discounts, width: width )
+    end
+
   end
 
   # DELETE /user/:id/delete

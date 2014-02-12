@@ -40,6 +40,8 @@ class Item < ActiveRecord::Base
     
   #validates_attachment :avatar, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
   validates :name, presence: true
+  validates :end_date, presence: true
+  validates :price, presence: true
 
   acts_as_taggable
   #acts_as_taggable_on :category

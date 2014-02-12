@@ -163,38 +163,6 @@ section.slice.animate-hover-slide
                       small 
                       = Counter.where(like_id: Like.where(item_id: item.id)).count
 
-css:
-  .price {
-    font-size:150%;
-    line-height:125%;
-    position:absolute;
-    z-index:10;
-    margin-left:-5px;
-    margin-top:5px;
-    width:115px;
-    text-align:center;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-       -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    /* Use for rotating price (IE9+) */
-    -webkit-transform:rotate(350deg);
-    -moz-transform:rotate(350deg);
-    -o-transform:rotate(350deg);
-    -ms-transform:rotate(350deg);
-  }
-  
-  .price.price-over {
-    /* Use for rotating price (IE9+) */
-    -webkit-transform:rotate(355deg);
-    -moz-transform:rotate(355deg);
-    -o-transform:rotate(355deg);
-    -ms-transform:rotate(355deg);
-  }
-
-  .price sup {
-    font-size:60%;
-  }
-
 /.container
   .row
     .col-md-12
@@ -477,3 +445,35 @@ css:
                 span.count
                   small 123
       .gap
+
+css:
+  .price {
+    font-size:150%;
+    line-height:125%;
+    position:absolute;
+    z-index:10;
+    margin-left:-5px;
+    margin-top:5px;
+    width:115px;
+    text-align:center;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Use for rotating price (IE9+) */
+    -webkit-transform:rotate(350deg);
+    -moz-transform:rotate(350deg);
+    -o-transform:rotate(350deg);
+    -ms-transform:rotate(350deg);
+  }
+  
+  .price.price-over {
+    /* Use for rotating price (IE9+) */
+    -webkit-transform:rotate(355deg);
+    -moz-transform:rotate(355deg);
+    -o-transform:rotate(355deg);
+    -ms-transform:rotate(355deg);
+  }
+
+  .price sup {
+    font-size:60%;
+  }

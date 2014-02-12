@@ -10,6 +10,8 @@ ClickAndBuy::Application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  
+
   get    '/users'           => "users#index"
 
   get    '/history'           => "items#history"
@@ -45,7 +47,7 @@ ClickAndBuy::Application.routes.draw do
   post '/sort/categories/edit'   => "static_pages#category_sort_edit",   as: :category_sort_edit
   
   #get '/autocomplete_user_last_name' => "users#autocomplete_user_last_name", as: :autocomplete_user_last_name
-
+  get "*path", to: "error#error_404"
   root "static_pages#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
