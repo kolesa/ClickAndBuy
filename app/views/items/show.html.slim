@@ -1,7 +1,7 @@
 - provide(:title, @item.name)
 - provide(:description, @item.desc.truncate(100))
 - provide(:image, @item.avatar.url)
-- provide(:price, @item.price)
+- provide(:price, @item.price.to_s)
 - provide(:discount, Discount.where(item_id: @item.id).max.discount )
 
 .pg-opt.pin
