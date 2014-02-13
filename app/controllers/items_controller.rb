@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
         # и что срок акции не закончен
         # и что товар есть в наличии
         if (User.find(current_user).votes.to_i > 0) \
-          && (Item.find(@item).end_date.nil? || Date.parse(Item.find(@item).end_date) <= Date.today)
+          && (Item.find(@item).end_date.nil? || Item.find(@item).end_date <= Date.today)
           
           # уменьшаем кол-во лайков на 1
           User.find(current_user).decrement!(:votes)
