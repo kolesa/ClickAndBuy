@@ -2,7 +2,7 @@
 - provide(:description, @item.desc.truncate(100))
 - provide(:image, @item.avatar.url)
 - provide(:price, @item.price.to_s)
-- provide(:discount, Discount.where(item_id: @item.id).max.discount )
+- provide(:discount, @item.discounts.where(active: true).last.discount.to_s )
 
 .pg-opt.pin
   .container
@@ -95,7 +95,7 @@
                             th Кол-во товара
                             th Кол-во голосов
                           tbody
-                            - @item.discounts.where(active: true).each do |d|
+                            - @item.discounts.where(active: true).order('discount ASC').each do |d|
                               tr
                                 td ="#{d.discount}%"
                                 td ="#{d.count} шт."

@@ -29,9 +29,9 @@ html
     meta name="twitter:title"   content=yield(:title)
     meta name="twitter:image"   content=yield(:image)
     meta name="twitter:data1"   content=yield(:price)
-    meta name="twitter:label1"  content="Цен"
-    meta name="twitter:data2"   content=yield(:discount)
-    meta name="twitter:label2"  content="скидка"
+    meta name="twitter:label1"  content="Цена"
+    meta name="twitter:data2"   content="#{yield(:discount)}%"
+    meta name="twitter:label2"  content="Скидка"
     meta name="twitter:description" content=yield(:description)
 
 
