@@ -1,0 +1,36 @@
+- @partner = Partner.new
+= form_for @partner do |f|
+  - if @partner.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@partner.errors.count, "error")} prohibited this partner from being saved:"
+      ul
+        - @partner.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = f.label :company, class: "span2 control-label"
+      | Компания
+    = f.text_field :company, class: 'form-control input-xlarge', style: "height: 30px"
+  .form-group
+    = f.label :activity, class: "span2 control-label"
+      | Вид деятельности
+    = f.text_field :activity, class: 'form-control input-xlarge', style: "height: 30px"
+  .form-group
+    = f.label :name, class: "span2 control-label"
+      | Имя
+    = f.text_field :name, class: 'form-control input-xlarge', style: "height: 30px"
+  .form-group
+    = f.label :phone, class: "span2 control-label"
+      | Телефон
+    = f.text_field :phone, class: 'form-control input-xlarge', style: "height: 30px"
+  .form-group
+    = f.label :email, class: "span2 control-label"
+      | Почта
+    = f.text_field :email, class: 'form-control input-xlarge', style: "height: 30px"
+  .form-group
+    = f.label :url, class: "span2 control-label"
+    = f.text_field :url, class: 'form-control input-xlarge', style: "height: 30px"
+  
+  .modal-footer    
+    = f.submit 'Отправить', class: "btn btn-success", style: "margin:0"
+    button.btn.btn-default data-dismiss="modal" type="button" Закрыть

@@ -13,6 +13,9 @@ class ItemsController < ApplicationController
     render 'static_pages/index'
   end
   
+  # Поправить категории!!!
+  # не обновляются при апдейте
+  #
 
   # GET /items
   # GET /items.json
@@ -43,20 +46,25 @@ class ItemsController < ApplicationController
   def like
     #like = Like.new(user: current_user, item: @item)
     note = 'Sign In first!'
+    
+    # Чтобы лайкать, нужно быть авторизованным
     if signed_in?
       note = 'Item was liked.'
+
+      # Проверяем, лайкал ли юзер этот товар
       unless Like.exists?(user: current_user, item: @item)
         
-        # проверяем, может ли юзер голосовать
-        # и что срок акции не закончен
+        # проверяем, есть ли у юзера лайки,
+        # что срок акции не закончен
         # и что товар есть в наличии
-        if (User.find(current_user).votes.to_i > 0) \
-          && (Item.find(@item).end_date.nil? || Item.find(@item).end_date <= Date.today)
+        if (User.find(current_user).votes > 0) \
+          && (Item.find(@item).end_date.nil? || Item.find(@item).end_date >= Date.today)\
+          && (Discount.where(item_id: @item.id).pluck(:count).sum > 0)
           
           # уменьшаем кол-во лайков на 1
           User.find(current_user).decrement!(:votes)
           
-          
+          # Добавляем товар в кабинет пользователя
           like = Like.create(user: current_user, item: @item)
           Counter.create(user: current_user, like: like)
         else
@@ -64,7 +72,6 @@ class ItemsController < ApplicationController
           note = 'Likes is over ('
         end
 
-        
       else
         note = 'Item was already liked'
       end
