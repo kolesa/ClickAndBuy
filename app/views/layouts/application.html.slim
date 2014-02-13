@@ -10,9 +10,30 @@ html
     meta charset="utf-8"
     title =yield(:title)
     
+    / vk share
     meta name="title" content=yield(:title)
     meta name="description" content=yield(:description)
     link rel="image_src" href=yield(:image)
+
+    / fb share
+    meta property="og:title"       content=yield(:title)
+    meta property="og:site_name"   content="Like And Buy"
+    meta property="og:url"         content="#{request.original_url}"
+    meta property="og:image"       content=yield(:image)
+    meta property="og:description" content=yield(:description)
+
+    /twitter cards
+    meta name="twitter:card"    content="product"
+    meta name="twitter:site"    content="@twitter"
+    meta name="twitter:creator" content="@twitter"
+    meta name="twitter:title"   content=yield(:title)
+    meta name="twitter:image"   content=yield(:image)
+    meta name="twitter:data1"   content=yield(:item.price)
+    meta name="twitter:label1"  content="Цен"
+    meta name="twitter:data2"   content=yield( Discount.where(item_id => :item.id).max.discount )
+    meta name="twitter:label2"  content="скидка"
+    meta name="twitter:description" content=yield(:description)
+
 
     meta content="width=(device-width,)initial-scale=1.0" name="viewport"  
     = stylesheet_link_tag    "application", media: "all"
