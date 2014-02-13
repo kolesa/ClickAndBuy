@@ -119,19 +119,9 @@
                 
                 / Ссылки для соц.сетей
                 - if signed_in? && current_user == @user
-                  .row style="position: absolute;right: 15;"
-                    a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external" target="_blank"
-                      i.fa.fa-facebook.fa-2x>
-                  
-                    a href="http://vkontakte.ru/share.php?url=#{url_for item_path(like.item)}" target="_blank" rel="external"
-                      i.fa.fa-vk.fa-2x>
-                    
-                    a href="https://plus.google.com/share?url=#{request.original_url}" target="_blank"
-                      i.fa.fa-google-plus.fa-2x>
-                    
-                    a href="http://twitter.com/share?text=#{like.item.desc.truncate(100)}&url=#{request.original_url}" target="_blank"
-                      i.fa.fa-twitter.fa-2x>
+                  == render 'shared/share', { :fb => url_for(item_path(like.item)) }
 
+                  
               /.panel-group id="accordion#{like.item.id}"
                 .panel.panel-default
                   .panel-heading
