@@ -7,7 +7,8 @@ ClickAndBuy::Application.routes.draw do
 
   #devise_for :users
   devise_for :users, :controllers => {
-    omniauth_callbacks: "users/omniauth_callbacks"
+    omniauth_callbacks: "users/omniauth_callbacks",
+    registrations:      "registrations"
   }
 
   

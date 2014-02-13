@@ -166,14 +166,13 @@
             
             h5
               cite title="Москва"
-                - if @user.date
-                  /= I18n.l (Date.today - @user.date), :format => :long
-                  = "#{Date.today.year - @user.date.year} лет"
-                - if @user.date && @user.country?
-                  |,
                 - if @user.country?
                   =<> @user.country
                   i.fa.fa-map-marker<>
+                
+                - if @user.date
+                  /= I18n.l (Date.today - @user.date), :format => :long
+                  br =<> "#{Date.today.year - @user.date.year} лет"
             - if signed_in? && current_user.is_admin
               p
                 i.fa.fa-envelope<> style="margin-bottom: 10px;"
