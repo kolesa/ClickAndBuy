@@ -57,8 +57,7 @@ class ItemsController < ApplicationController
         # проверяем, есть ли у юзера лайки,
         # что срок акции не закончен
         # и что товар есть в наличии
-        if (User.find(current_user).votes > 0) \
-          && (Item.find(@item).end_date.nil? || Item.find(@item).end_date >= Date.today)\
+        if (User.find(current_user).votes > 0) && (Item.find(@item).end_date.nil? || Item.find(@item).end_date >= Date.today)\
           && (Discount.where(item_id: @item.id).pluck(:count).sum > 0)
           
           # уменьшаем кол-во лайков на 1
