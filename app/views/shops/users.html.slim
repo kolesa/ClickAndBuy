@@ -20,22 +20,28 @@
         .col-lg-8 
           == render 'shop_menu'
         .col-lg-12.col-md-12.col-sm-12
-          table.table.table-hover
-            thead
-              tr
-                th.col-lg-2.col-md-2.col-sm-2
-                th.col-lg-2.col-md-2.col-sm-6 Название товара
-                th.col-lg-1.col-md-1.col-sm-1 Пользователь
-                th.col-lg-2.col-md-2.col-sm-2 Лайки
-            tbody.items
-              - @users.each do |like|
+          - if @users.present?
+            table.table.table-hover
+              thead
                 tr
-                  td
-                    = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
-                  td
-                    = "#{like.item.name}"
-                  td
-                    = "#{like.user.first_name} #{like.user.last_name}"
-                  td
-                    =<> Counter.where(like_id: like).count
-                    i.fa.fa-heart 
+                  th.col-lg-2.col-md-2.col-sm-2
+                  th.col-lg-2.col-md-2.col-sm-6 Название товара
+                  th.col-lg-1.col-md-1.col-sm-1 Пользователь
+                  th.col-lg-2.col-md-2.col-sm-2 Лайки
+              tbody.items
+                - @users.each do |like|
+                  tr
+                    td
+                      = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
+                    td
+                      = "#{like.item.name}"
+                    td
+                      = "#{like.user.first_name} #{like.user.last_name}"
+                    td
+                      =<> Counter.where(like_id: like).count
+                      i.fa.fa-heart
+          - else
+            h2 Тут ничего нет
+            h4 Ещё не один пользователь не проявил активности
+            p style="height: 50%; margin: 20px 0;" 
+              | Вы можете посмотреть, кто участвует в акции и ещё какая то лажа нам очень нужны тексты для каждой страницы
