@@ -1,0 +1,8 @@
+- if root
+  a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=category_search_path(menu.name)
+    = menu.name
+- else
+  a href=category_search_path(menu.name)
+    = menu.name
+/= link_to "Reply", new_menu_path(parent_id: menu), class: "btn"
+

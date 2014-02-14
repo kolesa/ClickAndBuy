@@ -1,22 +1,32 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :items, :stat, :search, :codes, :ban]
-  before_action :check_auth, only: [:index, :ban, :create, :destroy, :edit]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :users, :history, :items, :stat, :search, :codes, :ban]
+  before_action :check_auth, only: [:index, :ban, :create, :destroy, :edit, :users]
 
   # GET /shops
   # GET /shops.json
   def index
-    @shops = Shop.all
+    @shops = Shop.all.paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /shops/1
   # GET /shops/1.json
   def show
-    @items = @shop.items.load
+    @items = @shop.items.paginate(:per_page => 20, :page => params[:page])
 
     if params[:ids]
-      @items = @shop.items.where(id: params[:ids])
+      @items = @shop.items.where(id: params[:ids]).paginate(:per_page => 20, :page => params[:page])
       render '_item', {items: @items, layout: false}
     end
+  end
+
+  # GET /shop/:id/users
+  def users
+    @users = Like.where(item_id: @shop.items.pluck(:id))
+  end
+
+  # GET /shop/:id/history
+  def history
+    @items = Item.where(shop: @shop).order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
   end
 
   # POST /shop/:id/ban
@@ -126,7 +136,7 @@ class ShopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shop_params
-      params.require(:shop).permit(:name, :desc, :url, :fb, :vk, :avatar)
+      params.require(:shop).permit(:name, :desc, :url, :fb, :vk, :avatar, :p_type)
     end
 
     def item_params

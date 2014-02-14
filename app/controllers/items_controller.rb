@@ -20,11 +20,11 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").paginate(:per_page => 5, :page => params[:page])
+    @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").paginate(:per_page => 20, :page => params[:page])
   end
 
   def history
-    @items = Item.search(params[:item_search]).order("#{sort_column} #{sort_direction}").order('created_at DESC')
+    @items = Item.search(params[:item_search]).order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
   end
 
   # GET /items/1

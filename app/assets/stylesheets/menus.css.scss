@@ -1,0 +1,11 @@
+// Place all the styles related to the menus controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nested_menus {
+  margin-left: 30px;
+}
+
+.nested_menus .nested_menus .nested_menus .nested_menus {
+  margin-left: 0;
+}

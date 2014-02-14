@@ -1,4 +1,4 @@
-= form_for(@shop, html: {class: 'form-horizontal'}) do |f|
+= form_for(@shop, html: {class: 'form-light mt-20'}) do |f|
   - if @shop.errors.any?
     #error_explanation.alert.alert-dismissable.alert-warning
       button.close data-dismiss="alert" x
@@ -15,21 +15,32 @@
         img.img-rounded.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
     .col-lg-5.col-md-5.col-sm-5
       .form-group
-        = f.label :name, class: "col-lg-2 control-label"
+        = f.label :name
+          | Название магазина
         = f.text_field :name, class: 'form-control'
       .form-group
-        = f.label :url, class: "col-lg-2 control-label"
-        = f.text_field :url, class: 'form-control'
+        = f.label :url
+          | Ссылка на сайт магазина
+        = f.url_field :url, class: 'form-control'
       .form-group
-        = f.label :fb, class: "col-lg-2 control-label"
-        = f.text_field :fb, class: 'form-control'
+        = f.label :fb
+          | Ссылка на сайт магазина Facebook
+        = f.url_field :fb, class: 'form-control'
       .form-group
-        = f.label :vk, class: "col-lg-2 control-label"
-        = f.text_field :vk, class: 'form-control'    
+        = f.label :vk
+          | Ссылка на сайт магазина ВКонтакте
+        = f.url_field :vk, class: 'form-control'
+      - if signed_in? && current_user.is_admin
+        .form-group
+          = f.label :p_type
+            | Категория партнёра
+          = f.select :p_type, PartnerType.pluck(:name, :id), {} , {:class=>"form-control"} 
       .form-group
         = f.label :avatar
+          | Логотип
         = f.file_field :avatar
   .form-group
-    = f.label :desc, class: "col-lg-2 control-label"
-    = f.text_area :desc, class: 'form-control', cols: 40, rows: 15
+    = f.label :desc
+      | Описание
+    = f.text_area :desc, class: 'form-control', cols: 20, rows: 15
   .actions = f.submit 'Save'

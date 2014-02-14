@@ -1,11 +1,24 @@
-#fb-root
-javascript:
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=1442494219315809";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+/good
+  #fb-root
+  javascript:
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=1442494219315809";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
-.fb-share-button data-href="#{fb}" data-type="button_count"
+  .fb-share-button data-href="#{fb}" data-type="button_count"
+
+a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external" target="_blank"
+  i.fa.fa-facebook.fa-2x>
+
+a href="http://vkontakte.ru/share.php?url=#{request.original_url}" target="_blank" rel="external"
+  i.fa.fa-vk.fa-2x>
+
+a href="https://plus.google.com/share?url=#{request.original_url}" target="_blank"
+  i.fa.fa-google-plus.fa-2x>
+
+a href="http://twitter.com/share?text=#{@item.desc.truncate(100)}&url=#{request.original_url}" target="_blank"
+  i.fa.fa-twitter.fa-2x>

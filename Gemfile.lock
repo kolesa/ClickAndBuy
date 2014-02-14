@@ -35,6 +35,8 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.0.1)
       rails (>= 3, < 5)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     annotate (2.6.1)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -98,6 +100,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-sortable-rails (0.9.11)
       railties (>= 3.0, < 5.0)
+    jquery-ui-rails (4.1.1)
+      railties (>= 3.1.0)
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
@@ -112,6 +116,10 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nestedsortabletree-rails (0.1.2.1)
+      actionpack (>= 3.2.8)
+      coffee-rails (>= 3.2.2)
+      jquery-rails (>= 2.1.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
@@ -237,6 +245,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  ancestry
   annotate
   asset_sync
   aws-sdk
@@ -251,8 +260,10 @@ DEPENDENCIES
   jquery-datatables-rails!
   jquery-rails
   jquery-sortable-rails
+  jquery-ui-rails
   kgio
   memcachier
+  nestedsortabletree-rails
   newrelic_rpm
   omniauth
   omniauth-facebook

@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212190011) do
+ActiveRecord::Schema.define(version: 20140214112710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "codes", force: true do |t|
     t.integer  "user_id"
@@ -75,6 +82,20 @@ ActiveRecord::Schema.define(version: 20140212190011) do
   add_index "likes", ["user_id", "item_id"], name: "index_likes_on_user_id_and_item_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
+  create_table "menus", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+    t.string   "position"
+  end
+
+  create_table "partner_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "partners", force: true do |t|
     t.text     "company"
     t.string   "activity"
@@ -99,7 +120,7 @@ ActiveRecord::Schema.define(version: 20140212190011) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "blocked"
-    t.integer  "type"
+    t.integer  "p_type"
   end
 
   create_table "taggings", force: true do |t|

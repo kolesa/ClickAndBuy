@@ -14,4 +14,5 @@
 class Code < ActiveRecord::Base
   belongs_to :user
   belongs_to :item
+  belongs_to :discount, :foreign_key => :discount
 end

@@ -18,17 +18,18 @@
           table.table.table-hover.datatable
             thead
               th.col-lg-2
-              th.col-lg-2 Имя
-              th.col-lg-6 Описание
+              th.col-lg-4 Название магазина
+              th.col-lg-4 Описание
               th.col-lg-2 Действие
             tbody  
               == render 'shop', {shops: @shops}
           /= link_to 'New Shop', new_shop_path
+          = will_paginate @shops, renderer: BootstrapPagination::Rails
 javascript:
   $(function(){
     
     $('.datatable').dataTable({
-      "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"ip><"clear">>',
+      "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"i><"clear">>',
 
       "aoColumnDefs": [
         { 'bSortable': false, 'aTargets': [ 0, 2, 3 ] }

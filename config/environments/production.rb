@@ -1,7 +1,5 @@
 ClickAndBuy::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  ActsAsTaggableOn.remove_unused_tags = true
-  ActsAsTaggableOn.force_lowercase = true
 
   config.assets.cache_store = :dalli_store
   config.action_controller.asset_host = "http://clickandbuy.s3.amazonaws.com"

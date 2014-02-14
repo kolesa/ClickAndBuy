@@ -16,28 +16,46 @@ section.slice.bg-3
     .container
         .row
           .col-lg-8           
-            - if signed_in? && current_user.is_admin && !current_user.owned_shop.nil? && current_user.owned_shop== @shop.id
+            - if signed_in? && current_user.is_admin || !current_user.owned_shop.nil? && current_user.owned_shop== @shop.id
               == render 'shop_menu'
             .main
-              table.table.table-hover
+              table.table.table-hover.datatable
                 thead
                   tr
-                    th.col-lg-2.col-md-2.col-sm-2
+                    th.col-lg-2.col-md-2.col-sm-6
                     th.col-lg-2.col-md-2.col-sm-6 Название
+                    th.col-lg-1.col-md-1.col-sm-1 Лайки
                     th.col-lg-2.col-md-2.col-sm-2 Цена
                     th.col-lg-2.col-md-2.col-sm-3 Действие
                 tbody.items
-                  == render 'item', {items: @items}
+                  == render 'item', {items: @items, stat: false}
 
 
           .col-lg-4
             == render 'info', {shop: @shop}
-        /ul.pagination
-          li.disabled
-            a href="#"
-          li.active
-            a href="#"
-              | 1
-              span.sr-only (current)
-          li
-            a href="#" 2
+          = will_paginate @items, renderer: BootstrapPagination::Rails
+javascript:
+  $(function(){
+    
+    $('.datatable').dataTable({
+      "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"i><"clear">>',
+
+      "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 0, 2,4] }
+      ],
+      "aaSorting": [[ 2, "desc" ]],
+
+      "sPaginationType": "bootstrap"
+    });
+
+    $('.panel-heading').css({'height': "55px"});
+    $('.dataTables_paginate').css({'margin-top': "-33px"});
+
+    $('.dataTables_length').before( $('.dataTables_filter') );
+
+    $('.dataTables_length > label > select').addClass('form-control')
+    $('.dataTables_length > label').addClass('control-label')
+
+    $('#DataTables_Table_0_filter > label > input').addClass('form-control');
+
+  });

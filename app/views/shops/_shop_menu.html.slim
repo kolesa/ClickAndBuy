@@ -1,17 +1,20 @@
 a.btn.btn-success.btn-two href=shop_items_path style="margin: 10px;"
   i.fa.fa-plus.fa-lg>
   |добавить товар
-a.btn.btn-success.btn-two.history href="#" style="margin: 10px;"
+a.btn.btn-success.btn-two href=shop_history_path(@shop) style="margin: 10px;"
   i.fa.fa-archive.fa-lg>
   |История
-a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
+a.btn.btn-success.btn-two href=shop_users_path(@shop) style="margin: 10px;"
   i.fa.fa-users.fa-lg>
   |Участники
-a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
+a.btn.btn-success.btn-two href=shop_codes_path(@shop) style="margin: 10px;"
   i.fa.fa-tags.fa-lg>
   |Купоны
+a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
+  i.fa.fa-envelope.fa-lg>
+  |Создать тикет
 .row
-  .col-lg-6
+  /.col-lg-6
     / work perfectly
     /= form_tag shop_search_path, :method => 'get' do
       = text_field :search, params[:search], placeholder: "Search...", class: "form-control"

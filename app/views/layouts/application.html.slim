@@ -96,7 +96,7 @@ html
 
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
-                - generate_menu().each do |category|
+                /- generate_menu().each do |category|
                     li.dropdown
                       a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=category_search_path(category.name) = category.name
                       
@@ -106,7 +106,7 @@ html
                             li
                               a href=category_search_path(sub_cat.name)
                                 = sub_cat.name
-                
+                = generate_menu Menu.scoped.arrange(:order => :position)
                 
                 - if signed_in?
                   li.dropdown
@@ -264,11 +264,6 @@ html
           });
         });
 
-        $('li.dropdown').mouseenter(function(){
-          $(this).children('ul.dropdown-menu').fadeIn();
-        }).mouseleave(function(){
-          $(this).children('ul.dropdown-menu').hide();
-        });
 
         $('.search_menu').click(function(){
           $('.search_menu_show').addClass('open').toggle();

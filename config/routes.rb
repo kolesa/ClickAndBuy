@@ -1,5 +1,8 @@
 ClickAndBuy::Application.routes.draw do
-  
+
+  resources :menus
+  post   '/menus/sort'  => "menus#sort",  as: :menu_sort
+
   resources :partners
 
   resources :shops
@@ -11,11 +14,9 @@ ClickAndBuy::Application.routes.draw do
     registrations:      "registrations"
   }
 
-  
-
   get    '/users'           => "users#index"
 
-  get    '/history'           => "items#history"
+  get    '/history'         => "items#history"
 
   get    '/vote/:id/:like'  => "users#vote",   as: :user_vote
   get    '/user/:id'        => "users#show",   as: :user_info
@@ -32,6 +33,8 @@ ClickAndBuy::Application.routes.draw do
   get  '/shops/:id/:item/stat' => "shops#stat",     as: :shop_stat
   get  '/shops/:id/search'     => "shops#search",   as: :shop_search
   get  '/shops/:id/codes'      => "shops#codes",    as: :shop_codes
+  get  '/shops/:id/users'      => "shops#users",    as: :shop_users
+  get  '/shops/:id/history'    => "shops#history",  as: :shop_history
   post '/shop/:id/ban'         => "shops#ban",      as: :shop_ban
 
   get  '/tagged'         => 'items#tagged',      as: :tagged
@@ -39,16 +42,11 @@ ClickAndBuy::Application.routes.draw do
   post '/like/:id'       => "items#like_delete", as: :like_delete
   
 
-  get  '/categories'       => "static_pages#category", as: :category
-  get  '/category/:tag'    => "items#tagged",          as: :category_search
+  get  '/categories'       => "menus#index",     as: :category
+  get  '/category/:tag'    => "items#tagged",    as: :category_search
 
   get '/search'            => "static_pages#search",   as: :search
 
-  post '/sort/categories'        => "static_pages#category_sort",        as: :category_sort
-  post '/sort/categories/add'    => "static_pages#category_sort_add",    as: :category_sort_add
-  post '/sort/categories/delete' => "static_pages#category_sort_delete", as: :category_sort_delete
-  post '/sort/categories/edit'   => "static_pages#category_sort_edit",   as: :category_sort_edit
-  
   #get '/autocomplete_user_last_name' => "users#autocomplete_user_last_name", as: :autocomplete_user_last_name
   get "*path", to: "error#error_404"
   root "static_pages#index"

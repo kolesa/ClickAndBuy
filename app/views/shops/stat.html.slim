@@ -27,10 +27,10 @@ section.slice.bg-3
                   tr
                     th.col-lg-2.col-md-2.col-sm-2
                     th.col-lg-2.col-md-2.col-sm-6 Название
+                    th.col-lg-1.col-md-1.col-sm-1 Лайки
                     th.col-lg-2.col-md-2.col-sm-2 Цена
-                    th.col-lg-2.col-md-2.col-sm-3 Действие
                 tbody.items
-                  == render 'item', {items: @items}
+                  == render 'item', {items: @items, stat: true}
 
               .bs-example.bs-example-tabs
                 ul#myTab.nav.nav-tabs.nav-pills
