@@ -70,6 +70,11 @@ class ShopsController < ApplicationController
   # GET /shops/1/items
   def items
     @item = Item.new
+    p 'new'
+    5.times { 
+      p 's'
+      @item.discounts.build
+    }
   end
 
   # POST /shops/1/items

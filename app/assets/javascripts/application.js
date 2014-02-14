@@ -19,6 +19,7 @@
 //= require select2
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
-//= require jquery.ui.all
+//= require jquery.ui.core
+//= require jquery.ui.sortable
 //= require jquery.ui.nestedSortable
 //= require_tree .

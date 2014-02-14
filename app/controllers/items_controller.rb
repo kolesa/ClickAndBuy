@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   # Tags
   def tagged
     if params[:tag].present? 
-      @item = Item.tagged_with(params[:tag]).where(published: true)
+      @item = Item.tagged_with(params[:tag].downcase).where(published: true)
     else 
       @item = Item.all.where(published: true)
     end
@@ -106,13 +106,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
   respond_to do |format|
-      # костыль, потом разобраться с nested_form
-      # Discount.where(item_id: @item).delete_all
-      #Discount.where(item_id: @item).update()
-
-      p item_params
-
-
       if @item.update(item_params)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
