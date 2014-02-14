@@ -73,6 +73,11 @@
                         | Уже лайкнул
                   - else
                       i.fa.fa-heart style=" color: rgba(250,28,25,1);"
+                p
+                  - if signed_in?
+                    h5 Share it!
+                    / && Like.where(item_id: @item.id, user_id: current_user.id).exists?
+                    == render 'shared/share', { :fb => url_for(item_path(@item)), :@item => @item }
           .row
             .col-md-12
               .widget
@@ -127,10 +132,7 @@
               a href="#" style="color: #c0c0c0" =@item.shop.url
             p = @item.shop.desc 
             
-            p
-              - if signed_in?
-                / && Like.where(item_id: @item.id, user_id: current_user.id).exists?
-                == render 'shared/share'
+
             /ul.categories
               li
                 a href="#"

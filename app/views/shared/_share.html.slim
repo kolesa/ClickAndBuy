@@ -11,14 +11,14 @@
 
   .fb-share-button data-href="#{fb}" data-type="button_count"
 
-a href="http://www.facebook.com/share.php?u=#{request.original_url}" rel="external" target="_blank"
+a href="http://www.facebook.com/share.php?u=#{item_url(@item)}" rel="external" target="_blank"
   i.fa.fa-facebook.fa-2x>
 
-a href="http://vkontakte.ru/share.php?url=#{request.original_url}" target="_blank" rel="external"
+a href="http://vkontakte.ru/share.php?url=#{item_url(@item)}" target="_blank" rel="external"
   i.fa.fa-vk.fa-2x>
 
-a href="https://plus.google.com/share?url=#{request.original_url}" target="_blank"
+a href="https://plus.google.com/share?url=#{item_url(@item)}" target="_blank"
   i.fa.fa-google-plus.fa-2x>
 
-a href="http://twitter.com/share?text=#{@item.desc.truncate(100)}&url=#{request.original_url}" target="_blank"
+a href="http://twitter.com/share?text=#{@item.desc.truncate(100)}&url=#{item_url(@item)}" target="_blank"
   i.fa.fa-twitter.fa-2x>
