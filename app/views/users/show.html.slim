@@ -119,7 +119,7 @@
                 
                 / Ссылки для соц.сетей
                 - if signed_in? && current_user == @user
-                  == render 'shared/share', { :fb => url_for(item_path(like.item)) }
+                  == render 'shared/share', { :fb => url_for(item_path(like.item)), :@item => like.item }
 
                   
               /.panel-group id="accordion#{like.item.id}"
