@@ -4,7 +4,6 @@ ClickAndBuy::Application.routes.draw do
   post   '/menus/sort'  => "menus#sort",  as: :menu_sort
 
   resources :partners
-
   resources :shops
   resources :items
 
@@ -25,6 +24,11 @@ ClickAndBuy::Application.routes.draw do
   delete '/user/:id/delete' => "users#delete", as: :user_delete
   get    '/user/:id/own'    => "users#owned" , as: :user_owned
   post   '/user/:id/own'    => "users#own"   , as: :user_own
+
+  # генерирем код для товара
+  get   '/code/:id'              => "code#generate" , as: :code_get
+  get   '/download/:id/code.pdf' => "code#download" , as: :code_download
+
 
   #get  '/item' => "static_pages#item"
   

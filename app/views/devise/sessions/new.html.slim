@@ -13,10 +13,12 @@ section.slice.bg-3
                   = devise_error_messages! 
                   
                   - if alert
-                    .col-lg-6
-                      .alert.alert-error
-                        a.close data-dismiss="alert" x
-                        = alert
+                    
+                      .col-lg-12
+                        .alert.alert-dismissable.alert-warning
+                          button.close data-dismiss="alert" type="button" x
+                          h4 Что то пошло не так ...
+                          p = alert
 
                   .row style="margin-left: 40px"
                     .col-md-3
@@ -48,4 +50,4 @@ section.slice.bg-3
                     .col-md-6
                        =  f.submit "Вход", class: "button btn btn-two pull-right"
               .form-footer style="padding-left: 20px;"
-                /= render "devise/shared/links"
+                = render "devise/shared/links"

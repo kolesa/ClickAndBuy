@@ -1,0 +1,34 @@
+doctype
+html
+  head
+    meta charset="utf-8"
+    title =yield(:title)
+    = wicked_pdf_stylesheet_link_tag 'application'
+  body style="background-color: white;"
+    .section.slice.bg-3
+      .w-section.inverse.container style="padding-top: 20px;"
+        .row
+          .col-lg-6
+            span style="  font-size: 20px"
+              ="#{@like.user.first_name} #{@like.user.last_name}" 
+            span<> ="Вы получили скидку #{@like.item.code.discount.discount}% на следющий товар:"
+          .col-lg-3 style="float: left"
+            = link_to @like.item
+              = image_tag @like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
+
+          .col-lg-6 style="float: left"
+            =<> link_to @like.item, style: "color: #428bca; font-size: 24px"
+              => @like.item.name
+            | от магазина
+            i<> style="color: #428bca; font-size: 20px"
+              = link_to shop_path @like.item.shop
+                = @like.item.shop.name
+            br
+
+          hr
+          .col-lg-6
+            h4 Ваш код на данный товар:
+            h2.text-primary =@like.item.code.code
+            h5 
+              | Предъявите его в магазине и получите скидку
+              strong<> ="#{@like.item.code.discount.discount}%!"

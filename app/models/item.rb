@@ -15,6 +15,7 @@
 #  avatar_updated_at   :datetime
 #  shop_id             :integer
 #  end_date            :date
+#  code_id             :integer
 #
 
 class Item < ActiveRecord::Base
@@ -22,6 +23,7 @@ class Item < ActiveRecord::Base
   belongs_to :shop
   has_many :users, :through => :likes
   has_many :likes
+  has_one :code
 
   has_many :discounts, :dependent => :destroy 
   accepts_nested_attributes_for :discounts

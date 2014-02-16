@@ -96,16 +96,6 @@ html
 
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
-                /- generate_menu().each do |category|
-                    li.dropdown
-                      a.dropdown-toggle data-close-others="true" data-hover="dropdown" href=category_search_path(category.name) = category.name
-                      
-                      - if ActsAsTaggableOn::Tag.where(:parent => category.id).count > 0
-                        ul.dropdown-menu
-                          - ActsAsTaggableOn::Tag.where(:parent => category.id).map do |sub_cat|
-                            li
-                              a href=category_search_path(sub_cat.name)
-                                = sub_cat.name
                 = generate_menu Menu.scoped.arrange(:order => :position)
                 
                 - if signed_in?
@@ -271,6 +261,13 @@ html
 
         $('li.dropdown').hover(function(){
           $('.search_menu_show').hide();
+        });
+
+
+        $('li.dropdown').mouseenter(function(){
+          $(this).children('ul.dropdown-menu').show();
+        }).mouseleave(function(){
+          $(this).children('ul.dropdown-menu').hide();
         });
 
 

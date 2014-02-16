@@ -35,7 +35,6 @@ gem 'unf'
 gem 'jquery-sortable-rails'
 gem 'select2-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
-
 gem 'jquery-ui-rails'
 gem 'nestedsortabletree-rails'
 #gem 'rails3-jquery-autocomplete'
@@ -55,6 +54,8 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 gem 'acts-as-taggable-on'
 gem 'ancestry'
+
+gem 'wicked_pdf'
 
 
 group :development, :test do

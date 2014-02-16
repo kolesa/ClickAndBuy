@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   # GET /user/:id
   def show
-    @likes = Like.where(user: @user)
+    @likes = Like.where(user: @user, ended: false)
     @bars = []
     
     @likes.each do |like|
@@ -41,6 +41,8 @@ class UsersController < ApplicationController
 
       @bars.push( id: like.id, total: total, discounts: discounts, width: width )
     end
+    
+    @codes = Like.where(user: @user, ended: true)
 
   end
 

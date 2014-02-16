@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214112710) do
+ActiveRecord::Schema.define(version: 20140216205218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140214112710) do
     t.datetime "avatar_updated_at"
     t.integer  "shop_id"
     t.date     "end_date"
+    t.integer  "code_id"
   end
 
   create_table "likes", force: true do |t|

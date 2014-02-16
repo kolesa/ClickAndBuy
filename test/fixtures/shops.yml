@@ -15,7 +15,7 @@
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
 #  blocked             :boolean
-#  type                :integer
+#  p_type              :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

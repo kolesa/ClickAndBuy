@@ -15,6 +15,7 @@
 #  avatar_updated_at   :datetime
 #  shop_id             :integer
 #  end_date            :date
+#  code_id             :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
