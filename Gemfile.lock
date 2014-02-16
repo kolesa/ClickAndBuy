@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/camdez/wkhtmltopdf-heroku.git
+  revision: 09f42e0fd9cf98361343738ccd7fdf6395df7dd0
+  specs:
+    wkhtmltopdf-heroku (0.2.0)
+
+GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 788a7b24caf8fe58a5493aa3f6a065879a9f752a
   specs:
@@ -287,3 +293,4 @@ DEPENDENCIES
   wicked_pdf
   will_paginate
   will_paginate-bootstrap
+  wkhtmltopdf-heroku!

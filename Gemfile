@@ -31,6 +31,8 @@ gem 'dalli'
 gem 'newrelic_rpm'
 gem "asset_sync"
 gem 'unf'
+gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
+
 
 gem 'jquery-sortable-rails'
 gem 'select2-rails'
