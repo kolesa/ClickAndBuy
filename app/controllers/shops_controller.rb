@@ -56,7 +56,7 @@ class ShopsController < ApplicationController
     p "#{@shop.name} #{params[:text]}"
 
     ModelMailer.support(@shop, current_user, params[:text]).deliver
-    redirect_to @shop
+    redirect_to @shop, :notice => "Письмо отправленно, спасибо за обращение."
   end
 
   # GET /shops/1/search
