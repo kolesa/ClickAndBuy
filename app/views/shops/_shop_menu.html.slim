@@ -10,7 +10,7 @@ a.btn.btn-success.btn-two href=shop_users_path(@shop) style="margin: 10px;"
 a.btn.btn-success.btn-two href=shop_codes_path(@shop) style="margin: 10px;"
   i.fa.fa-tags.fa-lg>
   |Купоны
-a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
+a.btn.btn-success.btn-two href="#" style="margin: 10px;" data-target="#myModal" data-toggle="modal"
   i.fa.fa-envelope.fa-lg>
   |Создать тикет
 .row
@@ -29,6 +29,19 @@ a.btn.btn-success.btn-two href=edit_shop_path(@shop) style="margin: 10px;"
   /.col-lg-6
     |Show catgory 
     =<> select_tag :id, options_for_select(tags_to_json)
+
+#myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"
+        h4#myModalLabel.modal-title Modal title
+      .modal-body
+        = form_tag shop_support_path, :method => 'get' do
+          = text_area :text, params[:text], placeholder: "Задаайте вопрос...", class: "form-control"
+          .modal-footer
+            = submit_tag "Send", :name => 'ticket'
+
 
 javascript:
   $('.search').click(function(){

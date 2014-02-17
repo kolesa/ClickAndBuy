@@ -10,6 +10,8 @@
           li
             a href=root_path Главная
           li
+            a href=shops_path Магазины
+          li
             a href=shop_path(@shop)
               =@shop.name
           li.active
@@ -24,22 +26,22 @@
             table.table.table-hover
               thead
                 tr
-                  th.col-lg-2.col-md-2.col-sm-2
-                  th.col-lg-2.col-md-2.col-sm-6 Название товара
+                  th.col-lg-1.col-md-1.col-sm-1
+                  th.col-lg-1.col-md-1.col-sm-1 Название товара
                   th.col-lg-1.col-md-1.col-sm-1 Пользователь
-                  th.col-lg-2.col-md-2.col-sm-2 Лайки
+                  th.col-lg-2.col-md-2.col-sm-2 Код
               tbody.items
-                - @code.each do |like|
+                - @codes.each do |like|
                   tr
                     td
                       = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
                     td
                       = "#{like.item.name}"
+                      h5 = "-#{like.discount.discount}%"
                     td
                       = "#{like.user.first_name} #{like.user.last_name}"
                     td
-                      =<> Counter.where(like_id: like).count
-                      i.fa.fa-heart
+                      = like.code
           - else
             h2 Тут ничего нет
             h4 Ещё не один пользователь на получил промо код

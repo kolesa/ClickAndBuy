@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :users, :history, :items, :stat, :search, :codes, :ban]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :support, :users, :history, :items, :stat, :search, :codes, :ban]
   before_action :check_auth, only: [:index, :ban, :create, :destroy, :edit, :users]
 
   # GET /shops
@@ -46,8 +46,17 @@ class ShopsController < ApplicationController
     @shop = Shop.new
   end
 
+  # GET /shop/:id/codes
   def codes
-    @codes = Code.where(item_id: @shop.items.pluck(:id))  
+    @codes = Code.where(item_id: @shop.items.pluck(:id))
+  end
+
+  # GET /shop/:id/support
+  def support
+    p "#{@shop.name} #{params[:text]}"
+
+    ModelMailer.support(@shop, current_user, params[:text]).deliver
+    redirect_to @shop
   end
 
   # GET /shops/1/search
@@ -141,10 +150,10 @@ class ShopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shop_params
-      params.require(:shop).permit(:name, :desc, :url, :fb, :vk, :avatar, :p_type)
+      params.require(:shop).permit(:name, :desc, :url, :fb, :vk, :avatar, :p_type, :text)
     end
 
     def item_params
-      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :ids, :item)
+      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :ids, :item, :text)
     end
 end

@@ -40,11 +40,13 @@ ClickAndBuy::Application.routes.draw do
   get  '/shops/:id/users'      => "shops#users",    as: :shop_users
   get  '/shops/:id/history'    => "shops#history",  as: :shop_history
   post '/shop/:id/ban'         => "shops#ban",      as: :shop_ban
+  get  '/shop/:id/support'     => "shops#support",  as: :shop_support
 
   get  '/tagged'         => 'items#tagged',      as: :tagged
   post '/items/:id/like' => "items#like",        as: :like
   post '/like/:id'       => "items#like_delete", as: :like_delete
   
+
 
   get  '/categories'       => "menus#index",     as: :category
   get  '/category/:tag'    => "items#tagged",    as: :category_search
