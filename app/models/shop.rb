@@ -33,6 +33,9 @@ class Shop < ActiveRecord::Base
     :url => "/:image/:id/:style/:basename.:extension",
     :path => ":image/:id/:style/:basename.:extension"
 
-  validates_attachment :avatar, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
+  #validates_attachment :avatar, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
+  
   validates :name, presence: true
+  validates :url, presence: true
+  validates :desc, presence: true
 end

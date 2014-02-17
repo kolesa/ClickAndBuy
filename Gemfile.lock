@@ -57,7 +57,6 @@ GEM
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
-    cancan (1.6.10)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -258,7 +257,6 @@ DEPENDENCIES
   asset_sync
   aws-sdk
   bcrypt-ruby
-  cancan
   coffee-rails
   dalli
   devise

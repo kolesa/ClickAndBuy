@@ -42,6 +42,7 @@ class Item < ActiveRecord::Base
     :path => ":image/:id/:style/:basename.:extension"
     
   #validates_attachment :avatar, :content_type => { :content_type => ["image/jpg", "image/gif", "image/png"] }
+  
   validates :name, presence: true
   validates :end_date, presence: true
   validates :price, presence: true

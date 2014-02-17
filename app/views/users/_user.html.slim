@@ -25,6 +25,9 @@
         h5
           span.label.label-default
             |banned
+      - if user.provider
+          span.label.label-success
+            = user.provider
     td
       .btn-group
         button.btn.btn-info type="button"

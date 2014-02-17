@@ -96,7 +96,7 @@ html
 
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
-                = generate_menu Menu.scoped.arrange(:order => :position)
+                = generate_menu Menu.all.arrange(:order => :position)
                 
                 - if signed_in?
                   li.dropdown

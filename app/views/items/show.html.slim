@@ -34,7 +34,7 @@
             .col-md-5
               .product-info
                 h3 = @item.name
-                - @item.tag_list.each do |tag|
+                /- @item.tag_list.each do |tag|
                   |tag
                   =tag
                 span.star-rating.pull-left
@@ -121,57 +121,35 @@
                           i.fa.fa-comment-o
                           | Write a review
         .col-md-3
-          .widget
+          .widget style="margin-top: 10px;"
             /shop desc here
-            = image_tag @item.shop.avatar.url, class: "img-thumbnail img-responsive"
-            h2 
-              =link_to shop_path(@item.shop)
-                =@item.shop.name
-            p
-              i.fa.fa-globe>
-              a href="#" style="color: #c0c0c0" =@item.shop.url
-            p = @item.shop.desc 
+            == render 'shops/info', {shop: @item.shop}
             
+          /.widget
+            h3.section-title Categories
+            ul.categories
+              - Menu.roots.each do |cat|
+                li
+                  = link_to cat.name, cat
 
-            /ul.categories
-              li
-                a href="#"
-                  | Laptops
-                  i (20)
-              li
-                a href="#"
-                  | Tablets
-                  i (8)
-              li
-                a href="#"
-                  | Phones
-                  i (16)
-              li
-                a href="#"
-                  | Mice
-                  i (82)
-              li
-                a href="#"
-                  | Cameras
-                  i (33)
           h3.section-title Search products
           .widget.widget-highlight
             form role="form"
               .form-group
                 label Search for products
-                input.form-control placeholder="I want to find..." type="text"
-              .form-group
+                input.form-control name="search" placeholder="I want to find..." type="text"
+              /.form-group
                 label Category
                 select.form-control
                   option Phones
                   option Laptops
                   option Cameras
                   option Tablets
-              .checkbox
+              /.checkbox
                 label
                   input type="checkbox"
                     | Display all
-              button.btn.btn-two type="submit"
+              /button.btn.btn-two type="submit"
                 |Search
           h3.section-title More stuff
           .widget.widget-highlight

@@ -14,4 +14,8 @@
 
 class Discount < ActiveRecord::Base
   has_many :items
+
+  validates :discount, :numericality => { :greater_than => 0 }
+  validates :likes,    :numericality => { :greater_than => 0 }
+  validates :count,    :numericality => { :greater_than => 0 }
 end

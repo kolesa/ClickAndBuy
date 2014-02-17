@@ -41,7 +41,6 @@ class CodeController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def set_item
-      redirect_to root_path unless signed_in? and current_user.is_admin
       @like = Like.find(params[:id])
     end
 end
