@@ -1,5 +1,4 @@
 .head
-  h2 ="Новый вопрос от #{@shop.name}"
-  h3 ="от #{@user.first_name} #{@user.last_name}"
+  h2 ="Новый вопрос от #{shop_url(@shop.name, @shop)} - #{@user.first_name} #{@user.last_name}"
   .content
-    ="#{@text}"
+    ="#{@text.to_s}"
