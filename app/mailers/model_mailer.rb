@@ -11,7 +11,7 @@ class ModelMailer < ActionMailer::Base
     @shop = shop
     @user = user
     @text = text
-    mail    to: "egokok@gmail.com", cc: 'egokok@yandex.ru', bcc: 'rdrule@mail.ru', subject: "Новый вопрос от #{@shop.name}"
+    mail    to: "egokok@gmail.com", cc: 'vishma@mail.ru', bcc: 'antonary@mail.ru', subject: "Новый вопрос от #{@shop.name}"
     
   end
 end
