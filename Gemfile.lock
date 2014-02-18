@@ -56,9 +56,8 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
-    bootstrap-wysiwyg-rails (0.3.1)
-      actionpack (>= 3.1)
-      railties (>= 3.1)
+    bootstrap-wysihtml5-rails (0.3.1.23)
+      railties (>= 3.0)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -260,7 +259,7 @@ DEPENDENCIES
   asset_sync
   aws-sdk
   bcrypt-ruby
-  bootstrap-wysiwyg-rails
+  bootstrap-wysihtml5-rails
   coffee-rails
   dalli
   devise

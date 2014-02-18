@@ -42,8 +42,14 @@
   .form-group
     = f.label :desc
       | Описание
-    = f.text_area :desc, class: 'form-control', cols: 20, rows: 15
+    = f.text_area :desc, class: 'form-control wysihtml5', cols: 20, rows: 15
   .actions = f.submit 'Save'
 
 javascript:
-  $('#shop_desc').wysiwyg()
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
