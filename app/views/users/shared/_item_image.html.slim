@@ -1,5 +1,5 @@
 = link_to like.item
-  = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
+  = image_tag like.item.avatar.url(:medium), class: "img-rounded img-responsive", style: "height: 165px; margin: auto;"
 - if current_user == @user
   .del style="position: absolute;left: 0px; top: 5px;"
     a.btn-lg.like-delete data={url: like_delete_path(like), id: like.id} href="#"
