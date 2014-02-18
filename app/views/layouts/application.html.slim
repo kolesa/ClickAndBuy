@@ -8,7 +8,7 @@ doctype
 html
   head
     meta charset="utf-8"
-    title =yield(:title)
+    title = yield(:title) 
     
     / vk share
     meta name="title" content=yield(:title)
@@ -41,93 +41,21 @@ html
     = csrf_meta_tags
   body
     /боковое меню
-    - if signed_in? && current_user.is_admin
-      section#asideMenu.aside-menu
-        form.form-inline.form-search
-          .input-group
-            input.form-control placeholder="Поиск..." type="search"
-              span.input-group-btn
-                button#btnHideAsideMenu.btn.btn-close title="Hide sidebar" type="button"
-        h5.side-section-title Управление
-        .nav
-          ul
-            li
-              = link_to 'Магазины', shops_path
-            li
-              = link_to 'Товары', items_path
-            li
-              = link_to 'Пользователи', users_path
-            li
-              = link_to 'Категории', category_path
-            li
-              = link_to 'История публикаций', history_path
-        h5.side-section-title Партнёры
-        .nav
-          ul
-            li
-              = link_to 'Заявки от партнёров', partners_path
-        h5.side-section-title Информация
-        .nav
-          ul
-            li
-              a href="#" Создать тикет
-            li
-              a href="#" Новости
-            li
-              a href="#" FAQ
-        h5.side-section-title Контактная информация
-        .contact-info
-          h5 Email
-          p hello@webpixels.ro
-          h5 Skype
-          p clickandbuy
-          h5 Phone
-          p +10 724 1234 567
+    - if signed_in? && ( current_user.owned_shop > 0 || current_user.is_admin )
+      == render 'shared/admin_menu'
     .wrapper
       header data-spy="affix" data-offset-top="60" style="z-index: 100;"
         .navbar.navbar-white
           .container
             .navbar-header
               button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
-                span.sr-only
-                  | Toggle navigation
+                span.sr-only Toggle navigation
               a.navbar-brand href=root_path
                 img alt="Boomerang Bootstrap Template Logo" src=image_path"boomerang-logo.png"
 
             .navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
-                = generate_menu Menu.all.arrange(:order => :position)
-                
-                - if signed_in?
-                  li.dropdown
-                    a.dropdown-toggle data-close-others="true" data-hover="dropdown" style="padding: 17px 5px 17px 12px;" href=user_info_path(current_user)
-                      = image_tag current_user.avatar.url(:thumb), class: "img-rounded img-responsive", style: "-webkit-border-radius: 3px; -moz-border-radius: 3px;-ms-border-radius: 3px;-o-border-radius: 3px;border-radius: 3px;height: 42px;margin-right: 10px; display: inline-block"
-                      = "#{current_user.first_name} #{current_user.last_name} "
-                    .badge style="position: absolute; top: 10px;background-color: #d9534f;"
-                        =<> current_user.votes
-                        /i.fa.fa-heart
-                    ul.dropdown-menu style="width: 100%;"
-                      li= link_to user_info_path(current_user)
-                        | Личный кабинет
-                      li.devider
-                      li= link_to destroy_user_session_path, :method => 'DELETE'
-                        | Выход
-                - else
-                  li= link_to new_user_session_path
-                    i.fa.fa-sign-in
-
-                li.search_menu
-                  a.dropdown-toggle href="#" data-close-others="true"
-                    i.fa.fa-search
-                  ul.dropdown-menu.search_menu_show
-                    li
-                      form.navbar-form.navbar-left style="margin: 10;" method="post"
-                        input.form-control.search.input-large.search placeholder="Search" type="hidden" name="search" style="padding: 0; border: 0;"
-
-                - if signed_in? and current_user.is_admin
-                  li
-                    a#cmdAsideMenu.dropdown-toggle.dropdown-form-toggle href="#" title="Open sidebar"
-                      i.fa.fa-outdent
+                == render 'shared/main_menu'
       = yield
       footer
         .container

@@ -1,18 +1,11 @@
 class UsersController < ApplicationController
-  before_action :index_item, only: [:index]
+  before_action :check_auth, only: [:index]
   before_action :get_user,   only: [:show, :vote]
   before_action :set_item,   only: [:delete, :admin, :ban, :owned, :own]
 
-  helper_method :sort_column, :sort_direction
-
-  def autocomplete_user_last_name
-    users = User.where("last_name LIKE ?" , "%#{params[:last_name]}%")
-    render json: users.map { |x| [x.id, x.last_name]}
-  end
-
   # GET /users
   def index
-    @users = User.search(params[:user_search]).order("#{sort_column} #{sort_direction}")
+    @users = User.all.order("created_at DESC").paginate(:per_page => 10, :page => params[:page])
   end
 
   def vote
@@ -102,15 +95,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def index_item
+    def check_auth
       redirect_to root_path unless signed_in? and current_user.is_admin
     end
-
-    def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
-    end  
-      
-    def sort_direction  
-      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"   
-    end 
 end

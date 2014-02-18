@@ -1,0 +1,46 @@
+section#asideMenu.aside-menu
+  /form.form-inline.form-search
+    .input-group
+      input.form-control placeholder="Поиск..." type="search"
+        span.input-group-btn
+          button#btnHideAsideMenu.btn.btn-close title="Hide sidebar" type="button"
+  h5.side-section-title Управление
+  .nav
+    ul
+      /админ 
+      -if signed_in? && current_user.is_admin
+        li = link_to 'Магазины',           shops_path
+        li = link_to 'Товары',             items_path
+        li = link_to 'Пользователи',       users_path
+        li = link_to 'Категории',          category_path
+        li = link_to 'История публикаций', history_path
+      /партнёр
+      -elsif signed_in? && current_user.owned_shop > 0
+        li = link_to 'Магазин',            shop_path(current_user.owned_shop)
+        li = link_to 'Пользователи',       shop_users_path(current_user.owned_shop)
+        li = link_to 'Купоны',             shop_codes_path(current_user.owned_shop)
+        li = link_to 'История публикаций', shop_history_path(current_user.owned_shop)
+  
+  -if signed_in? && current_user.is_admin
+    h5.side-section-title Партнёры
+    .nav
+      ul
+        li
+          = link_to 'Заявки от партнёров', partners_path
+  h5.side-section-title Информация
+  .nav
+    ul
+      li
+        a href="#" Создать тикет
+      li
+        a href="#" Новости
+      li
+        a href="#" FAQ
+  h5.side-section-title Контактная информация
+  .contact-info
+    h5 Email
+    p hello@webpixels.ro
+    h5 Skype
+    p clickandbuy
+    h5 Phone
+    p +10 724 1234 567

@@ -13,18 +13,18 @@
             |Магазины
 .section.slice.bg-3
   .w-section.inverse.container
-      .row style="margin-top: 20px;"
-        .col-lg-12.col-md-12.col-sm-12
-          table.table.table-hover.datatable
-            thead
-              th.col-lg-2
-              th.col-lg-4 Название магазина
-              th.col-lg-4 Описание
-              th.col-lg-2 Действие
-            tbody  
-              == render 'shop', {shops: @shops}
-          /= link_to 'New Shop', new_shop_path
-          = will_paginate @shops, renderer: BootstrapPagination::Rails
+    .row style="margin-top: 20px;"
+      .col-lg-12.col-md-12.col-sm-12
+        table.table.table-hover.datatable
+          thead
+            th.col-lg-2
+            th.col-lg-4 Название магазина
+            th.col-lg-4 Описание
+            th.col-lg-2 Действие
+          tbody  
+            == render 'shop', {shops: @shops}
+        /= link_to 'New Shop', new_shop_path
+        = will_paginate @shops, renderer: BootstrapPagination::Rails
 javascript:
   $(function(){
     

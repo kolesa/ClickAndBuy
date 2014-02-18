@@ -145,7 +145,7 @@ class ShopsController < ApplicationController
     end
 
     def check_auth
-      redirect_to root_path unless signed_in? && current_user.is_admin
+      redirect_to root_path unless signed_in? && ( current_user.owned_shop > 0 || current_user.is_admin )
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

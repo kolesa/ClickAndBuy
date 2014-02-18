@@ -1,6 +1,9 @@
 p
   a href=shop_path(shop)
     = image_tag shop.avatar.url, class: "img-rounded img-responsive"
+  - if signed_in? && ( current_user.owned_shop > 0 || current_user.is_admin )
+    a href=edit_shop_path(shop) style="position: absolute;top: 10px;right: 10px;"
+      i.fa.fa-edit
 
 h2 style="margin-top: 0px;"
   = shop.name
