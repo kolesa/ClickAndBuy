@@ -3,7 +3,16 @@
 # JWELknr9Lis57YQn55kCsT6fr1E44MxutO+Jo/fK
 
 include ActionView::Helpers::AssetTagHelper
-=begin
+
+User.delete_all
+Item.delete_all
+Shop.delete_all
+Discount.delete_all
+Like.delete_all
+Counter.delete_all
+Code.delete_all
+
+
 admin = User.create(
   email: 'admin@click.ru',
   password: 'qweasdzxc',
@@ -28,20 +37,6 @@ admin = User.create(
   )  
 end
 
-# Shop
-  #  id                  :integer          not null, primary key
-  #  name                :string(255)
-  #  desc                :text
-  #  url                 :string(255)
-  #  fb                  :string(255)
-  #  vk                  :string(255)
-  #  created_at          :datetime
-  #  updated_at          :datetime
-  #  avatar_file_name    :string(255)
-  #  avatar_content_type :string(255)
-  #  avatar_file_size    :integer
-  #  avatar_updated_at   :datetime
-  #
 Shop.create(
   name:       Faker::Company.name,
   desc:       Faker::Lorem.sentence(30),
@@ -50,22 +45,7 @@ Shop.create(
   fb:         Faker::Internet.url,
   avatar:     File.open([Rails.root, '/app/assets', image_path("seed/shop.png")].join)
   )
-=end
-# Items
-  #  id                  :integer          not null, primary key
-  #  name                :string(255)
-  #  desc                :text
-  #  published           :boolean
-  #  price               :integer
-  #  created_at          :datetime
-  #  updated_at          :datetime
-  #  avatar_file_name    :string(255)
-  #  avatar_content_type :string(255)
-  #  avatar_file_size    :integer
-  #  avatar_updated_at   :datetime
-  #  discount            :integer
-  #  shop_id             :integer
-  #
+
 for file in 1..6 do
   Item.create(
     shop_id:    Shop.first.id,
@@ -83,20 +63,6 @@ Item.where(id: [1..600]).each do |item|
   end
 end
 
-
-
-# Partners
-  #  id         :integer          not null, primary key
-  #  company    :text
-  #  activity   :string(255)
-  #  name       :text
-  #  phone      :text
-  #  email      :text
-  #  url        :text
-  #  created_at :datetime
-  #  updated_at :datetime
-  #
-=begin
 10.times do |partnet|
   partnet = Partner.create(
     company:   Faker::Company.name,
@@ -107,4 +73,3 @@ end
     url:       Faker::Internet.url,
   )  
 end
-=end

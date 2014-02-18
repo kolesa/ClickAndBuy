@@ -15,7 +15,13 @@
 class Discount < ActiveRecord::Base
   has_many :items
 
-  validates :discount, :numericality => { :greater_than => 0 }, allow_nill: true
-  validates :likes,    :numericality => { :greater_than => 0 }, allow_nill: true
-  validates :count,    :numericality => { :greater_than => 0 }, allow_nill: true
+  
+  validates :discount, :numericality => { :greater_than => 0 }, 
+    :if => Proc.new { |a| a.active }
+  
+  validates :likes,    :numericality => { :greater_than => 0 }, 
+    :if => Proc.new { |a| a.active }
+  
+  validates :count,    :numericality => { :greater_than => 0 }, 
+    :if => Proc.new { |a| a.active }
 end
