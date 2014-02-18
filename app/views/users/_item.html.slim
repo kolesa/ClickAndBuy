@@ -2,6 +2,10 @@
   .col-lg-3
     == render 'users/shared/item_image', {like: like}
 
+    span.label.label-success style="position: absolute; top:0px; left: 70px;"
+      = like.item.price
+      i.fa.fa-rub<>
+
   .col-lg-6
     == render 'users/shared/item_info', {like: like}
 
@@ -70,50 +74,36 @@
 
       - if signed_in? && current_user == @user
         - if max_discount > 0
-          - unless like.item.discounts.where(active: true).pluck(:count).sum(&:to_i)
+          - if like.item.discounts.where(active: true).pluck(:count).sum(&:to_i) > 0
             .code
               a.label.label-danger.price.price-over.btn-two.tip href=code_get_path(like.id) style="position: absolute; left: 10px; top: 50px;" data-toggle="tooltip" data-placement="right" title=" Получить купон на скидку! "
                 p = "-#{max_discount}%"
                 p
                   = "- #{like.item.price/100*max_discount} "
                   i.fa.fa-rub
+      / кто лайкнул   
+      .panel-group id="accordion#{like.item.id}"
+        .panel style="position: absolute; top: 50px; left: 130px;"
+          .panel-headingz
+            h4.panel-title.open
+              a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion#{like.item.id}"
+                ="Понравилось #{like.counters.count} людям"
+                = 
+          .panel-collapse.collapse.in*{id: like.item.id.to_s}
+            .panel-bodyz style="margin: 4px 0"
+              - like.counters.last(5).reverse.each do |item|
+                .name style="float: left; margin: 2px; width: 32px;"
+                  =link_to user_info_path(item.user)
+                    - if item.user.avatar_file_name 
+                      = image_tag item.user.avatar.url(:thumb), class: "img-rounded img-responsive", title: "#{item.user.first_name} #{item.user.last_name}"
+                    - else
+                        img.img-rounded.img-responsive src="http://placehold.it/80x80&text=User" *{title: "#{item.user.first_name} #{item.user.last_name}"} 
 
-      .row.text-right style="position: absolute;bottom: -90;right: 15;"
-        small
-          i 
-            = "дата окончания: "
-            strong
-              = I18n.l like.item.end_date, :format => :long
-      
-      / Ссылки для соц.сетей
-      .col-lg-12.text-right
-        - if signed_in? && current_user == @user
-          == render 'shared/share', { :fb => url_for(item_path(like.item)), :@item => like.item }
 
-  .col-lg-2
+  .col-lg-3.text-center
 
-    span.label.label-success style="margin-top:5px;"
-      = like.item.price
-      i.fa.fa-rub<>
-    i style="position: absolute; " = like.counters.count
+    /span style="position: absolute; " = like.counters.count
 
-    / кто лайкнул   
-    /.panel-group id="accordion#{like.item.id}" style="margin-top: 138px; "
-      .panel
-        .panel-headingz
-          h4.panel-title
-            a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion#{like.item.id}"
-              | Кто лайкнул
-              = 
-        .panel-collapse.collapse*{id: like.item.id.to_s}
-          .panel-bodyz style="margin: 4px 0"
-            - like.counters.last(5).reverse.each do |item|
-              .name style="float: left; margin: 2px; width: 32px;"
-                =link_to user_info_path(item.user)
-                  - if item.user.avatar_file_name 
-                    = image_tag item.user.avatar.url(:thumb), class: "img-rounded img-responsive", title: "#{item.user.first_name} #{item.user.last_name}"
-                  - else
-                      img.img-rounded.img-responsive src="http://placehold.it/80x80&text=User" *{title: "#{item.user.first_name} #{item.user.last_name}"} 
 
 
     .btn-lg style="margin-top:5px; color: #e74c3c;"
@@ -125,8 +115,16 @@
       - else
 
         a href="#"
-          span.fa.fa-heart.fa-4x.heart.pop data-url="#{user_vote_path(like.users.first.id, like.counters.first.like.id)}"
+          / add pop class
+          span.fa.fa-heart.fa-4x.heart data-url="#{user_vote_path(like.users.first.id, like.counters.first.like.id)}" data-content="тут будут лайки"
+    - if signed_in? && current_user == @user
+      == render 'shared/share', { :fb => url_for(item_path(like.item)), :@item => like.item }
 
-  /h4 = like.counters.count
+  .row.text-right style="position: absolute;bottom: 0px;right: 32px;"
+    small
+      i 
+        = "дата окончания: "
+        strong
+          = I18n.l like.item.end_date, :format => :long
 
 hr
