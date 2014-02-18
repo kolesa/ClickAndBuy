@@ -41,8 +41,6 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'jquery-ui-rails'
 gem 'nestedsortabletree-rails'
 #gem 'rails3-jquery-autocomplete'
-gem 'bootstrap-wysihtml5-rails'
-
 gem 'aws-sdk'
 gem 'slim-rails'
 gem 'paperclip'

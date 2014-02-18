@@ -22,5 +22,4 @@
 //= require jquery.ui.core
 //= require jquery.ui.sortable
 //= require jquery.ui.nestedSortable
-//= require bootstrap-wysihtml5/b3
 //= require_tree .
