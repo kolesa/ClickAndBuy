@@ -1,0 +1,132 @@
+.row
+  .col-lg-3
+    == render 'users/shared/item_image', {like: like}
+
+  .col-lg-6
+    == render 'users/shared/item_info', {like: like}
+
+    / прогрессбар
+    .col-lg-12 style="padding: 0"
+      / HELL HARDCODE LEVEL 9000
+      - max_discount = 0
+      - @bars.each do |x|
+        - if x[:id] == like.id
+          - array = x[:discounts]
+          - total = x[:total]
+          
+          / смотрим в какую скидку мы попадаем
+          - for i in 0 ... array.size
+            
+            / расчет для первого прогрессбара
+            - if array.first == array[i]
+
+              - if x[:total] <= array.first.likes
+                - width = 100.0*x[:total]/array.first.likes
+              - else
+                - width = 100.0
+
+              .progress.tip style="width: #{x[:width]}%; display: inline-block; border-top-right-radius: 0; border-bottom-right-radius: 0; " data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
+                .progress-bar.progress-bar-info style="width: #{width}%"
+                  - if width == 100
+                    - max_discount = array.first.discount
+                    span style="position: absolute;top: 8px; text-align: center;"
+                      i.fa.fa-thumbs-o-up
+            
+
+            - elsif array.last == array[i]
+              
+              - if x[:total] <= array.last.likes and x[:total] > array.slice(-2,1).first.likes
+                - width = 100.0*x[:total]/array.last.likes
+                - max_discount = array.slice(-2,1).first.discount
+              - elsif x[:total] > array.last.likes
+                - width = 100.0
+              - else
+                - width = 0
+              
+              .progress.tip style="width: #{x[:width]}%; display: inline-block; border-top-left-radius: 0; border-bottom-left-radius: 0;" data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
+                .progress-bar.progress-bar-info style="width: #{width}%"
+                  - if width == 100
+                    - max_discount = array.last.discount
+                      span style="position: absolute;top: 8px; text-align: center;"
+                        i.fa.fa-thumbs-o-up
+
+            - else
+
+              - if x[:total] > array[i-1].likes and x[:total] <= array[i].likes  
+                - width = 100.0*( x[:total] )/array[i].likes
+                - max_discount = array[i-1].discount
+              - elsif x[:total] > array[i].likes
+                - width = 100.0
+              - else
+                - width = 0
+
+              .progress.tip style="width: #{x[:width]}%; display: inline-block; border-radius: 0; border-left: 1px solid rgba(210, 233, 255, 0.88);border-right: 1px solid rgba(210, 233, 255, 0.88);" data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
+                .progress-bar.progress-bar-info style="width: #{width}%"
+                  - if width == 100
+                    - max_discount = array[i].discount
+                    span style="position: absolute;top: 8px; text-align: center;"
+                      i.fa.fa-thumbs-o-up
+          
+
+      - if signed_in? && current_user == @user
+        - if max_discount > 0
+          - unless like.item.discounts.where(active: true).pluck(:count).sum(&:to_i)
+            .code
+              a.label.label-danger.price.price-over.btn-two.tip href=code_get_path(like.id) style="position: absolute; left: 10px; top: 50px;" data-toggle="tooltip" data-placement="right" title=" Получить купон на скидку! "
+                p = "-#{max_discount}%"
+                p
+                  = "- #{like.item.price/100*max_discount} "
+                  i.fa.fa-rub
+
+      .row.text-right style="position: absolute;bottom: -90;right: 15;"
+        small
+          i 
+            = "дата окончания: "
+            strong
+              = I18n.l like.item.end_date, :format => :long
+      
+      / Ссылки для соц.сетей
+      .col-lg-12.text-right
+        - if signed_in? && current_user == @user
+          == render 'shared/share', { :fb => url_for(item_path(like.item)), :@item => like.item }
+
+  .col-lg-2
+
+    span.label.label-success style="margin-top:5px;"
+      = like.item.price
+      i.fa.fa-rub<>
+    i style="position: absolute; " = like.counters.count
+
+    / кто лайкнул   
+    /.panel-group id="accordion#{like.item.id}" style="margin-top: 138px; "
+      .panel
+        .panel-headingz
+          h4.panel-title
+            a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion#{like.item.id}"
+              | Кто лайкнул
+              = 
+        .panel-collapse.collapse*{id: like.item.id.to_s}
+          .panel-bodyz style="margin: 4px 0"
+            - like.counters.last(5).reverse.each do |item|
+              .name style="float: left; margin: 2px; width: 32px;"
+                =link_to user_info_path(item.user)
+                  - if item.user.avatar_file_name 
+                    = image_tag item.user.avatar.url(:thumb), class: "img-rounded img-responsive", title: "#{item.user.first_name} #{item.user.last_name}"
+                  - else
+                      img.img-rounded.img-responsive src="http://placehold.it/80x80&text=User" *{title: "#{item.user.first_name} #{item.user.last_name}"} 
+
+
+    .btn-lg style="margin-top:5px; color: #e74c3c;"
+      /=like.item.end_date
+      - if !like.item.end_date.nil? && Date.today > like.item.end_date
+        | Акция закончилась
+      - elsif like.item.discounts.where(active: true).pluck(:count).sum(&:to_i) == 0
+        | Товар закончился
+      - else
+
+        a href="#"
+          span.fa.fa-heart.fa-4x.heart.pop data-url="#{user_vote_path(like.users.first.id, like.counters.first.like.id)}" data-content="#{{render partial:'shared/user_share',layout: false, @item => like.item   }}"
+
+  /h4 = like.counters.count
+
+hr

@@ -1,0 +1,8 @@
+a href="http://www.facebook.com/share.php?u=#{item_url(@item)}" target="_blank"
+  i.fa.fa-facebook.fa-2x>
+a href="http://vkontakte.ru/share.php?url=#{item_url(@item)}" target="_blank"
+  i.fa.fa-vk.fa-2x>
+a href="https://plus.google.com/share?url=#{item_url(@item)}" target="_blank"
+  i.fa.fa-google-plus.fa-2x>
+a href="http://twitter.com/share?text=#{@item.desc.truncate(100)}&url=#{item_url(@item)}" target="_blank"
+  i.fa.fa-twitter.fa-2x>

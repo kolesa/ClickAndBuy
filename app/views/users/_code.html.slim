@@ -1,0 +1,17 @@
+.row
+  .col-lg-3
+    == render 'users/shared/item_image', {like: like}
+
+  .col-lg-6
+    == render 'users/shared/item_info', {like: like}
+
+  .col-lg-6
+    h4 Ваш код на данный товар:
+    h2.text-primary =like.item.code.code
+    h5 
+      | Предъявите его в магазине и получите скидку
+      strong<> ="#{like.item.code.discount.discount}%!"
+    a href=code_download_path(like)
+      i.fa.fa-download<>
+      |Скачать pdf
+                
