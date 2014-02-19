@@ -120,11 +120,11 @@
     - if signed_in? && current_user == @user
       == render 'shared/share', { :fb => url_for(item_path(like.item)), :@item => like.item }
 
-  .row.text-right style="position: absolute;bottom: 0px;right: 32px;"
-    small
-      i 
-        = "дата окончания: "
-        strong
-          = I18n.l like.item.end_date, :format => :long
+    .row.text-right style="position: absolute;bottom: -55px;right: 32px;"
+      small
+        i 
+          = "дата окончания: "
+          strong
+            = I18n.l like.item.end_date, :format => :long
 
 hr

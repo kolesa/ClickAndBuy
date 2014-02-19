@@ -18,7 +18,7 @@ section.slice.bg-3
     .container
         .row
           .col-lg-8           
-            - if signed_in? && current_user.is_admin or current_user.owned_shop == @shop.id
+            - if signed_in? && (current_user.is_admin || current_user.owned_shop == @shop.id)
               == render 'shop_menu'
             .main
               table.table.table-hover.datatable
@@ -28,7 +28,8 @@ section.slice.bg-3
                     th.col-lg-2.col-md-2.col-sm-6 Название
                     th.col-lg-1.col-md-1.col-sm-1 Лайки
                     th.col-lg-2.col-md-2.col-sm-2 Цена
-                    th.col-lg-2.col-md-2.col-sm-3 Действие
+                    - if signed_in? && (current_user.is_admin || current_user.owned_shop == @shop.id)
+                      th.col-lg-2.col-md-2.col-sm-3 Действие
                 tbody.items
                   == render 'item', {items: @items, stat: false}
 

@@ -21,15 +21,15 @@
       .form-group
         = f.label :url
           | Ссылка на сайт магазина
-        = f.url_field :url, class: 'form-control'
+        = f.text_field :url, class: 'form-control'
       .form-group
         = f.label :fb
           | Ссылка на сайт магазина Facebook
-        = f.url_field :fb, class: 'form-control'
+        = f.text_field :fb, class: 'form-control'
       .form-group
         = f.label :vk
           | Ссылка на сайт магазина ВКонтакте
-        = f.url_field :vk, class: 'form-control'
+        = f.text_field :vk, class: 'form-control'
       - if signed_in? && current_user.is_admin
         .form-group
           = f.label :p_type

@@ -30,24 +30,24 @@
               .product-gallery
                 .primary-image
                   a.theater href="#" rel="group"
-                    img.img-responsive alt="" src=@item.avatar.url
+                    img.img-responsive alt="" src=@item.avatar.url style="max-height: 500px;"
             .col-md-5
               .product-info
-                h3 = @item.name
+                /h3 
+                  = @item.name
                 /- @item.tag_list.each do |tag|
                   |tag
                   =tag
-                span.star-rating.pull-left
+                span.star-rating.pull-left style="margin-top: 30px;"
                   i.fa.fa-star style="margin: 1px;"
                   i.fa.fa-star  style="margin: 1px;"
                   i.fa.fa-star  style="margin: 1px;"
                   i.fa.fa-star-half-empty  style="margin: 1px;"
                   i.fa.fa-star-o  style="margin: 1px;"
-                span.review-rating.pull-left style="margin-left:15px;"
+                /span.review-rating.pull-left style="margin-left:15px;"
                   a> href="#" прочитать комментарии(23)
                 span.clearfix
-                p
-                  = @item.desc
+                / p = @item.desc
                 /input name="cant" style="width:60px; text-align:center; margin-right:5px; height:34px;" type="number" value="1"
                   button.btn.btn-two name="submit" type="submit"
                   .product-short-info
@@ -92,34 +92,24 @@
                         | Информация
                   .tab-content
                     #one.tab-pane.active
-                      p
-                        h3 Доступно товара
-                        table.table
-                          thead
-                            th Скидка
-                            th Кол-во товара
-                            th Кол-во голосов
-                          tbody
-                            - @item.discounts.where(active: true).order('discount ASC').each do |d|
-                              tr
-                                td ="#{d.discount}%"
-                                td ="#{d.count} шт."
-                                td ="#{d.likes}"
+                      = @item.desc
 
                     #three.tab-pane
-                      .comments-wr
-                        - 5.times do
-                          .comment
-                            img.img-thumbnail src="http://placehold.it/80x80&text=foto"
-                              p
-                                span.comment-author
-                                  a href=""
-                                    = Faker::Name.name
-                                =Faker::Lorem.sentence(20)
+                      h3 Доступно товара
+                      table.table
+                        thead
+                          th Скидка
+                          th Кол-во товара
+                          th Кол-во голосов
+                        tbody
+                          - @item.discounts.where(active: true).order('discount ASC').each do |d|
+                            tr
+                              td ="#{d.discount}%"
+                              td ="#{d.count} шт."
+                              td ="#{d.likes}"
+                      p Правила получения и всё такое
                       p
-                        a.btn.btn-xs.btn-three data-toggle="modal" href="#commentModal" title="Click to open modal form example"
-                          i.fa.fa-comment-o
-                          | Write a review
+                        small ссылки на оферту 
         .col-md-3
           .widget style="margin-top: 10px;"
             /shop desc here
@@ -156,9 +146,10 @@
             ul.featured
               - @rand.map do |item|
                 li
-                  img.pull-left alt="" src=item.avatar.url(:thumb) style="max-width: 70px;max-height: 70px; width: auto;"
-                    p
-                      a href="#"
+                  a href=item_path(@item)
+                    img.pull-left alt="" src=item.avatar.url(:thumb) style="min-width: 70px;max-height: 70px; width: auto;"
+                    h5
+                      a href=item_path(@item)
                         = item.name
                       span.star-rating
                         i.fa.fa-star

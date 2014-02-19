@@ -11,7 +11,7 @@
       /.mark-sale
           = "-#{item.discounts.where(active: true).maximum(:discount)}%"
       
-      = image_tag item.avatar.url(:medium), class: "img-responsive img-center"
+      = image_tag item.avatar.url(:medium), class: "img-responsive img-center", style: "min-height:300px;"
       
       .figcaption.bg-2
           .figcaption-btn style="margin-left: -15px;"

@@ -1,6 +1,31 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy, :add_item, :support, :users, :history, :items, :stat, :search, :codes, :ban]
-  before_action :check_auth, only: [:index, :ban, :create, :destroy, :edit, :users]
+  before_action :set_shop, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy,
+    :add_item,
+    :support,
+    :users,
+    :history,
+    :items,
+    :stat,
+    :search,
+    :codes,
+    :ban
+  ]
+  
+  before_action :check_auth, only: [
+    :index,
+    :ban,
+    :create,
+    :destroy,
+    :edit,
+    :users,
+    :stat,
+    :codes,
+    :support
+  ]
 
   # GET /shops
   # GET /shops.json
