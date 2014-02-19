@@ -23,13 +23,15 @@
           == render 'shop_menu'
         .col-lg-12.col-md-12.col-sm-12
           - if @codes.present?
-            table.table.table-hover
+            table.table.table-hover.datatable
               thead
                 tr
                   th.col-lg-1.col-md-1.col-sm-1
                   th.col-lg-1.col-md-1.col-sm-1 Название товара
+                  th.col-lg-2.col-md-2.col-sm-2 Дата
                   th.col-lg-1.col-md-1.col-sm-1 Пользователь
                   th.col-lg-2.col-md-2.col-sm-2 Код
+
               tbody.items
                 - @codes.each do |like|
                   tr
@@ -39,6 +41,8 @@
                       = "#{like.item.name}"
                       h5 = "-#{like.discount.discount}%"
                     td
+                      small = I18n.l like.created_at, :format => :long
+                    td
                       = "#{like.user.first_name} #{like.user.last_name}"
                     td
                       = like.code
@@ -47,3 +51,28 @@
             h4 Ещё не один пользователь на получил промо код
             p style="height: 50%; margin: 20px 0;" 
               | Вы можете посмотреть, кто участвует в акции и ещё какая то лажа нам очень нужны тексты для каждой страницы
+
+javascript:
+  $(function(){
+    
+    $('.datatable').dataTable({
+      "sDom": '<"panel panel-default"<"panel-heading"f><"panel-body"t><"panel-footer"i><"clear">>',
+
+      "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 0, 2, 3 ] }
+      ],
+      
+      "sPaginationType": "bootstrap"
+    });
+
+    $('.panel-heading').css({'height': "55px"});
+    $('.dataTables_paginate').css({'margin-top': "-33px"});
+
+    $('.dataTables_length').before( $('.dataTables_filter') );
+
+    $('.dataTables_length > label > select').addClass('form-control')
+    $('.dataTables_length > label').addClass('control-label')
+
+    $('#DataTables_Table_0_filter > label > input').addClass('form-control');
+
+  });
