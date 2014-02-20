@@ -23,10 +23,10 @@
           == render 'shop_menu'
         .col-lg-12.col-md-12.col-sm-12
           - if @users.present?
-            table.table.table-hover
+            table.table.table-hover.datatable
               thead
                 tr
-                  th.col-lg-2.col-md-2.col-sm-2
+                  th.col-lg-1.col-md-1.col-sm-1
                   th.col-lg-2.col-md-2.col-sm-6 Название товара
                   th.col-lg-1.col-md-1.col-sm-1 Пользователь
                   th.col-lg-2.col-md-2.col-sm-2 Лайки
@@ -34,11 +34,15 @@
                 - @users.each do |like|
                   tr
                     td
-                      = image_tag like.item.avatar.url(:thumb), class: "img-rounded img-responsive"
+                      = link_to item_path(like.item)
+                        = image_tag like.item.avatar.url(:thumb), class: " img-responsive img-center", style: "max-height: 100px;" 
                     td
-                      = "#{like.item.name}"
-                    td
-                      = "#{like.user.first_name} #{like.user.last_name}"
+                      h5
+                        = link_to item_path(like.item)
+                          = like.item.name
+                    td 
+                      = link_to user_info_path(like.user)
+                        = "#{like.user.first_name} #{like.user.last_name}"
                     td
                       =<> Counter.where(like_id: like).count
                       i.fa.fa-heart
@@ -47,3 +51,30 @@
             h4 Ещё не один пользователь не проявил активности
             p style="height: 50%; margin: 20px 0;" 
               | Вы можете посмотреть, кто участвует в акции и ещё какая то лажа нам очень нужны тексты для каждой страницы
+
+      = will_paginate @users, renderer: BootstrapPagination::Rails
+
+javascript:
+  $(function(){
+    
+    $('.datatable').dataTable({
+      "sDom": '<"panel panel-default"<"panel-heading"lf><"panel-body"t><"panel-footer"i><"clear">>',
+
+      "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 0, 3 ] }
+      ],
+
+      "sPaginationType": "bootstrap"
+    });
+
+    $('.panel-heading').css({'height': "55px"});
+    $('.dataTables_paginate').css({'margin-top': "-33px"});
+
+    $('.dataTables_length').before( $('.dataTables_filter') );
+
+    $('.dataTables_length > label > select').addClass('form-control')
+    $('.dataTables_length > label').addClass('control-label')
+
+    $('#DataTables_Table_0_filter > label > input').addClass('form-control');
+
+  });

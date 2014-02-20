@@ -46,7 +46,7 @@ class ShopsController < ApplicationController
 
   # GET /shop/:id/users
   def users
-    @users = Like.where(item_id: @shop.items.pluck(:id))
+    @users = Like.where(item_id: @shop.items.pluck(:id)).paginate(:per_page => 20, :page => params[:page])
   end
 
   # GET /shop/:id/history
