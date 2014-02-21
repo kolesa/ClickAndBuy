@@ -30,7 +30,7 @@
               .product-gallery
                 .primary-image
                   a.theater href="#" rel="group"
-                    - if @item.avatar.url
+                    - if @item.avatar_file_name
                       img.img-responsive alt="" src=@item.avatar.url style="max-height: 500px;"
                     - else
                       img.img-rounded.img-responsive alt="" src="http://placehold.it/480x800&text=Foto"
