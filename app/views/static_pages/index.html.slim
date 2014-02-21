@@ -126,8 +126,7 @@ section.slice.animate-hover-slide
                 - Item.order('RANDOM()').limit(3).each do |item|
                   == render 'static_pages/item', {item: item}
 
-#register
-  #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+#register.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-dialog
     .modal-content
       .modal-header
