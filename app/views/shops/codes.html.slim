@@ -43,7 +43,8 @@
                     td
                       small = I18n.l like.created_at, :format => :long
                     td
-                      = "#{like.user.first_name} #{like.user.last_name}"
+                      =link_to user_info_path(like.user)
+                        = "#{like.user.first_name} #{like.user.last_name}"
                     td
                       = like.code
           - else

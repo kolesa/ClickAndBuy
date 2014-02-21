@@ -37,7 +37,8 @@
               - else
                   i.fa.fa-heart style=" color: rgba(250,28,25,1);"
             - else
-                i.fa.fa-heart style=" color: rgba(250,28,25,1);"
+                a href="#" data-toggle="modal" data-target="#register"
+                  i.fa.fa-heart style=" color: rgba(250,28,25,1);"
           span.count
             small 
             = Counter.where(like_id: Like.where(item_id: item.id)).count

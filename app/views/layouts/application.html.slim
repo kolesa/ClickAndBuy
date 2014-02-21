@@ -131,45 +131,45 @@ html
 
         $(function(){
           function movieFormatResult(movie) {
-              var markup = "<table class='movie-result'><tr>";
-              if (movie.avatar_file_name !== undefined) {
-                  markup += "<td style='width: 88px; text-align:right;' class='movie-image'><img src='" + movie.avatar_file_name + "' style='height: 40%; padding: 4px'/></td>";
-              }
-              if (movie.desc !== undefined) {
-                markup += "<td class='movie-info'><div class='movie-title'>" + movie.name + "</div>";
-              }
-              else if (movie.first_name !== undefined) {
-                markup += "<td class='movie-info'><div class='movie-title'>" + movie.first_name + " " + movie.last_name + "</div>";
-              }
-              /*
-              if (movie.desc !== undefined) {
-                  markup += "<div class='movie-synopsis'>" + movie.desc + "</div>";
-              }
-              */
-              markup += "</td></tr></table>";
-              return markup;
+            var markup = "<table class='movie-result'><tr>";
+            if (movie.avatar_file_name !== undefined) {
+              markup += "<td style='width: 88px; text-align:right;' class='movie-image'><img src='" + movie.avatar_file_name + "' style='height: 40%; padding: 4px'/></td>";
+            }
+            if (movie.desc !== undefined) {
+              markup += "<td class='movie-info'><div class='movie-title'>" + movie.name + "</div>";
+            }
+            else if (movie.first_name !== undefined) {
+              markup += "<td class='movie-info'><div class='movie-title'>" + movie.first_name + " " + movie.last_name + "</div>";
+            }
+            /*
+            if (movie.desc !== undefined) {
+              markup += "<div class='movie-synopsis'>" + movie.desc + "</div>";
+            }
+            */
+            markup += "</td></tr></table>";
+            return markup;
           }
 
           function movieFormatSelection(movie) {
-              return movie.name;
+            return movie.name;
           }
         
           $('input[name=search]').select2({
             placeholder: "Search for a movie",
             minimumInputLength: 3,
             ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-                url: "#{{search_path}}",
-                dataType: 'json',
-                data: function (term) {
-                    return {
-                        search: $('input.select2-input').val()
-                    };
-                },
-                results: function (data) { // parse the results into the format expected by Select2.
-                    // since we are using custom formatting functions we do not need to alter remote JSON data
-                    console.log(data)
-                    return {results: data};
-                }
+              url: "#{{search_path}}",
+              dataType: 'json',
+              data: function (term) {
+                return {
+                  search: $('input.select2-input').val()
+                };
+              },
+              results: function (data) { // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to alter remote JSON data
+                console.log(data)
+                return {results: data};
+              }
             },
             formatResult: movieFormatResult, // omitted for brevity, see the source of this page
             formatSelection: movieFormatSelection,  // omitted for brevity, see the source of this page

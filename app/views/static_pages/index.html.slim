@@ -126,6 +126,43 @@ section.slice.animate-hover-slide
                 - Item.order('RANDOM()').limit(3).each do |item|
                   == render 'static_pages/item', {item: item}
 
+#register
+  #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"
+        h4#myModalLabel.modal-title Войдите через социальную сеть
+      .modal-body
+        .row style="margin-left: 20px; margin-right: 20px;"
+          .col-md-3
+            =link_to user_omniauth_authorize_path(:twitter), style: "color: #46c0fb;"
+              i.fa.fa-twitter.fa-4x href="#"
+          .col-md-3
+            =link_to user_omniauth_authorize_path(:facebook), style: "color: #4863ae;"
+              i.fa.fa-facebook.fa-4x
+          .col-md-3
+            =link_to user_omniauth_authorize_path(:vkontakte), style: "color: #45688E;"
+              i.fa.fa-vk.fa-4x
+          .col-md-3
+            =link_to user_omniauth_authorize_path(:odnoklassniki), style: "color: #ff720a;"
+              i.fa.fa-wheelchair.fa-4x
+          p style="padding-top: 80px;"
+            | Или введи данные, указанные при регистрации
+          = form_for(:user, :as => :user, :url => session_path(:user), html: { class: "form-light padding-15" }) do |f|
+            .form-group
+               = f.label :email
+               = f.email_field :email, :autofocus => true, class: "form-control", placeholder: "admin@click.ru"
+            .form-group
+              = f.label :password
+              = f.password_field :password, class: "form-control", placeholder: "qweasdzxc"
+            .row
+              .col-md-6
+                label.checkbox
+                  input type="checkbox" Remember me
+              .col-md-6
+                 =  f.submit "Вход", class: "button btn btn-two pull-right"
+
 css:
   .price {
     font-size:150%;
