@@ -60,12 +60,12 @@
     .cta-wr
       .container
         .row
-          .col-md-8
+          .col-lg-8
             h1
               strong Boomerang Bootstrap Template
               | delivers content beyond the desktop. Make it
               | yours!
-          .col-md-4
+          .col-lg-4
             a.btn.btn-one.btn-lg.pull-right href="" target="blank" title=""
               | GO!
 
@@ -74,25 +74,25 @@
     .w-section.inverse
       .container
         .row
-          .col-lg-3.col-md-6.col-sm-6
+          .col-lg-3
             .w-box.w-box-inverse
               .thmb-img
                 i.fa.fa-lightbulb-o
               h2 Generating ideas
               p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
-          .col-lg-3.col-md-6.col-sm-6
+          .col-lg-3
             .w-box.w-box-inverse
               .thmb-img
                 i.fa.fa-keyboard-o
               h2 Creating the model
               p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
-          .col-lg-3.col-md-6.col-sm-6
+          .col-lg-3
             .w-box.w-box-inverse
               .thmb-img
                 i.fa.fa-code
               h2 Designing and Coding
               p.text-center Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris.
-          .col-lg-3.col-md-6.col-sm-6
+          .col-lg-3
             .w-box.w-box-inverse
               .thmb-img
                 i.fa.fa-rocket
@@ -134,16 +134,16 @@ section.slice.animate-hover-slide
         h4#myModalLabel.modal-title Войдите через социальную сеть
       .modal-body
         .row style="margin-left: 20px; margin-right: 20px;"
-          .col-md-3
+          .clg-lg-3
             =link_to user_omniauth_authorize_path(:twitter), style: "color: #46c0fb;"
               i.fa.fa-twitter.fa-4x href="#"
-          .col-md-3
+          .col-lg-3
             =link_to user_omniauth_authorize_path(:facebook), style: "color: #4863ae;"
               i.fa.fa-facebook.fa-4x
-          .col-md-3
+          .col-lg-3
             =link_to user_omniauth_authorize_path(:vkontakte), style: "color: #45688E;"
               i.fa.fa-vk.fa-4x
-          .col-md-3
+          .col-lg-3
             =link_to user_omniauth_authorize_path(:odnoklassniki), style: "color: #ff720a;"
               i.fa.fa-wheelchair.fa-4x
           p style="padding-top: 80px;"
@@ -156,10 +156,10 @@ section.slice.animate-hover-slide
               = f.label :password
               = f.password_field :password, class: "form-control", placeholder: "qweasdzxc"
             .row
-              .col-md-6
+              .col-lg-6
                 label.checkbox
                   input type="checkbox" Remember me
-              .col-md-6
+              .col-lg-6
                  =  f.submit "Вход", class: "button btn btn-two pull-right"
 
 css:

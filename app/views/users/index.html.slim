@@ -3,9 +3,9 @@
     .row
       /.col-lg-8
         = notice
-      .col-md-6
+      .col-lg-6
         h2 Управление пользователями
-      .col-md-6
+      .col-lg-6
         ol.breadcrumb
           li
             a href=root_path Главная
@@ -14,13 +14,13 @@
 .section.slice.bg-3
   .w-section.inverse.container style="padding-top: 20px;"
     .row
-      .col-lg-12.col-md-12.col-sm-12
+      .col-lg-12
         table.table.table-hover.datatable
           thead
-            th.col-md-1
-            th.col-md-6 Имя
-            th.col-md-2 Группа
-            th.col-md-2 Действие
+            th.col-lg-1
+            th.col-lg-6 Имя
+            th.col-lg-2 Группа
+            th.col-lg-2 Действие
           tbody
             == render 'user', {users: @users}
 

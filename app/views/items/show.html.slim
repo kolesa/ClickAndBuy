@@ -9,9 +9,9 @@
     .row
       /.col-lg-8
         = notice
-      .col-md-6
+      .col-lg-6
         h2 =@item.name
-      .col-md-6
+      .col-lg-6
         ol.breadcrumb
           li
             a href=root_path Главная
@@ -24,9 +24,9 @@
   .w-section.inverse
     .container
       .row
-        .col-md-9
+        .col-lg-9
           .row
-            .col-md-7
+            .col-lg-7
               .product-gallery
                 .primary-image
                   a.theater href="#" rel="group"
@@ -34,7 +34,7 @@
                       img.img-responsive alt="" src=@item.avatar.url style="max-height: 500px;"
                     - else
                       img.img-responsive alt="" src="http://placehold.it/480x800&text=Foto" style="max-height: 500px; margin: 10px;"
-            .col-md-5
+            .col-lg-5
               .product-info
                 /h3 
                   = @item.name
@@ -82,7 +82,7 @@
                     / && Like.where(item_id: @item.id, user_id: current_user.id).exists?
                     == render 'shared/share', { :fb => url_for(item_path(@item)), :@item => @item }
           .row
-            .col-md-12
+            .col-lg-12
               .widget
                 .tabs
                   ul.nav.nav-tabs
@@ -116,7 +116,7 @@
                       p
                         | Дата окончания акции:
                         =<> I18n.l @item.end_date, :format => :long
-        .col-md-3
+        .col-lg-3
           .widget style="margin-top: 10px;"
             /shop desc here
             == render 'shops/info', {shop: @item.shop}

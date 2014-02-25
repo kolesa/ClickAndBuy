@@ -40,7 +40,7 @@ a.btn.btn-success.btn-two href="#" style="margin: 5px;" data-target="#myModal" d
         h4#myModalLabel.modal-title Modal title
       .modal-body
         = form_tag shop_support_path, :method => 'get' do
-          = text_area :text, params[:text], placeholder: "Задаайте вопрос...", class: "form-control"
+          = text_area :text, params[:text], placeholder: "Задайте вопрос...", class: "form-control"
           .modal-footer
             = submit_tag "Send", :name => 'ticket'
 

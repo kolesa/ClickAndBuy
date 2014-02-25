@@ -3,9 +3,9 @@
     .row
       .col-lg-8
         = notice
-      .col-md-6
+      .col-lg-6
         h2 Редактирование товара
-      .col-md-6
+      .col-lg-6
         ol.breadcrumb
           li
             a href=root_path Главная
@@ -17,8 +17,8 @@
           li.active Редактирование товара
 .container
   .row
-    .col-lg-9.col-md-9.col-sm-9
+    .col-lg-9
       br
-      .col-lg-offset-3.col-md-offset-3.col-sm-offset-3
+      .col-lg-offset-3
         == render 'shared/item_create'
         = link_to 'Back', shops_path

@@ -3,9 +3,9 @@
     .row
       .col-lg-8
         = notice
-      .col-md-6
+      .col-lg-6
         h2 ="Пользователи"
-      .col-md-6
+      .col-lg-6
         ol.breadcrumb
           li
             a href=root_path Главная
@@ -21,15 +21,15 @@
       .row style="margin-top: 20px;"
         .col-lg-8 
           == render 'shop_menu'
-        .col-lg-12.col-md-12.col-sm-12
+        .col-lg-12
           - if @users.present?
             table.table.table-hover.datatable
               thead
                 tr
-                  th.col-lg-1.col-md-1.col-sm-1
-                  th.col-lg-2.col-md-2.col-sm-6 Название товара
-                  th.col-lg-1.col-md-1.col-sm-1 Пользователь
-                  th.col-lg-2.col-md-2.col-sm-2 Лайки
+                  th.col-lg-1
+                  th.col-lg-2 Название товара
+                  th.col-lg-1 Пользователь
+                  th.col-lg-2 Лайки
               tbody.items
                 - @users.each do |like|
                   tr

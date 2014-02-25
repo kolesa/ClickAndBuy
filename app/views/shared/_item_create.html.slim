@@ -11,12 +11,12 @@
               li = message
 
     .row
-      .col-lg-6.col-md-6.col-sm-6
+      .col-lg-6
         - if @item.avatar_file_name
           = image_tag @item.avatar.url, class: "img-rounded img-responsive"
         - else
           img.img-rounded.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
-      .col-lg-6.col-md-6.col-sm-6
+      .col-lg-6
         .form-group
           = f.label :name, class: "control-label"
           = f.text_field :name, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Введите имя товара"
@@ -38,11 +38,11 @@
           = f.check_box :published, class: 'form-control', :checked => true
 
     .row 
-      .col-lg-6.col-md-6.col-sm-6
+      .col-lg-6
         .form-group
           = f.label :avatar
           = f.file_field :avatar
-      .col-lg-6.col-md-6.col-sm-6
+      .col-lg-6
         .form-group
           = f.label :tag_list, class: "control-label"
             |Category
@@ -70,7 +70,7 @@
                   td 
                     = discount.check_box :active, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Скидка активна"
     .row
-      .col-lg-12.col-md-12.col-sm-12
+      .col-lg-12
         .form-group
           = f.label :desc, class: "control-label"
           = f.text_area :desc, class: 'form-control', cols: 20, rows: 15

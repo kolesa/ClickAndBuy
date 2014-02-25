@@ -1,4 +1,4 @@
-.col-lg-4.col-md-4.col-sm-12
+.col-lg-4
   .label.label-danger.price.price-over
     = "-#{item.discounts.where(active: true).maximum(:discount)}%"
     p
@@ -20,14 +20,14 @@
               | добавить
 
     .row
-      .col-xs-9
+      .col-lg-9
         h2 
           a href=item_path(item) style="text-decoration: underline;"
             = item.name
           small
             a href=shop_path(item.shop) style="color:#afafaf"
               = item.shop.name
-      .col-xs-3
+      .col-lg-3
         .like-button style="margin-right: 10px;"
           span.button.liked
             -if signed_in?

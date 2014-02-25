@@ -2,7 +2,7 @@ section.slice.bg-3
   .w-section.inverse
     .container
       .row
-        .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+        .col-lg-6.col-lg-offset-3
           .w-section.inverse
             .w-box.sign-in-wr.bg-5
               .form-header
@@ -20,21 +20,21 @@ section.slice.bg-3
                           h4 Что то пошло не так ...
                           p = alert
 
-                  .row style="margin-left: 40px"
-                    .col-md-3
+                  .row style="margin-left: 40px; margin-top: 20px;"
+                    .col-lg-3
                       =link_to user_omniauth_authorize_path(:twitter), style: "color: #46c0fb;"
                         i.fa.fa-twitter.fa-4x href="#"
-                    .col-md-3
+                    .col-lg-3
                       =link_to user_omniauth_authorize_path(:facebook), style: "color: #4863ae;"
                         i.fa.fa-facebook.fa-4x
-                    .col-md-3
+                    .col-lg-3
                       =link_to user_omniauth_authorize_path(:vkontakte), style: "color: #45688E;"
                         i.fa.fa-vk.fa-4x
-                    .col-md-3
+                    .col-lg-3
                       =link_to user_omniauth_authorize_path(:odnoklassniki), style: "color: #ff720a;"
                         i.fa.fa-wheelchair.fa-4x
                   
-                  p style="padding-top: 80px;"
+                  p style="margin-top: 20px;"
                     | Или введи данные, указанные при регистрации
                   
                   .form-group
@@ -44,10 +44,10 @@ section.slice.bg-3
                     = f.label :password
                     = f.password_field :password, class: "form-control", placeholder: "qweasdzxc"
                   .row
-                    .col-md-6
+                    .col-lg-6
                       label.checkbox
                         input type="checkbox" Remember me
-                    .col-md-6
+                    .col-lg-6
                        =  f.submit "Вход", class: "button btn btn-two pull-right"
               .form-footer style="padding-left: 20px;"
                 = render "devise/shared/links"

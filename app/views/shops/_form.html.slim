@@ -8,12 +8,12 @@
           - @shop.errors.full_messages.each do |message|
             li = message
   .row
-    .col-lg-5.col-md-5.col-sm-5.col-lg-offset-1.col-md-offset-1.col-sm-offset-1
+    .col-lg-5.col-lg-offset-1
       - if @shop.avatar_file_name
         = image_tag @shop.avatar.url, class: "img-rounded img-responsive"
       - else
         img.img-rounded.img-responsive alt="" src="http://placehold.it/300x300&text=Foto"
-    .col-lg-5.col-md-5.col-sm-5
+    .col-lg-5
       .form-group
         = f.label :name
           | Название магазина

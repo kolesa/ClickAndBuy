@@ -3,9 +3,9 @@
     .row
       .col-lg-8
         = notice
-      .col-md-6
+      .col-lg-6
         h2 ="Купоны"
-      .col-md-6
+      .col-lg-6
         ol.breadcrumb
           li
             a href=root_path Главная
@@ -21,16 +21,16 @@
       .row style="margin-top: 20px;"
         .col-lg-8 
           == render 'shop_menu'
-        .col-lg-12.col-md-12.col-sm-12
+        .col-lg-12
           - if @codes.present?
             table.table.table-hover.datatable
               thead
                 tr
-                  th.col-lg-1.col-md-1.col-sm-1
-                  th.col-lg-1.col-md-1.col-sm-1 Название товара
-                  th.col-lg-2.col-md-2.col-sm-2 Дата
-                  th.col-lg-1.col-md-1.col-sm-1 Пользователь
-                  th.col-lg-2.col-md-2.col-sm-2 Код
+                  th.col-lg-1
+                  th.col-lg-1 Название товара
+                  th.col-lg-2 Дата
+                  th.col-lg-1 Пользователь
+                  th.col-lg-2 Код
 
               tbody.items
                 - @codes.each do |like|
