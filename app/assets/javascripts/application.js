@@ -14,7 +14,6 @@
 // require turbolinks
 //= require jquery
 //= require jquery_ujs
-//= require jquery.sortable
 //= require bootstrap.min
 //= require select2
 //= require dataTables/jquery.dataTables
