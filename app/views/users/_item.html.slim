@@ -1,16 +1,16 @@
 .row
-  .col-lg-3
+  .col-lg-3.col-xs-12
     == render 'users/shared/item_image', {like: like}
 
     span.label.label-success style="position: absolute; top:0px; left: 55px;"
       = like.item.price
       i.fa.fa-rub<>
 
-  .col-lg-6
+  .col-lg-6.col-xs-12
     == render 'users/shared/item_info', {like: like}
 
     / прогрессбар
-    .col-lg-12 style="padding: 0"
+    .col-lg-12.col-xs-12 style="padding: 0"
       / HELL HARDCODE LEVEL 9000
       - max_discount = 0
       - @bars.each do |x|
@@ -31,7 +31,7 @@
 
               .progress.tip style="width: #{x[:width]}%; display: inline-block; border-top-right-radius: 0; border-bottom-right-radius: 0; " data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
                 .progress-bar.progress-bar-info style="width: #{width}%"
-                  - if width == 100
+                  - if width == 100 && array.first.count > 0
                     - max_discount = array.first.discount
                     span style="position: absolute;top: 8px; text-align: center;"
                       i.fa.fa-thumbs-o-up
@@ -49,7 +49,7 @@
               
               .progress.tip style="width: #{x[:width]}%; display: inline-block; border-top-left-radius: 0; border-bottom-left-radius: 0;" data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
                 .progress-bar.progress-bar-info style="width: #{width}%"
-                  - if width == 100
+                  - if width == 100 && array.last.count > 0
                     - max_discount = array.last.discount
                       span style="position: absolute;top: 8px; text-align: center;"
                         i.fa.fa-thumbs-o-up
@@ -66,13 +66,14 @@
 
               .progress.tip style="width: #{x[:width]}%; display: inline-block; border-radius: 0; border-left: 1px solid rgba(210, 233, 255, 0.88);border-right: 1px solid rgba(210, 233, 255, 0.88);" data-toggle="tooltip" data-placement="bottom" title="#{array[i].discount} %"
                 .progress-bar.progress-bar-info style="width: #{width}%"
-                  - if width == 100
+                  - if width == 100 && array[i].count > 0
                     - max_discount = array[i].discount
                     span style="position: absolute;top: 8px; text-align: center;"
                       i.fa.fa-thumbs-o-up
           
-
+      /купон на скидку
       - if signed_in? && current_user == @user
+        .col-xs-4
         - if max_discount > 0
           - if like.item.discounts.where(active: true).pluck(:count).sum(&:to_i) > 0
             .code
@@ -81,9 +82,10 @@
                 p
                   = "- #{like.item.price/100*max_discount} "
                   i.fa.fa-rub
+      
       / кто лайкнул   
-      .panel-group id="accordion#{like.item.id}"
-        .panel style="position: absolute; top: 50px; left: 130px;"
+      .panel-group.col-lg-8 id="accordion#{like.item.id}"
+        .panel
           .panel-headingz
             h4.panel-title.open
               a href="\##{like.item.id.to_s}" data-toggle="collapse" data-parent="#accordion#{like.item.id}"

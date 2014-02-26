@@ -19,7 +19,7 @@ class CodeController < ApplicationController
     Code.create!(
       user_id: @like.user.id,
       item_id: @like.item.id,
-      code: Digest::MD5.hexdigest(rand.to_s),
+      code: Digest::MD5.hexdigest(rand.to_s)[0..8],
       discount: discount)
     
     # 2) Обновляем лайк

@@ -3,9 +3,9 @@
     .row
       /.col-lg-8
         = notice
-      .col-lg-6
+      .col-lg-6.col-xs-6
         h2 Акции
-      .col-lg-6
+      .col-lg-6.col-xs-6
         ol.breadcrumb
           li
             a href=root_path Главная
@@ -14,7 +14,7 @@
 .section.slice.bg-3 style="min-height: 600px"
   .w-section.inverse.container style="padding-top: 20px;"
     .row
-      .col-lg-8
+      .col-lg-8.col-xs-12
         .action
           ul.nav.nav-tabs style="margin-bottom: 15px;"
             / Показываем табы только пользователю
@@ -39,7 +39,7 @@
                     == render 'code', {like: like}
                 - else
                   h4 Вы ещё не получили не один код
-      .col-lg-2
+      .col-lg-4.col-xs-6
           - if @user.avatar_file_name
             = image_tag @user.avatar.url(:medium), class: "img-rounded img-responsive"
           - else
