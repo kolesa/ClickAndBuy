@@ -3,12 +3,17 @@ ClickAndBuy::Application.configure do
 
   config.assets.cache_store = :dalli_store
   config.action_controller.asset_host = "http://clickandbuy.s3.amazonaws.com"
-  config.serve_static_assets = true
+  
+
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
   config.assets.compile = true
   
   # Code is not reloaded between requests.
   config.cache_classes = true
+
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=2592000"
+
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers

@@ -24,7 +24,6 @@ gem "omniauth-odnoklassniki"
 
 
 # Speed Up Heroku app
-gem 'heroku-deflater', :group => :production
 gem 'rack-cache'
 gem 'kgio'
 gem 'memcachier'
