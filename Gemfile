@@ -24,7 +24,6 @@ gem "omniauth-odnoklassniki"
 
 
 # Speed Up Heroku app
-gem 'rack-zippy'
 gem 'rack-cache'
 gem 'kgio'
 gem 'memcachier'
