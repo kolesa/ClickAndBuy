@@ -8,7 +8,7 @@
 
   .form-group
     = f.label :name, "Имя"
-    = f.text_field :name, class: "form-control", :required => true
+    = f.text_field :name, class: "form-control", :required => true, data:{ validation: "number"}
   .row
     .col-lg-6
       .form-group
@@ -32,5 +32,6 @@
       = f.url_field :url, class: "form-control"
   .form-group
     = f.submit 'Отправить', class: "btn btn-two"
+
 javascript:
-  $("form").validator();
+  $.validate();

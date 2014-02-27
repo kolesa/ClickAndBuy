@@ -11,8 +11,6 @@ gem 'bcrypt-ruby'
 gem 'faker'
 gem 'devise'
 gem 'annotate'
-#gem "nifty-generators"
-
 
 gem 'rest_client'
 
@@ -35,12 +33,12 @@ gem 'wicked_pdf'
 gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
 gem 'rails_12factor', group: :production
 
-#gem 'jquery-sortable-rails'
+gem "jquery-validation-rails"
 gem 'select2-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-ui-rails'
 gem 'nestedsortabletree-rails'
-#gem 'rails3-jquery-autocomplete'
+
 gem 'aws-sdk'
 gem 'slim-rails'
 gem 'paperclip'
