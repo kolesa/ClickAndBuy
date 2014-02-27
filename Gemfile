@@ -33,7 +33,6 @@ gem 'wicked_pdf'
 gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
 gem 'rails_12factor', group: :production
 
-gem "jquery-validation-rails"
 gem 'select2-rails'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-ui-rails'

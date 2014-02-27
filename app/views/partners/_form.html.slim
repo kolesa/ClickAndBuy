@@ -8,12 +8,12 @@
 
   .form-group
     = f.label :name, "Имя"
-    = f.text_field :name, class: "form-control", :required => true, data:{ validation: "number"}
+    = f.text_field :name, class: "form-control", :required => true, data:{ validation: "required", validation_error_msg: 'Введите ваше имя'}
   .row
     .col-lg-6
       .form-group
         = f.label :company, "Компания"
-        = f.text_field :company, class: "form-control", :required => true
+        = f.text_field :company, class: "form-control", :required => true, data:{ validation: "required", validation_error_msg: 'Введите название компании'}
     .col-lg-6
       .form-group
         = f.label :activity, "Вид деятельности"
@@ -22,16 +22,17 @@
     .col-lg-6
       .form-group
         = f.label :email, "Почта"
-        = f.email_field :email, class: "form-control", :required => true
+        = f.email_field :email, class: "form-control", :required => true, data:{ validation: "email", validation_error_msg: 'Введите вашу электронную почту'}
     .col-lg-6
       .form-group
         = f.label :phone, "Телефон"
-        = f.phone_field :phone, class: "form-control", :required => true
+        = f.phone_field :phone, class: "form-control", :required => true, data:{ validation: "custom", validation_regexp: "\\+\\d{10}", validation_error_msg: 'Введите коррекнтный номер в формате +71234567890'}
   .form-group
       = f.label :url
       = f.url_field :url, class: "form-control"
   .form-group
     = f.submit 'Отправить', class: "btn btn-two"
 
+script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.38/jquery.form-validator.min.js"
 javascript:
   $.validate();

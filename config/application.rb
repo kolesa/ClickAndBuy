@@ -17,7 +17,7 @@ module ClickAndBuy
     config.assets.enabled = true
     config.assets.digest = true
 
-    config.assets.precompile += ['jquery.js', 'jquery_ujs.js', 'jquery.easypiechart.js', 'jquery.ui.nestedSortable.js', 'select2.js', 'jquery.validate.js', 'jquery.validate.additional-methods.js']
+    config.assets.precompile += ['jquery.js', 'jquery_ujs.js', 'jquery.easypiechart.js', 'jquery.ui.nestedSortable.js', 'select2.js']
 
     config.paperclip_defaults = {
         :storage => :s3,

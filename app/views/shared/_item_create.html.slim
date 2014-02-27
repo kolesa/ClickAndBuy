@@ -69,6 +69,8 @@
                     = discount.number_field :likes, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Количество голосов, необходимого для получения скидки"
                   td 
                     = discount.check_box :active, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Скидка активна"
+            tfoot
+              th colspan="4" Укажите миниммум 3 скидки!
     .row
       .col-lg-12
         .form-group
@@ -81,14 +83,31 @@
 
     = f.submit 'Save', class: "btn btn-info"
 
+script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.38/jquery.form-validator.min.js"
+
 javascript:
   $(function() {
+    $("input[type=submit]").attr("disabled", "disabled");
+
     $("input:checked").each(function(){
       $(this).parent().parent().addClass('success');
+
+      if ( $('input:checkbox:checked').length <= 3 ) {
+        $("input[type=submit]").attr("disabled", "disabled");
+      }
+      else {
+        $("input[type=submit]").removeAttr("disabled");
+      }
     });
 
     $("input[type=checkbox]").click(function(){
       $(this).parent().parent().toggleClass('success');
+      if ( $('input:checkbox:checked').length <= 3 ) {
+        $("input[type=submit]").attr("disabled", "disabled");
+      }
+      else {
+        $("input[type=submit]").removeAttr("disabled");
+      }
     });
 
     $('#item_tag_list').select2({
@@ -102,6 +121,7 @@ javascript:
       data: #{{tag_to_json}}
     });
 
+
     $("input[data-toggle='tooltip']").on('focus', function() {
       $(this).tooltip('show')
     });
@@ -109,6 +129,8 @@ javascript:
     $("input[data-toggle='tooltip']").on('blur', function() {
         $(this).tooltip('show')
     });
+
+    $.validate();
   });
 
 css:
