@@ -21,15 +21,15 @@
       .form-group
         = f.label :url
           | Ссылка на сайт магазина
-        = f.text_field :url, class: 'form-control'
+        = f.text_field :url, class: 'form-control', data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru '}
       .form-group
         = f.label :fb
           | Ссылка на сайт магазина Facebook
-        = f.text_field :fb, class: 'form-control'
+        = f.text_field :fb, class: 'form-control', data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
       .form-group
         = f.label :vk
           | Ссылка на сайт магазина ВКонтакте
-        = f.text_field :vk, class: 'form-control'
+        = f.text_field :vk, class: 'form-control', data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
       - if signed_in? && current_user.is_admin
         .form-group
           = f.label :p_type
@@ -44,3 +44,8 @@
       | Описание
     = f.text_area :desc, class: 'form-control', cols: 20, rows: 15
   .actions = f.submit 'Save'
+
+
+script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.38/jquery.form-validator.min.js"
+javascript:
+  $.validate();

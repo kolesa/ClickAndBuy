@@ -26,7 +26,7 @@
       .row
         .col-lg-9
           .row
-            .col-lg-7
+            .col-lg-6
               .product-gallery
                 .primary-image
                   a.theater href="#" rel="group"
@@ -34,14 +34,14 @@
                       img.img-responsive alt="" src=@item.avatar.url style="max-height: 500px;"
                     - else
                       img.img-responsive alt="" src="http://placehold.it/480x800&text=Foto" style="max-height: 500px; margin: 10px;"
-            .col-lg-5
+            .col-lg-6
               .product-info
                 /h3 
                   = @item.name
                 /- @item.tag_list.each do |tag|
                   |tag
                   =tag
-                span.star-rating.pull-left style="margin-top: 30px;"
+                /span.star-rating.pull-left style="margin-top: 30px;"
                   i.fa.fa-star style="margin: 1px;"
                   i.fa.fa-star  style="margin: 1px;"
                   i.fa.fa-star  style="margin: 1px;"
@@ -66,21 +66,24 @@
                     p
                       strong> Tags
                       | : laptop, notebook, asus
-                p
-                  -if signed_in?
-                    - unless Like.where(user_id: current_user.id, item_id: @item.id).exists?
-                      = link_to like_path(@item), :method => :post
-                        i.fa.fa-heart style=" color: rgba(200,20,20,0.8);"
+                - unless @item.end_date < Date.today
+                  p ="Акция действует до #{ I18n.l @item.end_date, :format => :long }г."
+                  p
+                    -if signed_in?
+                      - unless Like.where(user_id: current_user.id, item_id: @item.id).exists?
+                        = link_to like_path(@item), :method => :post
+                          i.fa.fa-heart.fa-4x style=" color: rgba(200,20,20,0.8);"
+                      - else
+                          i.fa.fa-heart style=" color: rgba(250,28,25,1);"
+                          | Уже лайкнул
                     - else
                         i.fa.fa-heart style=" color: rgba(250,28,25,1);"
-                        | Уже лайкнул
-                  - else
-                      i.fa.fa-heart style=" color: rgba(250,28,25,1);"
-                p
-                  - if signed_in?
-                    h5 Share it!
-                    / && Like.where(item_id: @item.id, user_id: current_user.id).exists?
-                    == render 'shared/share', { :fb => url_for(item_path(@item)), :@item => @item }
+                  p
+                    - if signed_in?
+                      / && Like.where(item_id: @item.id, user_id: current_user.id).exists?
+                      == render 'shared/share', { :fb => url_for(item_path(@item)), :@item => @item }
+                - else
+                  h1 Акция закончилась
           .row
             .col-lg-12
               .widget
@@ -113,9 +116,6 @@
                       p Правила получения и всё такое
                       p
                         small ссылки на оферту
-                      p
-                        | Дата окончания акции:
-                        =<> I18n.l @item.end_date, :format => :long
         .col-lg-3
           .widget style="margin-top: 10px;"
             /shop desc here

@@ -11,13 +11,23 @@
       /.mark-sale
           = "-#{item.discounts.where(active: true).maximum(:discount)}%"
       
-      = image_tag item.avatar.url(:medium), class: "img-responsive img-center", style: "min-height:300px;"
+      = image_tag item.avatar.url(:medium), class: "img-responsive img-center", style: "min-height:200px;"
       
       .figcaption.bg-2
           .figcaption-btn style="margin-left: -15px;"
-            = link_to like_path(item), :method => :post, class: "btn btn-xs btn-one theater"
-              i.fa.fa-plus-circle 
-              | добавить
+            -if signed_in?
+              - unless Like.where(user_id: current_user.id, item_id: item.id).exists?
+                = link_to like_path(item), :method => :post, class: "btn btn-xs btn-one"
+                  i.fa.fa-plus-circle
+                  | добавить
+              - else
+                  a.btn.btn-xs.btn-one href="#"
+                    i.fa.fa-heart
+                    | уже лайкал
+            - else
+                a.btn.btn-xs.btn-one href="#" data-toggle="modal" data-target="#register" style="color:white"
+                  i.fa.fa-plus-circle
+                  | добавить
 
     .row
       .col-lg-9.col-md-9.col-sm-9.col-xs-9

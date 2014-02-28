@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 
   def index
-    @item = Item.where(published: true)
+    @item = Item.where('published = true and end_date >= ?', Date.today).order('created_at DESC').paginate(:per_page => 40, :page => params[:page])
     @banner = true;
   end
 

@@ -39,10 +39,12 @@ section.slice.bg-3
                   
                   .form-group
                      = f.label :email
-                     = f.email_field :email, :autofocus => true, class: "form-control", placeholder: "admin@click.ru"
+                     = f.email_field :email, :autofocus => true, class: "form-control"
+                      /, placeholder: "email"
                   .form-group
                     = f.label :password
-                    = f.password_field :password, class: "form-control", placeholder: "qweasdzxc"
+                    = f.password_field :password, class: "form-control"
+                      /, placeholder: "password"
                   .row
                     .col-lg-6
                       label.checkbox

@@ -1,7 +1,7 @@
 .pg-opt.pin
   .container
     .row
-      .col-lg-8
+      /.col-lg-8
         = notice
       .col-lg-6
         h2 =@shop.name
@@ -13,30 +13,67 @@
             a href=shops_path Магазины
           li.active
             =@shop.name
-section.slice.bg-3
+section.slice.animate-hover-slide
   .w-section.inverse.shop
     .container
         .row
-          .col-lg-8           
+          .col-lg-8 
             - if signed_in? && (current_user.is_admin || current_user.owned_shop == @shop.id)
               == render 'shop_menu'
-            .main
-              table.table.table-hover.datatable
-                thead
-                  tr
-                    th.col-lg-2
-                    th.col-lg-2 Название
-                    th.col-lg-1 Лайки
-                    th.col-lg-2 Цена
-                    - if signed_in? && (current_user.is_admin || current_user.owned_shop == @shop.id)
-                      th.col-lg-2 Действие
-                tbody.items
-                  == render 'item', {items: @items, stat: false}
-
+              .main
+                table.table.table-hover.datatable
+                  thead
+                    tr
+                      th.col-lg-2
+                      th.col-lg-2 Название
+                      th.col-lg-1 Лайки
+                      th.col-lg-2 Цена
+                      - if signed_in? && (current_user.is_admin || current_user.owned_shop == @shop.id)
+                        th.col-lg-2 Действие
+                  tbody.items
+                    == render 'item', {items: @items, stat: false}
+            - else
+              h3.section-title Новые товары
+              - @items.each do |item|
+                == render 'static_pages/item', {item: item}
 
           .col-lg-4
             == render 'info', {shop: @shop}
-          = will_paginate @items, renderer: BootstrapPagination::Rails
+  = will_paginate @items, renderer: BootstrapPagination::Rails
+== render 'shared/register_modal'
+
+css:
+  .price {
+    font-size:150%;
+    line-height:125%;
+    position:absolute;
+    z-index:10;
+    margin-left:-5px;
+    margin-top:5px;
+    width:115px;
+    text-align:center;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+       -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Use for rotating price (IE9+) */
+    -webkit-transform:rotate(350deg);
+    -moz-transform:rotate(350deg);
+    -o-transform:rotate(350deg);
+    -ms-transform:rotate(350deg);
+  }
+
+  .price.price-over {
+    /* Use for rotating price (IE9+) */
+    -webkit-transform:rotate(355deg);
+    -moz-transform:rotate(355deg);
+    -o-transform:rotate(355deg);
+    -ms-transform:rotate(355deg);
+  }
+
+  .price sup {
+    font-size:60%;
+  }
+
 javascript:
   $(function(){
     
@@ -60,5 +97,4 @@ javascript:
     $('.dataTables_length > label').addClass('control-label')
 
     $('#DataTables_Table_0_filter > label > input').addClass('form-control');
-
   });
