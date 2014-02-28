@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   # Tags
   def tagged
     if params[:tag].present? 
-      @item = Item.tagged_with(params[:tag].downcase).where(published: true)
+      @item = Item.tagged_with(params[:tag].downcase).where('published = true and end_date >= ?', Date.today).order('created_at DESC').paginate(:per_page => 40, :page => params[:page])
     else 
-      @item = Item.all.where(published: true)
+      @item = Item.all.where('published = true and end_date >= ?', Date.today).order('created_at DESC').paginate(:per_page => 40, :page => params[:page])
     end
     render 'static_pages/index'
   end
