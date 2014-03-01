@@ -67,6 +67,12 @@ class User < ActiveRecord::Base
     :url => "/:image/:id/:style/:basename.:extension",
     :path => ":image/:id/:style/:basename.:extension"
 
+  
+  after_create :send_admin_mail
+  def send_admin_mail
+    #UserMailer.send_new_user_message(self).deliver
+  end
+
   def self.search(search)
     if search
       where('lower(first_name) LIKE lower(?) OR lower(last_name) LIKE lower(?)', "%#{search}%", "%#{search}%")

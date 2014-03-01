@@ -36,11 +36,10 @@ class ShopsController < ApplicationController
   # GET /shops/1
   # GET /shops/1.json
   def show
-    @items = @shop.items.paginate(:per_page => 20, :page => params[:page])
-
-    if params[:ids]
-      @items = @shop.items.where(id: params[:ids]).paginate(:per_page => 20, :page => params[:page])
-      render '_item', {items: @items, layout: false}
+    if signed_in? && ( current_user.owned_shop > 0 || current_user.is_admin ) 
+      @items = @shop.items.order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
+    else
+      @items = @shop.items.where('published = true and end_date >= ?', Date.today).order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
     end
   end
 
@@ -51,7 +50,7 @@ class ShopsController < ApplicationController
 
   # GET /shop/:id/history
   def history
-    @items = Item.where(shop: @shop).order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
+    @items = Item.where(shop: @shop)..items.where('published = true and end_date >= ?', Date.today).order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
   end
 
   # POST /shop/:id/ban
@@ -179,6 +178,6 @@ class ShopsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :ids, :item, :text)
+      params.require(:item).permit(:name, :desc, :published, :price, :discount, :shop_id, :avatar, :item, :text)
     end
 end

@@ -13,9 +13,6 @@ class ItemsController < ApplicationController
     render 'static_pages/index'
   end
   
-  # Поправить категории!!!
-  # не обновляются при апдейте
-  #
 
   # GET /items
   # GET /items.json

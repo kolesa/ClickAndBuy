@@ -7,6 +7,10 @@
       h5
         = link_to item_path(item.id)
           = item.name
+      - if !item.end_date.nil? && Date.today > item.end_date
+        .act
+          i.fa.fa-exclamation-triangle style="color:red"
+          | акция закончилась
     td 
       = Counter.where(like_id: item.like_ids).count
       - if stat

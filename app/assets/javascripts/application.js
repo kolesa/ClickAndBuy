@@ -21,4 +21,5 @@
 //= require jquery.ui.core
 //= require jquery.ui.sortable
 //= require jquery.ui.nestedSortable
+//= require jquery.steps.min
 //= require_tree .

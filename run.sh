@@ -1,0 +1,10 @@
+export FOG_PROVIDER=AWS
+export FOG_DIRECTORY=clickandbuy
+export AWS_ACCESS_KEY_ID=AKIAJHNEN7RZNC2VG3LA
+export AWS_SECRET_ACCESS_KEY=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
+export MAILGUN_SMTP_PORT=25
+export MAILGUN_SMTP_SERVER=smtp.mailgun.org
+export MAILGUN_SMTP_LOGIN=postmaster@sandbox97427.mailgun.org
+export MAILGUN_SMTP_PASSWORD=3ewmtij379p4
+
+rake assets:precompile --trace RAILS_ENV=production

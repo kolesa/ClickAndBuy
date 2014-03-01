@@ -1,93 +1,458 @@
-.container
-  .row
-    .col-md-12
-      .text-center
-        h2 Welcome to Boomerang Bootstrap Template
-        p style="font-size:16px;"
-          | Create your own account and explore more.
-  .row
-    .col-md-8.col-md-offset-2.col-sm-6.col-sm-offset-3
-      .w-section.inverse
-        .w-box.sign-in-wr.bg-5
-          .form-header
-            h2 Create your own account
-          .form-body
-            p
-              | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-            
-            = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-light padding-15" }) do |f|
-              
-              = devise_error_messages!
-              
-              - if alert
-                .alert.alert-danger.alert-dismissable
-                  button.close aria-hidden="true" data-dismiss="alert" type="button" x
-                  = alert
-              
-              .form-group
-                = f.label :email
-                = f.email_field :email, class: "form-control", placeholder: "Email Address"
-
-              .row
-                .col-md-6
-                  .form-group
-                    = f.label :first_name
-                    = f.text_field :first_name, :autofocus => true, class: "form-control", placeholder: "First name"
-                .col-md-6
-                  .form-group
-                    = f.label :last_name
-                    = f.text_field :last_name, class: "form-control", placeholder: "Last name"
-              
-              .row
-                .col-md-6
-                  .form-group
-                    = f.label :password
-                    = f.password_field :password, class: "form-control", placeholder: "Password"
-                .col-md-6
-                  .form-group
-                    = f.label :password_confirmation
-                    = f.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation"
-              .row
-                .col-md-6
-                  .form-group
-                    = f.label :gender
-                    = f.select :gender, [['Male', 0], ['Female', 1]], {} , {:class=>"form-control"}
-                .col-md-6
-                  .form-group
-                    = f.label :date
-                    = f.date_field :date, class: "form-control"
-              
-              .form-group
-                = f.label :country
-                = f.text_field :country, class: "form-control", placeholder: "Country"
-
-              p Social media
-              / Социалки
-              .row
-                .col-md-6
-                  .form-group
-                    = f.text_field :vk, class: "form-control", placeholder: "VKontakte"
-                .col-md-6
-                  .form-group
-                    = f.text_field :fb, class: "form-control", placeholder: "Facebook"
-              
-
-              .row
-                .col-md-6
-                  .form-group
-                    = f.text_field :tw, class: "form-control", placeholder: "Twitter"
-                .col-md-6
-                  .form-group
-                    = f.text_field :od, class: "form-control", placeholder: "Odnoklassniki"
-
-              .row
-                .col-md-6
-                  .form-group
-                      = f.label :avatar
-                      = f.file_field :avatar
-                .col-md-6
-                  = f.submit "Sign Up", class: "btn btn-two pull-right", style: "margin-top: 15px;"
-              
+.section.slice.bg-3
+  .w-section.inverse
+    .container
+      .row
+        .col-md-12
+          .text-center
+            h2 Like and buy
+            p style="font-size:16px;" создание аккаунта и всё такое
+      .row
+        .col-md-8.col-md-offset-2.col-sm-6.col-sm-offset-3
+          .w-section.inverse
+            .w-box.sign-in-wr.bg-5
+              .form-header
+                h2 форма регистрации
+              .form-body
                 
-            .form-footer
-                = render "devise/shared/links"
+                  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: "form-light padding-15" }) do |f|
+                    
+                    = devise_error_messages!
+                    
+                    - if alert
+                      .alert.alert-danger.alert-dismissable
+                        button.close aria-hidden="true" data-dismiss="alert" type="button" x
+                        = alert
+                    #wizard
+                      h1 Основная информация
+                      div
+                        /First Content
+                        .form-group
+                          = f.label :email
+                            ="Почта"
+                          = f.email_field :email, :autofocus => true, class: "form-control", placeholder: "Email Address", data:{ validation: "email", validation_error_msg: 'Введите корректный email'}
+
+                        .row
+                          .col-md-6
+                            .form-group
+                              = f.label :first_name
+                                | Имя
+                              = f.text_field :first_name, class: "form-control", placeholder: "First name", data:{ validation: "alphanumeric", validation_error_msg: 'Только алфавитно-цифровые символы'}
+                          .col-md-6
+                            .form-group
+                              = f.label :last_name
+                                | Фамилия
+                              = f.text_field :last_name, class: "form-control", placeholder: "Last name", data:{ validation: "alphanumeric", validation_error_msg: 'Только алфавитно-цифровые символы'}
+                        
+                        .row
+                          .col-md-6
+                            .form-group
+                              = f.label :password
+                                | Пароль
+                              = f.password_field :password, class: "form-control", placeholder: "Password", data:{ validation: "length", validation_length: "8-100", validation_error_msg: 'Длинная пароля должна быть меньше 8 символов'}
+                          .col-md-6
+                            .form-group
+                              = f.label :password_confirmation
+                                | Подтверждение пароля
+                              = f.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation", data:{ validation: "length", validation_length: "8-100", validation_error_msg: 'Длинная пароля должна быть меньше 8 символов'}
+                        .row
+                          .col-lg-6
+                            .form-group
+                              span
+                                
+                                h5
+                                  i.fa.fa-exclamation-triangle<>
+                                  |все поля обязательны к заполнению
+                          .col-md-6
+                            .form-group
+                                = f.label :avatar
+                                  | Аватарка
+                                = f.file_field :avatar
+                      h1 Дополнительная информация
+                      div
+                        /Second Content
+
+                        
+                        .row
+                          .col-md-6
+                            .form-group
+                              = f.label :gender
+                              = f.select :gender, [['Male', 0], ['Female', 1]], {} , {:class=>"form-control"}
+                          .col-md-6
+                            .form-group
+                              = f.label :date
+                              = f.date_field :date, class: "form-control"
+                        
+                        .form-group
+                          = f.label :country
+                          = f.text_field :country, class: "form-control", placeholder: "Country"
+
+                        p Social media
+                        / Социалки
+                        .row
+                          .col-md-6
+                            .form-group
+                              = f.text_field :vk, class: "form-control", placeholder: "VKontakte", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
+                          .col-md-6
+                            .form-group
+                              = f.text_field :fb, class: "form-control", placeholder: "Facebook", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
+                        
+
+                        .row
+                          .col-md-6
+                            .form-group
+                              = f.text_field :tw, class: "form-control", placeholder: "Twitter", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
+                          .col-md-6
+                            .form-group
+                              = f.text_field :od, class: "form-control", placeholder: "Odnoklassniki", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
+
+
+                        /.col-md-6
+                          = f.submit "Sign Up", class: "btn btn-two pull-right", style: "margin-top: 15px;"
+                      
+                      
+                  .form-footer
+                      = render "devise/shared/links"
+
+
+script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.38/jquery.form-validator.min.js"
+javascript:
+
+  $("#wizard").steps(
+    settings = {
+      onFinished: function (event, currentIndex) {
+        $("#new_user").submit();
+      },
+      
+      /*
+      onStepChanging: function (event, currentIndex, newIndex) {
+        $.validate();
+      },
+      */
+
+      labels: {
+          current: "Текущий щаг:",
+          finish: "Конец",
+          next: "Вперёд",
+          previous: "Назад",
+          loading: "Загрузка ..."
+      }
+    }
+  );
+  $.validate();
+
+css:
+  .req{
+    color: red;
+  }
+  .wizard, .tabcontrol {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+  }
+
+  .wizard a, .tabcontrol a {
+      outline: 0;
+  }
+
+  .wizard ul, .tabcontrol ul {
+      list-style: none !important;
+      padding: 0;
+      margin: 0;
+  }
+
+  .wizard ul > li, .tabcontrol ul > li {
+      display: block;
+      padding: 0;
+  }
+
+  /* Accessibility */
+  .wizard > .steps .current-info, .tabcontrol > .steps .current-info {
+      position: absolute;
+      left: -999em;
+  }
+
+  .wizard > .content > .title, .tabcontrol > .content > .title {
+      position: absolute;
+      left: -999em;
+  }
+
+
+
+  /*
+      Wizard
+  */
+
+  .wizard > .steps {
+      position: relative;
+      display: block;
+      width: 100%;
+  }
+
+  .wizard.vertical > .steps {
+      display: inline;
+      float: left;
+      width: 30%;
+  }
+
+  .wizard > .steps .number {
+      font-size: 1.429em;
+  }
+
+  .wizard > .steps > ul > li {
+      width: 50%;
+  }
+
+  .wizard > .steps > ul > li, .wizard > .actions > ul > li {
+      float: left;
+  }
+
+  .wizard.vertical > .steps > ul > li {
+      float: none;
+      width: 100%;
+  }
+
+  .wizard > .steps a, .wizard > .steps a:hover, .wizard > .steps a:active {
+      display: block;
+      width: auto;
+      margin: 0 0.5em 0.5em;
+      padding: 1em 1em;
+      text-decoration: none;
+
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+  }
+
+  .wizard > .steps .disabled a, .wizard > .steps .disabled a:hover, .wizard > .steps .disabled a:active {
+      background: #eee;
+      color: #aaa;
+      cursor: default;
+  }
+
+  .wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active {
+      background: #2184be;
+      color: #fff;
+      cursor: default;
+  }
+
+  .wizard > .steps .done a, .wizard > .steps .done a:hover, .wizard > .steps .done a:active {
+      background: #9dc8e2;
+      color: #fff;
+  }
+
+  .wizard > .steps .error a, .wizard > .steps .error a:hover, .wizard > .steps .error a:active {
+      background: #ff3111;
+      color: #fff;
+  }
+
+  .wizard > .content {
+      /background: #eee;
+      background-color: rgba(0, 0, 0, 0);
+      display: block;
+      margin: 0.5em;
+      /min-height: 35em;
+      height: 25em;
+      overflow: hidden;
+      position: relative;
+      width: auto;
+
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+  }
+
+  .wizard.vertical > .content {
+      display: inline;
+      float: left;
+      margin: 0 2.5% 0.5em 2.5%;
+      width: 65%;
+  }
+
+  .wizard > .content > .body {
+      float: left;
+      position: absolute;
+      width: 95%;
+      height: 95%;
+      padding: 2.5%;
+  }
+
+  .wizard > .content > .body ul {
+      list-style: disc !important;
+  }
+
+  .wizard > .content > .body ul > li {
+      display: list-item;
+  }
+
+  .wizard > .content > .body > iframe {
+      border: 0 none;
+      width: 100%;
+      height: 100%;
+  }
+
+  .wizard > .content > .body input {
+      display: block;
+      border: 1px solid #ccc;
+  }
+
+  .wizard > .content > .body input[type="checkbox"] {
+      display: inline-block;
+  }
+
+  .wizard > .content > .body input.error {
+      background: rgb(251, 227, 228);
+      border: 1px solid #fbc2c4;
+      color: #8a1f11;
+  }
+
+  .wizard > .content > .body label {
+      display: inline-block;
+      margin-bottom: 0.5em;
+  }
+
+  .wizard > .content > .body label.error {
+      color: #8a1f11;
+      display: inline-block;
+      margin-left: 1.5em;
+  }
+
+  .wizard > .actions {
+      position: relative;
+      display: block;
+      text-align: right;
+      width: 100%;
+  }
+
+  .wizard.vertical > .actions {
+      display: inline;
+      float: right;
+      margin: 0 2.5%;
+      width: 95%;
+  }
+
+  .wizard > .actions > ul {
+      display: inline-block;
+      text-align: right;
+  }
+
+  .wizard > .actions > ul > li {
+      margin: 0 0.5em;
+  }
+
+  .wizard.vertical > .actions > ul > li {
+      margin: 0 0 0 1em;
+  }
+
+  .wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
+      background: #2184be;
+      color: #fff;
+      display: block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+  }
+
+  .wizard > .actions .disabled a, .wizard > .actions .disabled a:hover, .wizard > .actions .disabled a:active {
+      background: #eee;
+      color: #aaa;
+  } 
+
+  .wizard > .loading{
+  } 
+
+  .wizard > .loading .spinner{
+  }
+
+
+
+  /*
+      Tabcontrol
+  */
+
+  .tabcontrol > .steps {
+      position: relative;
+      display: block;
+      width: 100%;
+  }
+
+  .tabcontrol > .steps > ul {
+      position: relative;
+      margin: 6px 0 0 0;
+      top: 1px;
+      z-index: 1;
+  }
+
+  .tabcontrol > .steps > ul > li {
+      float: left;
+      margin: 5px 2px 0 0;
+      padding: 1px;
+
+      -webkit-border-top-left-radius: 5px;
+      -webkit-border-top-right-radius: 5px;
+      -moz-border-radius-topleft: 5px;
+      -moz-border-radius-topright: 5px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+  }
+
+  .tabcontrol > .steps > ul > li:hover {
+      background: #edecec;
+      border: 1px solid #bbb;
+      padding: 0;
+  }
+
+  .tabcontrol > .steps > ul > li.current {
+      background: #fff;
+      /background-color: rgba(0, 0, 0, 0);
+      border: 1px solid #bbb;
+      border-bottom: 0 none;
+      padding: 0 0 1px 0;
+      margin-top: 0;
+  }
+
+  .tabcontrol > .steps > ul > li > a {
+      color: #5f5f5f;
+      display: inline-block;
+      border: 0 none;
+      margin: 0;
+      padding: 10px 30px;
+      text-decoration: none;
+  }
+
+  .tabcontrol > .steps > ul > li > a:hover {
+      text-decoration: none;
+  }
+
+  .tabcontrol > .steps > ul > li.current > a {
+      padding: 15px 30px 10px 30px;
+  }
+
+  .tabcontrol > .content {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 35em;
+      overflow: hidden;
+      border-top: 1px solid #bbb;
+      padding-top: 20px;
+  }
+
+  .tabcontrol > .content > .body {
+      background-color: white;
+      float: left;
+      position: absolute;
+      width: 95%;
+      height: 95%;
+      padding: 2.5%;
+  }
+
+  .tabcontrol > .content > .body ul {
+      list-style: disc !important;
+  }
+
+  .tabcontrol > .content > .body ul > li {
+      display: list-item;
+  }
