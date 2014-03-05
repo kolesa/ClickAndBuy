@@ -96,7 +96,7 @@ section.slice.animate-hover-slide
     .container
       - if @item.present?
         h3.section-title Новые товары
-        .row
+        .row#items
           - @item.each do |item|
             == render 'static_pages/item', {item: item}
       - else
@@ -155,7 +155,7 @@ css:
 
 javascript:
   $(document).ready(function(){ 
-    $('#container').masonry({
+    $('#items').masonry({
       
       // указываем элемент-контейнер в котором расположены блоки для динамической верстки
       itemSelector: '.itemS',
