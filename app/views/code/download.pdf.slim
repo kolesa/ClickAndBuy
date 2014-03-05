@@ -2,8 +2,8 @@ doctype
 html
   head
     meta charset="utf-8"
-    title = full_title(yield(:title))
-    = wicked_pdf_stylesheet_link_tag 'application'
+    title = full_title()
+    /= wicked_pdf_stylesheet_link_tag 'application'
   body style="background-color: white;"
     .section.slice.bg-3
       .w-section.inverse.container style="padding-top: 20px;"
