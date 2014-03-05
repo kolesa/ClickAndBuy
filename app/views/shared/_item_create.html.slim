@@ -62,11 +62,11 @@
                 tr
                   td 
                     = discount.hidden_field :item_id, class: 'form-control', value: @item.id
-                    = discount.number_field :discount, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Размер скидки"
+                    = discount.number_field :discount, class: 'form-control', data: {:toggle => "tooltip", :placement => "right", validation_optional: "true",validation: "number", validation_allowing: "range[1;100]", validation_error_msg: "Размер скидки от 1% до 100%"}, title: "Размер скидки"
                   td 
-                    = discount.number_field :count, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Количество товара, участвующего в акции"
+                    = discount.number_field :count, class: 'form-control', data: {:toggle => "tooltip", :placement => "right", validation_optional: "true",validation: "number", validation_error_msg: "Количество товара должно быть больше 0"}, title: "Количество товара, участвующего в акции"
                   td 
-                    = discount.number_field :likes, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Количество голосов, необходимого для получения скидки"
+                    = discount.number_field :likes, class: 'form-control', data: {:toggle => "tooltip", :placement => "right", validation_optional: "true",validation: "number", validation_error_msg: "Количество голосов быть больше 0"}, title: "Количество голосов, необходимого для получения скидки"
                   td 
                     = discount.check_box :active, class: 'form-control', data: {:toggle => "tooltip", :placement => "right"}, title: "Скидка активна"
             tfoot

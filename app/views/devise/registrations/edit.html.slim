@@ -26,15 +26,15 @@
               .col-md-6
                 .form-group
                   = f.label :first_name
-                  = f.text_field :first_name, :autofocus => true, class: "form-control", placeholder: "First name"
+                  = f.text_field :first_name, :autofocus => true, class: "form-control", placeholder: "First name", data:{ validation: "required", validation_error_msg: "Введите имя"}
               .col-md-6
                 .form-group
                   = f.label :last_name
-                  = f.text_field :last_name, class: "form-control", placeholder: "Last name"
+                  = f.text_field :last_name, class: "form-control", placeholder: "Last name", data:{ validation: "required", validation_error_msg: "Введите фамилию"}
           - else
             .form-group
                   = f.label :email
-                  = f.email_field :email, class: "form-control", placeholder: "Email Address"
+                  = f.email_field :email, class: "form-control", placeholder: "Email Address", data:{ validation: "email", validation_error_msg: "Введите email"}
             .row
               .col-md-6
                 .form-group
@@ -44,15 +44,6 @@
                 .form-group
                   = f.label :last_name
                   = f.text_field :last_name, class: "form-control", placeholder: "Last name"
-
-            .col-md-6
-              .form-group
-                = f.label :gender
-                = f.select :gender, [['Male', 0], ['Female', 1]], {} , {:class=>"form-control"}
-            .col-md-6
-              .form-group
-                = f.label :date
-                = f.date_field :date, class: "form-control"
             
           /- if current_user.is_admin
             .col-md-6
@@ -78,18 +69,18 @@
           .row
             .col-md-6
               .form-group
-                = f.text_field :vk, class: "form-control", placeholder: "VKontakte"
+                = f.text_field :vk, class: "form-control", placeholder: "VKontakte", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
             .col-md-6
               .form-group
-                = f.text_field :fb, class: "form-control", placeholder: "Facebook"
+                = f.text_field :fb, class: "form-control", placeholder: "Facebook", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
 
           .row
             .col-md-6
               .form-group
-                = f.text_field :tw, class: "form-control", placeholder: "Twitter"
+                = f.text_field :tw, class: "form-control", placeholder: "Twitter", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
             .col-md-6
               .form-group
-                = f.text_field :od, class: "form-control", placeholder: "Odnoklassniki"
+                = f.text_field :od, class: "form-control", placeholder: "Odnoklassniki", data:{ validation: "url", validation_optional: "true",  validation_error_msg: 'Введите корректный url вида http://yandex.ru'}
 
           /.form-group
                 = f.label :current_password
@@ -129,3 +120,7 @@
         => link_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete
         | |
         =< link_to "Back", :back
+
+script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.38/jquery.form-validator.min.js"
+javascript:
+  $.validate();

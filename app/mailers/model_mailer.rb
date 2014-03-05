@@ -2,6 +2,8 @@ class ModelMailer < ActionMailer::Base
   #default from: "postmaster@sandbox97427.mailgun.org"
   default from: "support@likeandbuy.me"
 
+  #support@likeandbuy.me:48QWQ84CJxGcQ
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -11,7 +13,7 @@ class ModelMailer < ActionMailer::Base
     @shop = shop
     @user = user
     @text = text
-    mail    to: "egokok@gmail.com", cc: 'vishma@mail.ru', bcc: 'antonary@mail.ru', subject: "Новый вопрос от #{@shop.name}"
+    mail    to: "egokok@gmail.com", subject: "Новый вопрос от #{@shop.name}"
     
   end
 end

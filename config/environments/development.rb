@@ -7,8 +7,8 @@ ClickAndBuy::Application.configure do
     
   config.cache_classes = false
 
-  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-  config.assets.precompile += %w(.svg .eot .woff .ttf)
+  #config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  #config.assets.precompile += %w(.svg .eot .woff .ttf)
 
   # Do not eager load code on boot.
   config.eager_load = false
