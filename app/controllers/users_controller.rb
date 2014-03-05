@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         Counter.create(user: current_user, like: Like.find(params[:like]))
       
     end
-    redirect_to user_info_path(@user)
+    redirect_to user_info_path(Like.find(params[:like]).user.id)
   end
 
   # GET /user/:id
