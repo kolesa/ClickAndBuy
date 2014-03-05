@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def vote
+    # Проверяем, что мы залогинились, у нас есть голоса и мы не голосовали ранее
+    #
     if signed_in? && (User.find(current_user).votes.to_i > 0) \
       && !Counter.exists?(user: current_user, like: Like.find(params[:like]))
       
@@ -18,7 +20,7 @@ class UsersController < ApplicationController
         Counter.create(user: current_user, like: Like.find(params[:like]))
       
     end
-    redirect_to user_info_path(User.find(params[:id]))
+    redirect_to user_info_path(@user)
   end
 
   # GET /user/:id

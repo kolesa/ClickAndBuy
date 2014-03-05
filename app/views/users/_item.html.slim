@@ -116,7 +116,7 @@
         | Товар закончился
       - else
 
-        a href=user_vote_path(like.users.first.id, like.counters.first.like.id)
+        a href=user_vote_path(like.users.last.id, like.counters.last.like.id)
           / add pop class
           span.fa.fa-heart.fa-4x.heart data-url="#{}" data-content="тут будут лайки"
     - if signed_in? && current_user == @user
