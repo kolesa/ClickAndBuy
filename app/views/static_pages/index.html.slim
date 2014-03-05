@@ -152,3 +152,28 @@ css:
   .price sup {
     font-size:60%;
   }
+
+javascript:
+  $(document).ready(function(){ 
+    $('#container').masonry({
+      
+      // указываем элемент-контейнер в котором расположены блоки для динамической верстки
+      itemSelector: '.itemS',
+      
+      // указываем класс элемента являющегося блоком в нашей сетке
+      singleMode: false,
+      
+      // true - если у вас все блоки одинаковой ширины
+      isResizable: true,
+      
+      // перестраивает блоки при изменении размеров окна
+      isAnimated: true,
+      
+      // анимируем перестроение блоков
+      animationOptions: { 
+          queue: false, 
+          duration: 500 
+      }
+    // опции анимации - очередь и продолжительность анимации
+    }); 
+  });
