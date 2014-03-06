@@ -96,7 +96,7 @@ section.slice.animate-hover-slide
     .container
       - if @item.present?
         h3.section-title Новые товары
-        .row#items
+        .row#items style="margin-bottom: 80px;"
           - @item.each do |item|
             == render 'static_pages/item', {item: item}
       - else
