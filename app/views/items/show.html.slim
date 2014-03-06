@@ -70,14 +70,18 @@
                   p ="Акция действует до #{ I18n.l @item.end_date, :format => :long }г."
                   p
                     -if signed_in?
-                      - unless Like.where(user_id: current_user.id, item_id: @item.id).exists?
-                        = link_to like_path(@item), :method => :post
-                          i.fa.fa-heart.fa-4x style=" color: rgba(200,20,20,0.8);"
+                      - unless Like.where(user_id: current_user.id, item_id: item.id).exists?
+                        = link_to like_path(item), :method => :post, class: "btn btn-xs btn-two"
+                          i.fa.fa-plus-circle
+                          | добавить
                       - else
-                          i.fa.fa-heart style=" color: rgba(250,28,25,1);"
-                          | Уже лайкнул
+                          a.btn.btn-xs.btn-two href="#"
+                            i.fa.fa-heart
+                            | уже лайкал
                     - else
-                        i.fa.fa-heart style=" color: rgba(250,28,25,1);"
+                        a.btn.btn-xs.btn-two href="#" data-toggle="modal" data-target="#register"
+                          i.fa.fa-plus-circle
+                          | добавить
                   p
                     - if signed_in?
                       / && Like.where(item_id: @item.id, user_id: current_user.id).exists?
@@ -169,3 +173,4 @@
                       span.price<
                         = item.price
                         i.fa.fa-rub<> style="display: inline"
+== render 'shared/register_modal'
