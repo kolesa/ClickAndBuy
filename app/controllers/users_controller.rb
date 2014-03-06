@@ -87,14 +87,17 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def not_found
+      render 'error/404'
+    end
 
     def set_item
       redirect_to root_path unless signed_in? and current_user.is_admin
-      @user = User.find(params[:id])
+      @user = User.find_by_id(params[:id]) || not_found
     end
 
     def get_user
-      @user = User.find(params[:id])
+      @user = User.find_by_id(params[:id]) || not_found
     end
 
     def check_auth

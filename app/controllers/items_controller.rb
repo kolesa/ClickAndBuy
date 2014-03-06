@@ -124,9 +124,13 @@ class ItemsController < ApplicationController
   end
 
   private
+    def not_found
+      render 'error/404'
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.find_by_id(params[:id]) || not_found
     end
 
     def check_auth

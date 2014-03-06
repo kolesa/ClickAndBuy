@@ -163,9 +163,13 @@ class ShopsController < ApplicationController
   end
 
   private
+    def not_found
+      render 'error/404'
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
-      @shop = Shop.find(params[:id])
+      @shop = Shop.find_by_id(params[:id]) || not_found
     end
 
     def check_auth
